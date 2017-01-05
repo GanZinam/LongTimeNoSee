@@ -21,10 +21,12 @@ public class Police1 : MonoBehaviour {
         {
             if(Arrow)
             {
+                gameObject.transform.localScale = new Vector2(0.5f, 0.5f);      // 추가
                 gameObject.transform.Translate(Speed, 0, 0);
             }
             else
             {
+                gameObject.transform.localScale = new Vector2(-0.5f, 0.5f);     // 추가
                 gameObject.transform.Translate(-Speed, 0, 0);
             }
             if(gameObject.transform.localPosition.x <= -20f)
