@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour {
     public Transform target;
     Camera mycam;
 
-    float f_X;
-    float f_Y;
+    float f_X = 0;           //카메라 위치 X
+    float f_Y = 0.2f;             //카메라 위치 Y
 
     public float moveSpeed;         // 줌할때 스피드
     public float fMaxZoomIn;          // 줌 인 최대치(줌 할때 제한)
@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour {
 
         if(target)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(0, 0.5f, -1) ;
+            transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X, f_Y, -1) ;
         }
         
         MultiTouch();

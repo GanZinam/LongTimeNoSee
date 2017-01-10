@@ -4,10 +4,11 @@ using System.Collections;
 public class RoomIntoBt : MonoBehaviour {
 
     public GameObject Room;
+    public GameObject Hero;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 
     void Update()
@@ -24,10 +25,12 @@ public class RoomIntoBt : MonoBehaviour {
                 {
                     if (Room.active.Equals(false))
                     {
+                        Hero.GetComponent<Hero>().RoomInit = true;
                         Room.SetActive(true);
                     }
                     else
                     {
+                        Hero.GetComponent<Hero>().RoomInit = false;
                         Room.SetActive(false);
                     }
                 }
