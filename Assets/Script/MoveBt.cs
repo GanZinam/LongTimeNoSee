@@ -5,11 +5,7 @@ public class MoveBt : MonoBehaviour
 {
 
     public GameObject Hero;
-    //@ 버튼
-    public bool Right_;
-    public bool Left_;
 
-    public bool isClick = false;        //클릭 했는지 않했는지
     // 0 = 아무대도아닌상태 1= 오른쪽 2 = 왼쪽
     public int Direction = 0;
 
@@ -22,15 +18,6 @@ public class MoveBt : MonoBehaviour
 
     Vector3 RotateHero;
 
-    public void PointerDown()
-    {
-        isClick = true;
-    }
-
-    public void PointerUp()
-    {
-        isClick = false;
-    }
 
     public void RightBt_in()
     {
@@ -55,33 +42,51 @@ public class MoveBt : MonoBehaviour
     }
     void Update()
     {
-        if (isClick && Direction.Equals(1) && !Right_)
+       
+        if (!Input.touchCount.Equals(2))
         {
-            Hero.transform.Translate(0.05f, 0, 0);
-
-            Hero.transform.rotation = Quaternion.Euler(Hero.transform.rotation.x, Hero.transform.rotation.y, RotateHero.z);
-            if (!HeroAnimator.GetBool("Walk"))
-            {
-                HeroAnimator.SetBool("Walk", true);
-            }
+            Move();
         }
-
-        if (isClick && Direction.Equals(2) && !Left_)
-        {
-            Hero.transform.Translate(0.05f, 0, 0);
-
-            Hero.transform.rotation = Quaternion.Euler(Hero.transform.rotation.x, Hero.transform.rotation.y - 180, RotateHero.z);
-            if (!HeroAnimator.GetBool("Walk"))
-            {
-                HeroAnimator.SetBool("Walk", true);
-            }
-        }
-
-        if (!isClick || Direction.Equals(0)||Left_||Right_)
+        
+        if (Input.GetMouseButtonUp(0))
         {
             HeroAnimator.SetBool("Walk", false);
         }
 
+    }
+    void Move()
+    {
+        Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        if (true)
+        {
+            if (Input.GetMouseButton(0) && touchPos.x > 0.5f)
+            {
+                if (Direction.Equals(0)||Direction.Equals(1))
+                {
+                    Hero.transform.Translate(0.05f, 0, 0);
 
+                    Hero.transform.rotation = Quaternion.Euler(Hero.transform.rotation.x, Hero.transform.rotation.y, RotateHero.z);
+
+                    if (!HeroAnimator.GetBool("Walk"))
+                    {
+                        HeroAnimator.SetBool("Walk", true);
+                    }
+                }
+            }
+            if (Input.GetMouseButton(0) && touchPos.x < 0.5f)
+            {
+                if (Direction.Equals(0) || Direction.Equals(2))
+                {
+                    Hero.transform.Translate(0.05f, 0, 0);
+
+                    Hero.transform.rotation = Quaternion.Euler(Hero.transform.rotation.x, Hero.transform.rotation.y - 180, RotateHero.z);
+
+                    if (!HeroAnimator.GetBool("Walk"))
+                    {
+                        HeroAnimator.SetBool("Walk", true);
+                    }
+                }
+            }
+        }
     }
 }

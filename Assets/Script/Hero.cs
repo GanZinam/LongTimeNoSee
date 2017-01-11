@@ -10,27 +10,23 @@ public class Hero : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("RoomRight")||other.gameObject.CompareTag("WallRight"))       // 벽이 왼쪽에있을때
         {
-            Move.GetComponent<MoveBt>().Left_ = true;
-            Move.GetComponent<MoveBt>().C_Left_ = true;
+            Move.GetComponent<MoveBt>().Direction = 1;
         }
         else if (other.gameObject.CompareTag("RoomLeft") || other.gameObject.CompareTag("WallLeft"))   // 벽이 오른쪽에있을때
         {
             Debug.Log("LeftIn");
-            Move.GetComponent<MoveBt>().Right_ = true;
-            Move.GetComponent<MoveBt>().C_Right_ = true;
+            Move.GetComponent<MoveBt>().Direction = 2;
         }
     }
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("RoomRight") || other.gameObject.CompareTag("WallRight"))
         {
-            Move.GetComponent<MoveBt>().Left_ = false;
-            Move.GetComponent<MoveBt>().C_Left_ = false;
+            Move.GetComponent<MoveBt>().Direction = 0;
         }
         else if (other.gameObject.CompareTag("RoomLeft") || other.gameObject.CompareTag("WallLeft"))
         {
-            Move.GetComponent<MoveBt>().Right_ = false;
-            Move.GetComponent<MoveBt>().C_Right_ = false;
+            Move.GetComponent<MoveBt>().Direction = 0;
         }
     }
 }
