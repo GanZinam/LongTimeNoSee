@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour {
-
+public class CameraFollow : MonoBehaviour
+{
     public Transform target;
     Camera mycam;
 
@@ -13,22 +13,59 @@ public class CameraFollow : MonoBehaviour {
     public float fMaxZoomIn;          // 줌 인 최대치(줌 할때 제한)
     public float fMaxZoomout;         // 줌 아웃 최대치 원래 카메라 사이즈 5 (줌 아웃 제안)
 
-	// Use this for initialization
-	void Start () {
+    bool bZoomIn;
+    bool bZoomOut;
+
+    bool bFuck;     // 터치체크
+
+    // Use this for initialization
+    void Start()
+    {
         mycam = GetComponent<Camera>();
-	}
-	
-	// Update is called once per frame
+    }
+
+    // Update is called once per frame
     void LateUpdate()
     {
 
-        if(target)
+        if (target)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X, f_Y, -1) ;
+            transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X, f_Y, -1);
         }
-        
+    }
+
+    void Update()
+    {
         MultiTouch();
-	}
+        KeyCheck();
+        Zoom();
+    }
+
+    void KeyCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            bZoomIn = false;
+            bZoomOut = true;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            bZoomIn = true;
+            bZoomOut = false;
+        }
+    }
+
+    void Zoom()
+    {
+        if (Camera.main.orthographicSize < 5 && !bZoomOut)
+        {
+            Camera.main.orthographicSize += moveSpeed * Time.deltaTime;
+        }
+        if (Camera.main.orthographicSize >= 3 && !bZoomIn)
+        {
+            Camera.main.orthographicSize -= moveSpeed * Time.deltaTime;
+        }
+    }
 
     void MultiTouch()
     {
@@ -41,25 +78,19 @@ public class CameraFollow : MonoBehaviour {
             Vector2 prevDist = (touch.position - touch.deltaPosition) - (touch2.position - touch2.deltaPosition);
             float delta = curDist.magnitude - prevDist.magnitude;
 
-            if (delta > 0 && Camera.main.orthographicSize >= fMaxZoomIn)
+            if (delta > 0 && !bFuck) // 3
             {
-                ZoomIn();
+                bZoomIn = false;
+                bZoomOut = true;
+                bFuck = true;
             }
-            else
-            {
-                if (Camera.main.orthographicSize < fMaxZoomout)
-                    ZoomOut();
+            else if (delta < 0 && bFuck)
+            {// 5
+                bZoomIn = true;
+                bZoomOut = false;
+                bFuck = false;
             }
         }
     }
 
-    void ZoomOut()
-    {
-        Camera.main.orthographicSize += moveSpeed * Time.deltaTime;
-    }
-
-    void ZoomIn()
-    {
-        Camera.main.orthographicSize -= moveSpeed * Time.deltaTime;
-    }
 }
