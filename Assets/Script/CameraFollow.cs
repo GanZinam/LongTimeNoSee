@@ -6,8 +6,9 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     Camera mycam;
 
-    float f_X = 0;           //카메라 위치 X
-    float f_Y = 0.2f;             //카메라 위치 Y
+    //@ 카매라 기본위치
+    float f_X = 0;
+    float f_Y = 0.2f;
 
     public float moveSpeed;         // 줌할때 스피드
     public float fMaxZoomIn;          // 줌 인 최대치(줌 할때 제한)
@@ -18,19 +19,37 @@ public class CameraFollow : MonoBehaviour
 
     bool bFuck;     // 터치체크
 
+    //@ 앉는 모션
+    Vector3 StartPos;
+    Vector3 NowPos;
+    Vector3 EndPos;
+
+    bool _action;
+
     // Use this for initialization
     void Start()
     {
         mycam = GetComponent<Camera>();
+        _action = true;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-
         if (target)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X, f_Y, -1);
+            if (target.GetComponent<Hero>().Right)
+            {
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X + 0.3f, f_Y, -1);
+            }
+            else if (target.GetComponent<Hero>().Left)
+            {
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X - 0.3F, f_Y, -1);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X + 0.3f, f_Y, -1);
+            }
         }
     }
 
@@ -39,6 +58,7 @@ public class CameraFollow : MonoBehaviour
         MultiTouch();
         KeyCheck();
         Zoom();
+        sit();
     }
 
     void KeyCheck()
@@ -57,11 +77,11 @@ public class CameraFollow : MonoBehaviour
 
     void Zoom()
     {
-        if (Camera.main.orthographicSize < 5 && !bZoomOut)
+        if (Camera.main.orthographicSize < fMaxZoomout && !bZoomOut)
         {
             Camera.main.orthographicSize += moveSpeed * Time.deltaTime;
         }
-        if (Camera.main.orthographicSize >= 3 && !bZoomIn)
+        if (Camera.main.orthographicSize >= fMaxZoomIn && !bZoomIn)
         {
             Camera.main.orthographicSize -= moveSpeed * Time.deltaTime;
         }
@@ -69,7 +89,7 @@ public class CameraFollow : MonoBehaviour
 
     void MultiTouch()
     {
-        if (Input.touchCount == 2)
+        if (Input.touchCount.Equals(2))
         {
             Touch touch = Input.GetTouch(0);
             Touch touch2 = Input.GetTouch(1);
@@ -84,13 +104,72 @@ public class CameraFollow : MonoBehaviour
                 bZoomOut = true;
                 bFuck = true;
             }
-            else if (delta < 0 && bFuck)
-            {// 5
+            else if (delta < 0 && bFuck) // 5
+            {
                 bZoomIn = true;
                 bZoomOut = false;
                 bFuck = false;
             }
         }
     }
+    void sit()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
+            StartPos = Input.mousePosition;
+            if (touchPos.x < 0.75f && touchPos.x > 0.25f)
+            {
+                _action = true;
+            }
+            else
+            {
+                _action = false;
+            }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (_action)
+            {
+                NowPos = Input.mousePosition;
+
+                if (SMng.Instance.sit)
+                {
+                    if (StartPos.x + 50 >= NowPos.x && StartPos.x - 50 <= NowPos.x)
+                    {
+                        _action = true;
+                    }
+                    else
+                    {
+                        Debug.Log(StartPos.x +" "+ NowPos.x);
+                        _action = false;
+                    }
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            EndPos = Input.mousePosition;
+
+            if (_action)
+            {
+                if ((!SMng.Instance.sit) && StartPos.y > EndPos.y + 200)
+                {
+                    Debug.Log("Sit Down");
+                    SMng.Instance.sit = true;
+                    SMng.Instance.HeroAnimator.SetBool("Crouch", true);
+                }
+                else if ((SMng.Instance.sit) && StartPos.y < EndPos.y - 200)
+                {
+                    Debug.Log("Stand Up");
+                    SMng.Instance.sit = false;
+                    SMng.Instance.HeroAnimator.SetBool("StandUp", true);
+                }
+            }
+            _action = true;
+        }
+    }
 }

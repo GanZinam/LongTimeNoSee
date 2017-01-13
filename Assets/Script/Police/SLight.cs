@@ -6,7 +6,6 @@ public class SLight : MonoBehaviour
     // 미안해 ㅜㅜ 변수 이름이 길어서
     public GameObject ExclamationGame = null;               // 느낌표의 게임 오브잭트
     public SpriteRenderer ExclamationSprite = null;         // 느낌표의 스프라이트렌더러
-    public GameObject Hero;
 
 
     public float ColorSpeed = 1;        // 빨간색으로 되는 속도 (1)
@@ -21,7 +20,7 @@ public class SLight : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && Hero.GetComponent<Hero>().RoomInit.Equals(false))
+        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
         {
             ExclamationGame.SetActive(true);
 
@@ -32,7 +31,7 @@ public class SLight : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && Hero.GetComponent<Hero>().RoomInit.Equals(false))
+        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
         {
             Debug.Log("Up");
             NowDistance = Vector3.Distance(transform.parent.parent.position, col.transform.position);
@@ -44,7 +43,7 @@ public class SLight : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && Hero.GetComponent<Hero>().RoomInit.Equals(false))
+        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
         {
             ExclamationGame.SetActive(false);
             ExclamationSprite.color = new Color(1f, 1f, 1f);

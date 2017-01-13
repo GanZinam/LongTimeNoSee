@@ -36,7 +36,7 @@ public class Police1 : MonoBehaviour
             {
                 Arrow = true;
             }
-            if (gameObject.transform.localPosition.x >= 20f)
+            if (gameObject.transform.localPosition.x >= 6f)
             {
                 Arrow = false;
             }

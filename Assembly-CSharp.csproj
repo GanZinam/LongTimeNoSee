@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Box\BoxObj.cs" />
      <Compile Include="Assets\Script\CameraFollow.cs" />
      <Compile Include="Assets\Script\Door\DoorBt.cs" />
      <Compile Include="Assets\Script\Door\DoorObject.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Script\Police\SLight.cs" />
      <Compile Include="Assets\Script\Room\RoomIntoBt.cs" />
      <Compile Include="Assets\Script\Room\RoomManager.cs" />
+     <Compile Include="Assets\Script\SMng.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

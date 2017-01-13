@@ -4,7 +4,6 @@ using System.Collections;
 public class RoomIntoBt : MonoBehaviour {
 
     public GameObject Room;
-    public GameObject Hero;
 
 	// Use this for initialization
 	void Start () {
@@ -23,14 +22,15 @@ public class RoomIntoBt : MonoBehaviour {
             {
                 if (hit.transform.CompareTag("GoDoor"))
                 {
+                    SMng.Instance.Direction = 3;
                     if (Room.active.Equals(false))
                     {
-                        Hero.GetComponent<Hero>().RoomInit = true;
+                        SMng.Instance.Hero.GetComponent<Hero>().RoomInit = true;
                         Room.SetActive(true);
                     }
                     else
                     {
-                        Hero.GetComponent<Hero>().RoomInit = false;
+                        SMng.Instance.Hero.GetComponent<Hero>().RoomInit = false;
                         Room.SetActive(false);
                     }
                 }

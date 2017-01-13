@@ -5,7 +5,6 @@ public class DoorBt : MonoBehaviour
 {
 
     public GameObject OutDoor;
-    public GameObject Hero;
 
     void Update()
     {
@@ -19,12 +18,12 @@ public class DoorBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoDoor"))
                 {
+                    SMng.Instance.Direction = 3;
                     Vector2 Vec = OutDoor.transform.position;
-                    Hero.transform.position = Vec;
+                    SMng.Instance.Hero.transform.position = Vec;
+                    SMng.Instance.Direction = 0;
                 }
             }
         }
-
-
     }
 }
