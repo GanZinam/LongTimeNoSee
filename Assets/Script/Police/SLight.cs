@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SLight : MonoBehaviour
 {
-    // 미안해 ㅜㅜ 변수 이름이 길어서
     public GameObject ExclamationGame = null;               // 느낌표의 게임 오브잭트
     public SpriteRenderer ExclamationSprite = null;         // 느낌표의 스프라이트렌더러
 
@@ -12,41 +11,57 @@ public class SLight : MonoBehaviour
     float DistanceMax;                  // 최대 사이 거리
     float NowDistance;                  // 현제 사이 거리
 
+    public bool Exclamation;            // 느낌표 있을때 
+
     void Start()
     {
         ExclamationSprite = ExclamationGame.GetComponent<SpriteRenderer>();
 
     }
 
+    //@ 라이트가 줄어드는부분
+    void Update()
+    {
+        if(Exclamation)
+        {
+
+
+            if(ExclamationSprite.color.Equals(new Color(255f,255f,255f)))
+            {
+                ExclamationGame.SetActive(false);
+                Exclamation = false;
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
+        //Debug.Log(SMng.Instance.RoomInit +" "+ SMng.Instance.Hide);
+        if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false)&& SMng.Instance.Hide.Equals(false))
         {
             ExclamationGame.SetActive(true);
 
             DistanceMax = Vector3.Distance(transform.parent.parent.position, col.transform.position);
-            Debug.Log(DistanceMax);
+
         }
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
+
+        if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
         {
-            Debug.Log("Up");
             NowDistance = Vector3.Distance(transform.parent.parent.position, col.transform.position);
             ColorSpeed = (DistanceMax-NowDistance)/(DistanceMax/15) ;
-            Debug.Log(ColorSpeed);
             ExclamationSprite.color -= new Color(0f, ColorSpeed / 255f, ColorSpeed / 255f, 0f);
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.CompareTag("Player") && SMng.Instance.Hero.GetComponent<Hero>().RoomInit.Equals(false))
+        if (col.CompareTag("Player"))
         {
-            ExclamationGame.SetActive(false);
-            ExclamationSprite.color = new Color(1f, 1f, 1f);
+            //ExclamationSprite.color = new Color(1f, 1f, 1f);
         }
     }
 }

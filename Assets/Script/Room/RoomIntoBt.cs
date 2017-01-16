@@ -25,12 +25,12 @@ public class RoomIntoBt : MonoBehaviour {
                     SMng.Instance.Direction = 3;
                     if (Room.active.Equals(false))
                     {
-                        SMng.Instance.Hero.GetComponent<Hero>().RoomInit = true;
+                        SMng.Instance.RoomInit = true;
                         Room.SetActive(true);
                     }
                     else
                     {
-                        SMng.Instance.Hero.GetComponent<Hero>().RoomInit = false;
+                        SMng.Instance.RoomInit = false;
                         Room.SetActive(false);
                     }
                 }

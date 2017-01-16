@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Hero : MonoBehaviour {
 
-    public bool RoomInit;       // 방안에 들어갔나 나왔나
+    
 
     //@ 바라보고있는 방향
     public bool Right;
