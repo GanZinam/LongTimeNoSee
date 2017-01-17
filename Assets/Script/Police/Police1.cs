@@ -5,17 +5,20 @@ public class Police1 : MonoBehaviour
 {
 
     int Paturn;
-    bool Arrow;     // true = 오른쪽 , false = 왼쪽
-    float Speed;    // 경찰 스피드
+    public bool Arrow;     // true = 오른쪽 , false = 왼쪽
+    public float Speed;    // 경찰 스피드 2
+    public float fLerpSpeed;        // 러프 속도 0.7
 
     public bool police_In;
 
+    SLight LightScrp = null;
 
     void Start()
     {
+        LightScrp = GetComponentInChildren<SLight>();
         Paturn = Random.Range(0, 3);
         Paturn = 0;
-        Speed = 0.05f;
+        //Speed = 0.05f;
     }
 
     void Update()
@@ -24,13 +27,13 @@ public class Police1 : MonoBehaviour
         {
             if (Arrow)      //오늘쪽
             {
-                gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
-                gameObject.transform.Translate(Speed, 0, 0);
+                gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
+                gameObject.transform.Translate(Vector3.right * Speed * Time.deltaTime);
             }
-            else            //왼쪽
+            else           //왼쪽
             {
-                gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y-180, gameObject.transform.rotation.z);
-                gameObject.transform.Translate(Speed, 0, 0);
+                transform.localScale = new Vector2(-0.5f, transform.localScale.y);
+                gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
             }
             if (gameObject.transform.localPosition.x <= -20f)
             {
@@ -45,7 +48,22 @@ public class Police1 : MonoBehaviour
         {
 
         }
+        Follow();
+    }
 
+    void Follow()
+    {
+        if (LightScrp.bFollow)
+        {
+            Paturn = 1;
+            transform.localPosition = Vector2.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y),
+                                                   new Vector3(SMng.Instance.Hero.transform.localPosition.x, transform.localPosition.y),
+                                                   fLerpSpeed * Time.deltaTime);
+        }
+        else
+        {
+            Paturn = 0;
+        }
     }
 
     //@ 방들어가면 Alpha값 변경 
@@ -77,7 +95,7 @@ public class Police1 : MonoBehaviour
 
         }
     }
-     void OnCollisionExit2D(Collision2D other)
+    void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("RoomRight"))
         {
