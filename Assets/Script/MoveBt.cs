@@ -54,18 +54,16 @@ public class MoveBt : MonoBehaviour
     void Move()
     {
         Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        if (Input.GetMouseButton(0) && touchPos.x > 0.75f)
+        if (Input.GetMouseButton(0) && touchPos.x > 0.75f && !SMng.Instance.Middle_touch)
         {
             if (SMng.Instance.Direction.Equals(0) || SMng.Instance.Direction.Equals(1))
             {
 
                 SMng.Instance.Hero.GetComponent<Hero>().Right = true;
                 SMng.Instance.Hero.GetComponent<Hero>().Left = false;
-                //SMng.Instance.Hero.transform.Translate(0.05f, 0, 0);
 
                 SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
                 SMng.Instance.Hero.transform.Translate(Vector3.right * 2f * Time.deltaTime);
-                //SMng.Instance.Hero.transform.rotation = Quaternion.Euler(SMng.Instance.Hero.transform.rotation.x, SMng.Instance.Hero.transform.rotation.y, RotateHero.z);
                 if (!SMng.Instance.sit)
                 {
                     if (!SMng.Instance.HeroAnimator.GetBool("Walk"))
@@ -80,23 +78,20 @@ public class MoveBt : MonoBehaviour
                 {
                     if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
                     {
-                        //SMng.Instance.HeroAnimator.SetBool("CrouchBreath", false);
                         SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
                     }
                 }
             }
         }
-        if (Input.GetMouseButton(0) && touchPos.x < 0.25f)
+        if (Input.GetMouseButton(0) && touchPos.x < 0.25f && !SMng.Instance.Middle_touch)
         {
             if (SMng.Instance.Direction.Equals(0) || SMng.Instance.Direction.Equals(2))
             {
                 SMng.Instance.Hero.GetComponent<Hero>().Right = false;
                 SMng.Instance.Hero.GetComponent<Hero>().Left = true;
-                //SMng.Instance.Hero.transform.Translate(-0.05f, 0, 0);
 
                 SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
                 SMng.Instance.Hero.transform.Translate(Vector3.left * 2f * Time.deltaTime);
-                //SMng.Instance.Hero.transform.rotation = Quaternion.Euler(SMng.Instance.Hero.transform.rotation.x, SMng.Instance.Hero.transform.rotation.y - 180, RotateHero.z);
 
                 if (!SMng.Instance.sit)
                 {

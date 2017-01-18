@@ -19,3 +19,11 @@ D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.Networking.xml
 D:\UnityProject\Last\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\UnityProject\Last\obj\Debug\Assembly-CSharp.dll
 D:\UnityProject\Last\obj\Debug\Assembly-CSharp.pdb
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.Analytics.dll
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.HoloLens.dll
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.dll
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.VR.dll
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.xml
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.Analytics.xml
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.HoloLens.xml
+D:\UnityProject\Last\Temp\bin\Debug\UnityEngine.VR.xml

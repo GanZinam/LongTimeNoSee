@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BoxObj : MonoBehaviour {
 
-    public GameObject BoxInRight;
-    public GameObject BoxInLeft;
 
     bool Stay = false;
 
@@ -13,12 +11,14 @@ public class BoxObj : MonoBehaviour {
     {
         if(Stay)
         {
-            if (SMng.Instance.sit)
+            if (SMng.Instance.sit && !SMng.Instance.Hide)
             {
+                Debug.Log("Hide = true");
                 SMng.Instance.Hide = true;
             }
-            else
+            else if(!SMng.Instance.sit && SMng.Instance.Hide)
             {
+                Debug.Log("Hide = false");
                 SMng.Instance.Hide = false;
             }
         }
@@ -31,6 +31,7 @@ public class BoxObj : MonoBehaviour {
         {
             if(SMng.Instance.sit)
             {
+                Debug.Log("Hide = true(Sit_In)");
                 SMng.Instance.Hide = true;
             }
         }
@@ -38,6 +39,7 @@ public class BoxObj : MonoBehaviour {
         {
             if (SMng.Instance.sit)
             {
+                Debug.Log("Hide = true(Sit_In)");
                 SMng.Instance.Hide = true;
             }
         }
@@ -47,17 +49,11 @@ public class BoxObj : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            if (SMng.Instance.sit)
-            {
-                Stay = true;
-            }
+            Stay = true;
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
-            if (SMng.Instance.sit)
-            {
-                Stay = true;
-            }
+            Stay = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)

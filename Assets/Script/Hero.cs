@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Hero : MonoBehaviour {
+public class Hero : MonoBehaviour
+{
 
-    
+
 
     //@ 바라보고있는 방향
     public bool Right;
     public bool Left;
 
+    public Vector3 outDoorPos;
+
+    public int Count;           //에니매이션 몇번 돌았는지
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("RoomRight")||other.gameObject.CompareTag("WallRight"))       // 벽이 왼쪽에있을때
+        if (other.gameObject.CompareTag("RoomRight") || other.gameObject.CompareTag("WallRight"))       // 벽이 왼쪽에있을때
         {
             SMng.Instance.Direction = 1;
         }
@@ -42,8 +47,34 @@ public class Hero : MonoBehaviour {
 
     public void StandUpFinish()
     {
-        SMng.Instance.HeroAnimator.SetBool("StandUp",false);
+        SMng.Instance.HeroAnimator.SetBool("StandUp", false);
 
         SMng.Instance.HeroAnimator.SetBool("CrouchBreath", false);
+    }
+
+
+
+    public void setOutDoorpostioin(Vector3 pos)
+    {
+        outDoorPos = pos;
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+    }
+
+
+    public void StairUp()
+    {
+        if (Count != 7)
+        {
+            SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
+            SMng.Instance.Hero.transform.Translate(Vector3.right * 0.5f);
+            SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
+            Count++;
+        }
+    }
+
+    public void Move()
+    {
+        SMng.Instance.Hero.transform.position = outDoorPos;
     }
 }

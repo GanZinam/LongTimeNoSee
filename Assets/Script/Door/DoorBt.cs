@@ -6,6 +6,13 @@ public class DoorBt : MonoBehaviour
 
     public GameObject OutDoor;
 
+    Hero hero;
+
+    void Start()
+    {
+        hero = FindObjectOfType<Hero>();
+    }
+
     void Update()
     {
         // 문들어가는거 클릭
@@ -18,12 +25,16 @@ public class DoorBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoDoor"))
                 {
+                    //@아웃도어 포지션을 넘겨주는함수
+                    hero.setOutDoorpostioin(OutDoor.transform.position);  
+  
                     SMng.Instance.Direction = 3;
-                    Vector2 Vec = OutDoor.transform.position;
-                    SMng.Instance.Hero.transform.position = Vec;
-                    SMng.Instance.Direction = 0;
+                    SMng.Instance.HeroAnimator.SetBool("StairUp",true);
+                    //SMng.Instance.Direction = 0;
                 }
             }
         }
     }
+
+    
 }

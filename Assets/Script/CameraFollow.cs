@@ -122,6 +122,7 @@ public class CameraFollow : MonoBehaviour
             if (touchPos.x < 0.75f && touchPos.x > 0.25f)
             {
                 _action = true;
+                SMng.Instance.Middle_touch = true;
             }
             else
             {
@@ -170,6 +171,7 @@ public class CameraFollow : MonoBehaviour
                 }
             }
             _action = true;
+            SMng.Instance.Middle_touch = false;
         }
     }
 }

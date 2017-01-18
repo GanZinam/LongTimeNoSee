@@ -6,18 +6,29 @@ public class Police1 : MonoBehaviour
 
     int Paturn;
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
-    public float Speed;    // 경찰 스피드 2
-    public float fLerpSpeed;        // 러프 속도 0.7
+    float Speed;    // 경찰 스피드 2
 
     public bool police_In;
 
     SLight LightScrp = null;
+
+    public float fPaturnSpeed;      // 두번째 패턴의 경찰 이동속도
+    public float fAddSpeed;         // 라이트 범위안에 들어왔을때 더해주는 속도   0.1
+    public float fMaxSpeed;         // 최대 스피드(패턴2) 이건 조절해주면댐
+
+    
+    public Animator PoliceWalking;
+
 
     void Start()
     {
         LightScrp = GetComponentInChildren<SLight>();
         Paturn = Random.Range(0, 3);
         Paturn = 0;
+        fPaturnSpeed = Speed;
+        fAddSpeed = 0.01f;
+        fMaxSpeed = 2.5f;
+        Speed = 0.5f;
         //Speed = 0.05f;
     }
 
@@ -48,22 +59,58 @@ public class Police1 : MonoBehaviour
         {
 
         }
-        Follow();
+        Paturn2();
     }
 
-    void Follow()
+    void Paturn2()          //@ 따라가는거
     {
-        if (LightScrp.bFollow)
+        if (true)
         {
-            Paturn = 1;
-            transform.localPosition = Vector2.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y),
-                                                   new Vector3(SMng.Instance.Hero.transform.localPosition.x, transform.localPosition.y),
-                                                   fLerpSpeed * Time.deltaTime);
+            if (LightScrp.bFollow)  //충돌했는지 체크
+            {
+                fPaturnSpeed += fAddSpeed;      // 경찰 속도 빨라지는 부분
+                PoliceWalking.speed += 0.01f;   // 걷는 애니메이션 빨라지는 부분
+
+                if (PoliceWalking.speed >= 3)   //애니메이션
+                {
+                    PoliceWalking.speed = 3f;
+                }
+
+                Paturn = 1;
+
+
+                if (fPaturnSpeed > fMaxSpeed)   //경찰 속도한계치
+                {
+                    fPaturnSpeed = fMaxSpeed;
+                }
+                if (Arrow)      //오늘쪽
+                {
+                    gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
+                    gameObject.transform.Translate(Vector3.right * fPaturnSpeed * Time.deltaTime);
+                }
+                else           //왼쪽
+                {
+                    transform.localScale = new Vector2(-0.5f, transform.localScale.y);
+                    gameObject.transform.Translate(Vector3.left * fPaturnSpeed * Time.deltaTime);
+                }
+            }
+            else        // 여기 고침 헿
+            {
+                PoliceWalking.SetBool("PoliceStop", false);
+                fPaturnSpeed = Speed;
+                fAddSpeed = 0.01f;
+                fMaxSpeed = 2.5f; 
+                Paturn = 0;
+            }
+
+            if (LightScrp.ExclamationSprite.color.b <= 0f)      // 경찰 멈추는곳 (빨간색 됬을때)
+            {
+                PoliceWalking.SetBool("PoliceStop", true);
+                fPaturnSpeed = 0f;
+                fAddSpeed = 0f;
+            }
         }
-        else
-        {
-            Paturn = 0;
-        }
+
     }
 
     //@ 방들어가면 Alpha값 변경 

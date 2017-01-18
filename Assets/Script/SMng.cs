@@ -24,6 +24,9 @@ public class SMng : MonoBehaviour
     }
 
     public GameObject Hero = null;      //Hero GameObject
+    public GameObject DoorBt = null;    //DoorBt GameObject
+
+    public bool Middle_touch;           //중앙 터치 유무
     
     // 0 = 아무대도아닌상태 1= 오른쪽 2 = 왼쪽 3 = 상호작용했을때
     public int Direction = 0;
