@@ -4,22 +4,36 @@ using System.Collections;
 public class BoxObj : MonoBehaviour {
 
 
-    bool Stay = false;
+    bool Stay_right = false;
+    bool Stay_left = false;
 
 
     void Update()
     {
-        if(Stay)
+        if (Stay_right)
         {
             if (SMng.Instance.sit && !SMng.Instance.Hide)
             {
-                Debug.Log("Hide = true");
                 SMng.Instance.Hide = true;
+                SMng.Instance.Hide_right = true;
             }
             else if(!SMng.Instance.sit && SMng.Instance.Hide)
             {
-                Debug.Log("Hide = false");
                 SMng.Instance.Hide = false;
+                SMng.Instance.Hide_right = false;
+            }
+        }
+        if(Stay_left)
+        {
+            if (SMng.Instance.sit && !SMng.Instance.Hide)
+            {
+                SMng.Instance.Hide = true;
+                SMng.Instance.Hide_left = true;
+            }
+            else if (!SMng.Instance.sit && SMng.Instance.Hide)
+            {
+                SMng.Instance.Hide = false;
+                SMng.Instance.Hide_left = false;
             }
         }
     }
@@ -31,16 +45,16 @@ public class BoxObj : MonoBehaviour {
         {
             if(SMng.Instance.sit)
             {
-                Debug.Log("Hide = true(Sit_In)");
                 SMng.Instance.Hide = true;
+                SMng.Instance.Hide_right = true;
             }
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
             if (SMng.Instance.sit)
             {
-                Debug.Log("Hide = true(Sit_In)");
                 SMng.Instance.Hide = true;
+                SMng.Instance.Hide_left = true;
             }
         }
     }
@@ -49,24 +63,29 @@ public class BoxObj : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            Stay = true;
+            Stay_right = true;
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
-            Stay = true;
+            Stay_left = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            SMng.Instance.Hide = false;
-            Stay = false;
+            if (!SMng.Instance.Hide_left)
+                SMng.Instance.Hide = false;
+
+            SMng.Instance.Hide_right = false;
+            Stay_right = false;
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
-            SMng.Instance.Hide = false;
-            Stay = false;
+            if (!SMng.Instance.Hide_right)
+                SMng.Instance.Hide = false;
+            SMng.Instance.Hide_left = false;
+            Stay_left = false;
             
         }
     }

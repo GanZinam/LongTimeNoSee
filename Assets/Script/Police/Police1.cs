@@ -8,7 +8,6 @@ public class Police1 : MonoBehaviour
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
 
-    public bool police_In;
 
     SLight LightScrp = null;
 
@@ -60,6 +59,7 @@ public class Police1 : MonoBehaviour
 
         }
         Paturn2();
+        PoliceAlphaCahnge();    // 방이 켜져있으면 경찰 Alpha
     }
 
     void Paturn2()          //@ 따라가는거
@@ -113,23 +113,7 @@ public class Police1 : MonoBehaviour
 
     }
 
-    //@ 방들어가면 Alpha값 변경 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Room"))
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
-            police_In = true;
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Room"))
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1.0f);
-            police_In = true;
-        }
-    }
+ 
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -151,6 +135,17 @@ public class Police1 : MonoBehaviour
         else if (other.gameObject.CompareTag("RoomLeft"))
         {
 
+        }
+    }
+    public void PoliceAlphaCahnge()
+    {
+        if(SMng.Instance.RoomInit)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
         }
     }
 }

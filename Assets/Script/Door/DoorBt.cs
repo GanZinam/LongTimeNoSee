@@ -6,6 +6,9 @@ public class DoorBt : MonoBehaviour
 
     public GameObject OutDoor;
 
+    //1. 오른쪽 위로 , 2. 오른쪽 아래로 , 3. 왼쪽 위로 , 4. 왼쪽 아래로
+    public int type;
+
     Hero hero;
 
     void Start()
@@ -26,15 +29,18 @@ public class DoorBt : MonoBehaviour
                 if (hit.transform.CompareTag("GoDoor"))
                 {
                     //@아웃도어 포지션을 넘겨주는함수
-                    hero.setOutDoorpostioin(OutDoor.transform.position);  
-  
+                    hero.setOutDoorpostioin(OutDoor.transform.position, type);
+
                     SMng.Instance.Direction = 3;
-                    SMng.Instance.HeroAnimator.SetBool("StairUp",true);
+                    if (type.Equals(1) || type.Equals(3))
+                        SMng.Instance.HeroAnimator.SetBool("StairUp", true);
+                    if (type.Equals(2) || type.Equals(4))
+                        SMng.Instance.HeroAnimator.SetBool("StairDown", true);
                     //SMng.Instance.Direction = 0;
                 }
             }
         }
     }
 
-    
+
 }

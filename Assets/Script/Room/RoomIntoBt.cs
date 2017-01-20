@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomIntoBt : MonoBehaviour {
+public class RoomIntoBt : MonoBehaviour
+{
 
-    public GameObject Room;
+    // Use this for initialization
+    void Start()
+    {
 
-	// Use this for initialization
-	void Start () {
-
-	}
+    }
 
     void Update()
     {
@@ -20,21 +20,19 @@ public class RoomIntoBt : MonoBehaviour {
 
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("GoDoor"))
+                if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponent<Animator>().GetBool("Into").Equals(false))
                 {
                     SMng.Instance.Direction = 3;
-                    if (Room.active.Equals(false))
-                    {
-                        SMng.Instance.RoomInit = true;
-                        Room.SetActive(true);
-                    }
-                    else
-                    {
-                        SMng.Instance.RoomInit = false;
-                        Room.SetActive(false);
-                    }
+                    transform.parent.GetComponent<Animator>().SetBool("Into", true);
+
                 }
             }
         }
     }
+
+    public void AniFinsh()
+    {
+        SMng.Instance.Hero.GetComponent<Hero>().AniFinsh_statusCh();
+    }
+
 }

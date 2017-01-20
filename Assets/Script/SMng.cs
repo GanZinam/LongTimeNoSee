@@ -35,6 +35,11 @@ public class SMng : MonoBehaviour
     public bool sit = false;
     public bool RoomInit;       // 방안에 들어갔나 나왔나
     public bool Hide = false;   // 숨어있는지 아닌지
+    
+    // 숨어있는 상자 방향
+    public bool Hide_right = false;
+    public bool Hide_left = false;
+    
     // 주인공 애니메이션
     public Animator HeroAnimator;
 
