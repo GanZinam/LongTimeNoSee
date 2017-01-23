@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BoxObj : MonoBehaviour {
-
-
+public class BoxObj : MonoBehaviour
+{
     bool Stay_right = false;
     bool Stay_left = false;
-
 
     void Update()
     {
@@ -17,13 +15,13 @@ public class BoxObj : MonoBehaviour {
                 SMng.Instance.Hide = true;
                 SMng.Instance.Hide_right = true;
             }
-            else if(!SMng.Instance.sit && SMng.Instance.Hide)
+            else if (!SMng.Instance.sit && SMng.Instance.Hide)
             {
                 SMng.Instance.Hide = false;
                 SMng.Instance.Hide_right = false;
             }
         }
-        if(Stay_left)
+        if (Stay_left)
         {
             if (SMng.Instance.sit && !SMng.Instance.Hide)
             {
@@ -41,9 +39,9 @@ public class BoxObj : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player")&&gameObject.CompareTag("BoxHideRight"))
+        if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            if(SMng.Instance.sit)
+            if (SMng.Instance.sit)
             {
                 SMng.Instance.Hide = true;
                 SMng.Instance.Hide_right = true;
@@ -86,7 +84,6 @@ public class BoxObj : MonoBehaviour {
                 SMng.Instance.Hide = false;
             SMng.Instance.Hide_left = false;
             Stay_left = false;
-            
         }
     }
 }

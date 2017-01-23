@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomAimationMng : MonoBehaviour {
-
+public class RoomAimationMng : MonoBehaviour
+{
     public GameObject Room;
 
     public void AniFinsh()

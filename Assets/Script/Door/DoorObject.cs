@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorObject : MonoBehaviour {
+public class DoorObject : MonoBehaviour
+{
 
     public GameObject Doorin;
 

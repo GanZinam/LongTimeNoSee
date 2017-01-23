@@ -144,7 +144,7 @@ public class CameraFollow : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(StartPos.x +" "+ NowPos.x);
+                        Debug.Log(StartPos.x + " " + NowPos.x);
                         _action = false;
                     }
                 }

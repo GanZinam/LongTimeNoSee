@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomManager : MonoBehaviour {
-
+public class RoomManager : MonoBehaviour
+{
     public GameObject Room;
     public GameObject Police;
+    
+    void Start()
+    {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if(Room.activeSelf)
+    }
+    
+    void Update()
+    {
+        if (Room.activeSelf)
         {
 
         }
-	}
+    }
 }

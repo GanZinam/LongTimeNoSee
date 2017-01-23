@@ -11,7 +11,6 @@ public class SLight : MonoBehaviour
     float DistanceMax;                  // 최대 사이 거리
     float NowDistance;                  // 현제 사이 거리
 
-
     public bool bFollow;                // 라이트랑 플래이어가 충돌했을때
     float fEraseSpeed;                  // 느낌표 지워주는 속도 3
 

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class DoorBt : MonoBehaviour
 {
-
     public GameObject OutDoor;
 
     //1. 오른쪽 위로 , 2. 오른쪽 아래로 , 3. 왼쪽 위로 , 4. 왼쪽 아래로

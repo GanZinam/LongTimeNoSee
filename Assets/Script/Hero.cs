@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Hero : MonoBehaviour
 {
-
     //@ 바라보고있는 방향
     public bool Right;
     public bool Left;

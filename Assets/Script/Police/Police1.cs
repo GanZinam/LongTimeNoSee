@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Police1 : MonoBehaviour
 {
-
     int Paturn;
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
@@ -15,7 +14,7 @@ public class Police1 : MonoBehaviour
     public float fAddSpeed;         // 라이트 범위안에 들어왔을때 더해주는 속도   0.1
     public float fMaxSpeed;         // 최대 스피드(패턴2) 이건 조절해주면댐
 
-    
+
     public Animator PoliceWalking;
 
     GameObject Child;
@@ -36,7 +35,7 @@ public class Police1 : MonoBehaviour
 
     void Update()
     {
-        if(!Child.GetComponent<SLight>().bFollow)
+        if (!Child.GetComponent<SLight>().bFollow)
         {
             PoliceWalking.speed = 1f;
         }
@@ -106,7 +105,7 @@ public class Police1 : MonoBehaviour
                 PoliceWalking.SetBool("PoliceStop", false);
                 fPaturnSpeed = Speed;
                 fAddSpeed = 0.01f;
-                fMaxSpeed = 2.5f; 
+                fMaxSpeed = 2.5f;
                 Paturn = 0;
             }
 
@@ -120,7 +119,7 @@ public class Police1 : MonoBehaviour
 
     }
 
- 
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -146,7 +145,7 @@ public class Police1 : MonoBehaviour
     }
     public void PoliceAlphaCahnge()
     {
-        if(SMng.Instance.RoomInit)
+        if (SMng.Instance.RoomInit)
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
         }
