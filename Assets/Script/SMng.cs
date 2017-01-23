@@ -26,6 +26,8 @@ public class SMng : MonoBehaviour
     public GameObject Hero = null;      //Hero GameObject
     public GameObject DoorBt = null;    //DoorBt GameObject
 
+    public int Hero_weapon;     //0.상호작용 1. 전투
+
     public bool Middle_touch;           //중앙 터치 유무
     
     // 0 = 아무대도아닌상태 1= 오른쪽 2 = 왼쪽 3 = 상호작용했을때
@@ -42,5 +44,8 @@ public class SMng : MonoBehaviour
     
     // 주인공 애니메이션
     public Animator HeroAnimator;
+
+    // 미니게임
+    public bool bDownCheck;
 
 }

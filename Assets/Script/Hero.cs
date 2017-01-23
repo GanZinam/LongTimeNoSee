@@ -4,8 +4,6 @@ using System.Collections;
 public class Hero : MonoBehaviour
 {
 
-
-
     //@ 바라보고있는 방향
     public bool Right;
     public bool Left;
@@ -14,7 +12,33 @@ public class Hero : MonoBehaviour
     public int DoorType;
 
     public int Count;           //에니매이션 몇번 돌았는지
+    bool StairPos;
 
+
+    void Update()
+    {
+        //if(StairPos)
+        //{
+        //    if (transform.position.x >= -24f &&( DoorType.Equals(3) || DoorType.Equals(4)))
+        //    {
+        //        transform.Translate(Vector3.left * 2f * Time.deltaTime);
+        //        //
+        //    }
+        //    else if (transform.position.x < -24f && (DoorType.Equals(3) || DoorType.Equals(4)))
+        //    {
+        //        StairPos = false;
+        //    }
+        //    else if(transform.position.x <= 7.4f &&( DoorType.Equals(1) || DoorType.Equals(2)))
+        //    {
+        //        transform.Translate(Vector3.right * 2f * Time.deltaTime);
+        //    }
+        //    else if (transform.position.x > 7.4f && (DoorType.Equals(1) || DoorType.Equals(2)))
+        //    {
+        //        StairPos = false;
+        //    }
+        //    //else if(transform.position.x<)
+        //}
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -67,60 +91,64 @@ public class Hero : MonoBehaviour
         DoorType = type;
         GetComponent<BoxCollider2D>().isTrigger = true;
         GetComponent<Rigidbody2D>().gravityScale = 0;
+        StairPos = true;
     }
 
 
     public void StairUp()
     {
-        if (Count < 6)
+        if (StairPos)
         {
-            if (DoorType.Equals(1) || DoorType.Equals(3))
-                SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
-            else if (DoorType.Equals(2) || DoorType.Equals(4))
-                SMng.Instance.Hero.transform.Translate(Vector3.down * 0.5f);
+            if (Count < 6)
+            {
+                if (DoorType.Equals(1) || DoorType.Equals(3))
+                    SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
+                else if (DoorType.Equals(2) || DoorType.Equals(4))
+                    SMng.Instance.Hero.transform.Translate(Vector3.down * 0.5f);
 
-            if (DoorType.Equals(1) || DoorType.Equals(2))
-            {
-                SMng.Instance.Hero.transform.Translate(Vector3.right * 0.5f);
-                SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
-            }
-            else if (DoorType.Equals(3) || DoorType.Equals(4))
-            {
-                SMng.Instance.Hero.transform.Translate(Vector3.left * 0.5f);
-                SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
-            }
+                if (DoorType.Equals(1) || DoorType.Equals(2))
+                {
+                    SMng.Instance.Hero.transform.Translate(Vector3.right * 0.5f);
+                    SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
+                }
+                else if (DoorType.Equals(3) || DoorType.Equals(4))
+                {
+                    SMng.Instance.Hero.transform.Translate(Vector3.left * 0.5f);
+                    SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
+                }
 
-            Count++;
-        }
-        else if (Count < 12)
-        {
-            if (DoorType.Equals(1) || DoorType.Equals(3))
-                SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
-            else if (DoorType.Equals(2) || DoorType.Equals(4))
-                SMng.Instance.Hero.transform.Translate(Vector3.down * 0.5f);
-            if (DoorType.Equals(1) || DoorType.Equals(2))
-            {
-                SMng.Instance.Hero.transform.Translate(Vector3.left * 0.5f);
-                SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
+                Count++;
             }
-            else if (DoorType.Equals(3) || DoorType.Equals(4))
+            else if (Count < 12)
             {
-                SMng.Instance.Hero.transform.Translate(Vector3.right * 0.5f);
-                SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
+                if (DoorType.Equals(1) || DoorType.Equals(3))
+                    SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
+                else if (DoorType.Equals(2) || DoorType.Equals(4))
+                    SMng.Instance.Hero.transform.Translate(Vector3.down * 0.5f);
+                if (DoorType.Equals(1) || DoorType.Equals(2))
+                {
+                    SMng.Instance.Hero.transform.Translate(Vector3.left * 0.5f);
+                    SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
+                }
+                else if (DoorType.Equals(3) || DoorType.Equals(4))
+                {
+                    SMng.Instance.Hero.transform.Translate(Vector3.right * 0.5f);
+                    SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
+                }
+                Count++;
             }
-            Count++;
-        }
-        else if (Count >= 12)      //계단 끝
-        {
-            GetComponent<BoxCollider2D>().isTrigger = false;
-            GetComponent<Rigidbody2D>().gravityScale = 100;
+            else if (Count >= 12)      //계단 끝
+            {
+                GetComponent<BoxCollider2D>().isTrigger = false;
+                GetComponent<Rigidbody2D>().gravityScale = 100;
 
-            SMng.Instance.Direction = 0;
-            if (SMng.Instance.HeroAnimator.GetBool("StairUp"))
-                SMng.Instance.HeroAnimator.SetBool("StairUp", false);
-            if (SMng.Instance.HeroAnimator.GetBool("StairDown"))
-                SMng.Instance.HeroAnimator.SetBool("StairDown", false);
-            Count = 0;
+                SMng.Instance.Direction = 0;
+                if (SMng.Instance.HeroAnimator.GetBool("StairUp"))
+                    SMng.Instance.HeroAnimator.SetBool("StairUp", false);
+                if (SMng.Instance.HeroAnimator.GetBool("StairDown"))
+                    SMng.Instance.HeroAnimator.SetBool("StairDown", false);
+                Count = 0;
+            }
         }
     }
 

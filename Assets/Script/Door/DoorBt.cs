@@ -33,10 +33,13 @@ public class DoorBt : MonoBehaviour
 
                     SMng.Instance.Direction = 3;
                     if (type.Equals(1) || type.Equals(3))
+                    {
                         SMng.Instance.HeroAnimator.SetBool("StairUp", true);
+                    }
                     if (type.Equals(2) || type.Equals(4))
+                    {
                         SMng.Instance.HeroAnimator.SetBool("StairDown", true);
-                    //SMng.Instance.Direction = 0;
+                    }
                 }
             }
         }

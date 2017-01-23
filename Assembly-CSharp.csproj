@@ -54,10 +54,12 @@
      <Compile Include="Assets\Script\MoveBt.cs" />
      <Compile Include="Assets\Script\Police\Police1.cs" />
      <Compile Include="Assets\Script\Police\SLight.cs" />
+     <Compile Include="Assets\Script\Room\Computer.cs" />
      <Compile Include="Assets\Script\Room\RoomAimationMng.cs" />
      <Compile Include="Assets\Script\Room\RoomIntoBt.cs" />
      <Compile Include="Assets\Script\Room\RoomManager.cs" />
      <Compile Include="Assets\Script\SMng.cs" />
+     <Compile Include="Assets\Script\UI\Button.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

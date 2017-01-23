@@ -30,7 +30,7 @@ public class SLight : MonoBehaviour
         {
             ExclamationSprite.color += new Color(0f, fEraseSpeed / 255f, fEraseSpeed / 255f, 0f);
         }
-        else if(!bFollow && ExclamationSprite.color.b>1f)
+        else if (!bFollow && ExclamationSprite.color.b > 1f)
         {
             ExclamationGame.SetActive(false);
         }
@@ -40,9 +40,8 @@ public class SLight : MonoBehaviour
     {
         if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
         {
-            Debug.Log("충돌");
             ExclamationGame.SetActive(true);
-            
+
             DistanceMax = 7.8f;
 
             bFollow = true;
@@ -51,23 +50,31 @@ public class SLight : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-         if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
-         {
-             if (SMng.Instance.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) || SMng.Instance.Hide_right.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(false)))
-             {
-                 Debug.Log("지속");
-                 NowDistance = Vector3.Distance(transform.parent.parent.position, col.transform.position);
-                 ColorSpeed = (DistanceMax - NowDistance) / (DistanceMax / 4);      //
+        if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
+        {
+            if (SMng.Instance.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                SMng.Instance.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+            {
+                if (!bFollow)
+                {
+                    ExclamationGame.SetActive(true);
 
-                 if (ExclamationSprite.color.r > 0 && ExclamationSprite.color.b > 0 && ExclamationSprite.color.g > 0)
-                 {
-                     ExclamationSprite.color -= new Color(0f, ColorSpeed / 255f, ColorSpeed / 255f, 0f);
-                 }
-                 else
-                 {
-                     ExclamationSprite.color = new Color(255f, 0f, 0f);
-                 }
-             }
+                    DistanceMax = 7.8f;
+
+                    bFollow = true;
+                }
+                NowDistance = Vector3.Distance(transform.parent.parent.position, col.transform.position);
+                ColorSpeed = (DistanceMax - NowDistance) / (DistanceMax / 4);      //
+
+                if (ExclamationSprite.color.r > 0 && ExclamationSprite.color.b > 0 && ExclamationSprite.color.g > 0)
+                {
+                    ExclamationSprite.color -= new Color(0f, ColorSpeed / 255f, ColorSpeed / 255f, 0f);
+                }
+                else
+                {
+                    ExclamationSprite.color = new Color(255f, 0f, 0f);
+                }
+            }
         }
     }
 

@@ -18,9 +18,12 @@ public class Police1 : MonoBehaviour
     
     public Animator PoliceWalking;
 
+    GameObject Child;
+
 
     void Start()
     {
+        Child = transform.Find("LookPoint/SLight").gameObject;
         LightScrp = GetComponentInChildren<SLight>();
         Paturn = Random.Range(0, 3);
         Paturn = 0;
@@ -33,6 +36,10 @@ public class Police1 : MonoBehaviour
 
     void Update()
     {
+        if(!Child.GetComponent<SLight>().bFollow)
+        {
+            PoliceWalking.speed = 1f;
+        }
         if (Paturn.Equals(0))        //경찰 패턴 1
         {
             if (Arrow)      //오늘쪽
