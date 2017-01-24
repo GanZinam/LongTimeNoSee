@@ -50,6 +50,40 @@ public class SMng : MonoBehaviour
     //@ 미니게임
     public bool bDownCheck;
 
+    public int HideWide = 1;
+
+
+    Vector2 recentHighPos = new Vector2(300, 150);
+
+    [HideInInspector]
+    public bool[] isStating = new bool[7];
+
+    [SerializeField]
+    GameObject statePrefab;
+    [SerializeField]
+    GameObject state;
+
+
+
+    public void createState()
+    {
+        GameObject obj = Instantiate(statePrefab, state.transform) as GameObject;
+        obj.transform.localPosition = recentHighPos;
+        for (int i = 0; i < 7; i++)
+        {
+            Debug.Log(isStating.Length);
+            obj.transform.localPosition -= new Vector3(0, 50);
+
+            if (!isStating[i])
+            {
+                isStating[i] = true;
+                obj.GetComponent<StatePopup>().idx = i;
+                obj.GetComponent<StatePopup>().text.text = i + "";
+                break;
+            }
+        }
+    }
+
     public void changeWeapon()
     {
         Hero_weapon = Hero_weapon.Equals(WEAPON.WEAPON_HAND) ?  WEAPON.WEAPON_GUN : WEAPON.WEAPON_HAND;

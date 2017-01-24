@@ -31,18 +31,33 @@ public class CabinetBt : MonoBehaviour
                     if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
                     {
                         // 찾기
-                        Debug.Log("FOUND");
                         foundItemPopup.SetActive(true);
+                        SMng.Instance.Direction = 3;
                     }
                     else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {
                         // 들어가기
-                        Debug.Log("INTO");
-                        SMng.Instance.Hide = true;
+                        if (!SMng.Instance.Hide)
+                        {
+                            SMng.Instance.Hide = true;
+                            SMng.Instance.Direction = 3;
+                            SMng.Instance.HideWide = 0;
+                        }
+                        else
+                        {
+                            SMng.Instance.Hide = false;
+                            SMng.Instance.Direction = 0;
+                            SMng.Instance.HideWide = 1;
+                        }
                     }
                 }
             }
         }
+    }
+
+    public void ExitBt()
+    {
+        SMng.Instance.Direction = 0;
     }
 
 }

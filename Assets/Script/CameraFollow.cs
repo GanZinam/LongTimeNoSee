@@ -40,15 +40,15 @@ public class CameraFollow : MonoBehaviour
         {
             if (target.GetComponent<Hero>().Right)
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X + 0.3f, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f)*SMng.Instance.HideWide, f_Y, -1);
             }
             else if (target.GetComponent<Hero>().Left)
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X - 0.3F, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X - 0.3f) * SMng.Instance.HideWide, f_Y, -1);
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3(f_X + 0.3f, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f) * SMng.Instance.HideWide, f_Y, -1);
             }
         }
     }

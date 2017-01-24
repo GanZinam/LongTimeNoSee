@@ -54,7 +54,7 @@ public class MoveBt : MonoBehaviour
     void Move()
     {
         Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        if (Input.GetMouseButton(0) && touchPos.x > 0.75f && !SMng.Instance.Middle_touch)
+        if (Input.GetMouseButton(0) && touchPos.x > 0.75f && touchPos.y < 0.75f && !SMng.Instance.Middle_touch)
         {
             if (SMng.Instance.Direction.Equals(0) || SMng.Instance.Direction.Equals(1))
             {
@@ -73,9 +73,6 @@ public class MoveBt : MonoBehaviour
                 }
                 else
                 {
-
-                }
-                {
                     if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
                     {
                         SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
@@ -83,7 +80,7 @@ public class MoveBt : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButton(0) && touchPos.x < 0.25f && !SMng.Instance.Middle_touch)
+        if (Input.GetMouseButton(0) && touchPos.x < 0.25f && touchPos.y < 0.75f && !SMng.Instance.Middle_touch)
         {
             if (SMng.Instance.Direction.Equals(0) || SMng.Instance.Direction.Equals(2))
             {

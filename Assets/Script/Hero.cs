@@ -16,27 +16,10 @@ public class Hero : MonoBehaviour
 
     void Update()
     {
-        //if(StairPos)
-        //{
-        //    if (transform.position.x >= -24f &&( DoorType.Equals(3) || DoorType.Equals(4)))
-        //    {
-        //        transform.Translate(Vector3.left * 2f * Time.deltaTime);
-        //        //
-        //    }
-        //    else if (transform.position.x < -24f && (DoorType.Equals(3) || DoorType.Equals(4)))
-        //    {
-        //        StairPos = false;
-        //    }
-        //    else if(transform.position.x <= 7.4f &&( DoorType.Equals(1) || DoorType.Equals(2)))
-        //    {
-        //        transform.Translate(Vector3.right * 2f * Time.deltaTime);
-        //    }
-        //    else if (transform.position.x > 7.4f && (DoorType.Equals(1) || DoorType.Equals(2)))
-        //    {
-        //        StairPos = false;
-        //    }
-        //    //else if(transform.position.x<)
-        //}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SMng.Instance.createState();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)

@@ -39,11 +39,15 @@ public class SLight : MonoBehaviour
     {
         if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
         {
-            ExclamationGame.SetActive(true);
+            if (SMng.Instance.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                SMng.Instance.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+            {
+                ExclamationGame.SetActive(true);
 
-            DistanceMax = 7.8f;
+                DistanceMax = 7.8f;
 
-            bFollow = true;
+                bFollow = true;
+            }
         }
     }
 
