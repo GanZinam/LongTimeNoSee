@@ -11,6 +11,7 @@ public class CabinetBt : MonoBehaviour
     [SerializeField]
     GameObject foundItemPopup;
 
+
     void Start()
     {
 
@@ -36,6 +37,7 @@ public class CabinetBt : MonoBehaviour
                     }
                     else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {
+                        transform.parent.GetComponent<Animator>().SetBool("Cabinet", true);
                         // 들어가기
                         if (!SMng.Instance.Hide)
                         {

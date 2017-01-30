@@ -15,7 +15,6 @@ public class StatePopup : MonoBehaviour
     IEnumerator counting()
     {
         yield return new WaitForSeconds(1);
-        //Debug.Log(idx);
         SMng.Instance.isStating[idx] = false;
         Destroy(gameObject);
     }

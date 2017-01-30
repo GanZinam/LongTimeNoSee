@@ -33,4 +33,21 @@ public class Cabinet : MonoBehaviour
             intoObj.SetActive(false);
         }
     }
+
+    void CabinetIn()
+    {
+        if (SMng.Instance.Hide)
+        {
+            SMng.Instance.Hero.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0f);
+        }
+        else
+        {
+            SMng.Instance.Hero.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
+        }
+    }
+
+    void Cabinetbool()
+    {
+        transform.GetComponent<Animator>().SetBool("Cabinet", false);
+    }
 }

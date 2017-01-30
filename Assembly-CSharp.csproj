@@ -46,13 +46,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Cabinet.cs" />
-     <Compile Include="Assets\CabinetBt.cs" />
      <Compile Include="Assets\Script\Box\BoxObj.cs" />
+     <Compile Include="Assets\Script\Cabinet\Cabinet.cs" />
+     <Compile Include="Assets\Script\Cabinet\CabinetBt.cs" />
      <Compile Include="Assets\Script\CameraFollow.cs" />
      <Compile Include="Assets\Script\Door\DoorBt.cs" />
      <Compile Include="Assets\Script\Door\DoorObject.cs" />
      <Compile Include="Assets\Script\Hero.cs" />
+     <Compile Include="Assets\Script\Mini1\ComputerBt.cs" />
+     <Compile Include="Assets\Script\Mini1\ObjectFollow.cs" />
+     <Compile Include="Assets\Script\Mini1\SBarCollider.cs" />
+     <Compile Include="Assets\Script\Mini1\SComputerMini.cs" />
+     <Compile Include="Assets\Script\Mini1\SScroll.cs" />
+     <Compile Include="Assets\Script\Mini2\SLock.cs" />
+     <Compile Include="Assets\Script\Mini2\SLockGroup.cs" />
+     <Compile Include="Assets\Script\Mini2\SPickMove.cs" />
+     <Compile Include="Assets\Script\Mini3\SCollider.cs" />
      <Compile Include="Assets\Script\MoveBt.cs" />
      <Compile Include="Assets\Script\Police\Police1.cs" />
      <Compile Include="Assets\Script\Police\SLight.cs" />
