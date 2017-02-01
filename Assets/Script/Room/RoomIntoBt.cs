@@ -18,10 +18,10 @@ public class RoomIntoBt : MonoBehaviour
 
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponent<Animator>().GetBool("Into").Equals(false))
+                if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponentInChildren<Animator>().GetBool("Into").Equals(false))
                 {
                     SMng.Instance.Direction = 3;
-                    transform.parent.GetComponent<Animator>().SetBool("Into", true);
+                    transform.parent.GetComponentInChildren<Animator>().SetBool("Into", true);
 
                 }
             }
