@@ -12,6 +12,7 @@ public class SComputerMini : MonoBehaviour
 
     public int nCount;          // 알파벳 카운트?
     public bool bCheck;
+    bool mouseCh;
 
     // timer
     public float fTimer;        // 타이머 시간
@@ -25,6 +26,7 @@ public class SComputerMini : MonoBehaviour
     {
         nCount = 0;
         fTimer = 180f;
+        mouseCh = true; ;
     }
 
     void Update()
@@ -52,60 +54,55 @@ public class SComputerMini : MonoBehaviour
     //}
 
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Bar"))
-        {
-            bCheck = true;
-        }
-    }
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (Input.GetMouseButtonDown(0) /*|| Input.GetKeyDown(KeyCode.Space) */&& bCheck)
+        if (col.CompareTag("Bar")&&gameObject.CompareTag(" "))
         {
-            Debug.Log("asdfasdfasdfasdfasdf");
-            switch (nCount)
+            if (Input.GetMouseButtonDown(0) && bCheck && mouseCh)
             {
-                case 0:
-                    ScrollScrp[0].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
-                case 1:
-                    ScrollScrp[1].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
-                case 2:
-                    ScrollScrp[2].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
-                case 3:
-                    ScrollScrp[3].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
-                case 4:
-                    ScrollScrp[4].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
-                case 5:
-                    ScrollScrp[5].scrollSpeed = 0f;
-                    bCheck = false;
-                    nCount++;
-                    break;
+                switch (nCount)
+                {
+                    case 0:
+                        ScrollScrp[0].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                    case 1:
+                        ScrollScrp[1].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                    case 2:
+                        ScrollScrp[2].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                    case 3:
+                        ScrollScrp[3].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                    case 4:
+                        ScrollScrp[4].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                    case 5:
+                        ScrollScrp[5].scrollSpeed = 0f;
+                        mouseCh = false;
+                        nCount++;
+                        break;
+                }
+            }
+            if (nCount.Equals(6))
+            {
+                bCheck = false;
             }
         }
-    }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Bar"))
-        {
-            bCheck = false;
-        }
+            if (Input.GetMouseButtonUp(0) && bCheck && !mouseCh)
+            {
+                mouseCh = true;
+            }
     }
 }

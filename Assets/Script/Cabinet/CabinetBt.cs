@@ -11,6 +11,7 @@ public class CabinetBt : MonoBehaviour
     [SerializeField]
     GameObject foundItemPopup;
 
+    public int Num;     // 비어있는 캐비넷 100
 
     void Start()
     {
@@ -32,8 +33,18 @@ public class CabinetBt : MonoBehaviour
                     if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
                     {
                         // 찾기
-                        foundItemPopup.SetActive(true);
-                        SMng.Instance.Direction = 3;
+                        if (Num.Equals(1))
+                        {
+                            Inventory.getItem(1);
+                        }
+                        else if (Num.Equals(2))
+                        {
+                            Inventory.getItem(1);
+                        }
+                        else if (Num.Equals(100))
+                        {
+                            Inventory.getItem(0);
+                        }
                     }
                     else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {

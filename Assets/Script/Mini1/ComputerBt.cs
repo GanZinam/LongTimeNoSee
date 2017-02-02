@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ComputerBt : MonoBehaviour {
 
-    public GameObject miniGame1;
+    public GameObject MinigameCam;
+    public GameObject MiniGame1;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,8 @@ public class ComputerBt : MonoBehaviour {
 
                     SMng.Instance.Direction = 3;
 
-                    miniGame1.SetActive(true);
+                    MiniGame1.GetComponent<SComputerMini>().bCheck = true;
+                    MinigameCam.SetActive(true);
                 }
             }
         }

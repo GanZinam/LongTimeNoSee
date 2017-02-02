@@ -53,9 +53,9 @@
      <Compile Include="Assets\Script\Door\DoorBt.cs" />
      <Compile Include="Assets\Script\Door\DoorObject.cs" />
      <Compile Include="Assets\Script\Hero.cs" />
+     <Compile Include="Assets\Script\Inventory.cs" />
      <Compile Include="Assets\Script\Mini1\ComputerBt.cs" />
      <Compile Include="Assets\Script\Mini1\ObjectFollow.cs" />
-     <Compile Include="Assets\Script\Mini1\SBarCollider.cs" />
      <Compile Include="Assets\Script\Mini1\SComputerMini.cs" />
      <Compile Include="Assets\Script\Mini1\SScroll.cs" />
      <Compile Include="Assets\Script\Mini2\SLock.cs" />

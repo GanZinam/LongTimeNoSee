@@ -9,6 +9,7 @@ public class Cabinet : MonoBehaviour
     [SerializeField]
     GameObject foundObj;
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -17,6 +18,7 @@ public class Cabinet : MonoBehaviour
             {
                 // 찾기
                 foundObj.SetActive(true);
+
             }
             else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
             {
