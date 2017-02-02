@@ -13,15 +13,6 @@ public class Hero : MonoBehaviour
     public int Count;           //에니매이션 몇번 돌았는지
     bool StairPos;
 
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            SMng.Instance.createState();
-        }
-    }
-
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("RoomRight") || other.gameObject.CompareTag("WallRight"))       // 벽이 왼쪽에있을때
