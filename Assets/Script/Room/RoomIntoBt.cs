@@ -3,6 +3,10 @@ using System.Collections;
 
 public class RoomIntoBt : MonoBehaviour
 {
+
+    public Sprite OutSpr;
+    public Sprite IntoSpr;
+
     void Start()
     {
 
@@ -20,9 +24,9 @@ public class RoomIntoBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponentInChildren<Animator>().GetBool("Into").Equals(false))
                 {
+                    
                     SMng.Instance.Direction = 3;
                     transform.parent.GetComponentInChildren<Animator>().SetBool("Into", true);
-
                 }
             }
         }

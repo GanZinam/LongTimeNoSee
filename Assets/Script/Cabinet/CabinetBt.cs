@@ -6,10 +6,16 @@ public class CabinetBt : MonoBehaviour
 {
     [SerializeField]
     GameObject intoObj;
+    
+    public Sprite OutSpr;
+    public Sprite IntoSpr;
+
     [SerializeField]
     GameObject foundObj;
     [SerializeField]
     GameObject foundItemPopup;
+
+
 
     public int Num;     // 비어있는 캐비넷 100
 
@@ -33,17 +39,22 @@ public class CabinetBt : MonoBehaviour
                     if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
                     {
                         // 찾기
-                        if (Num.Equals(1))
+                        if (Num.Equals(100))
                         {
-                            Inventory.getItem(1);
+
                         }
-                        else if (Num.Equals(2))
+                        else if (Num.Equals(12))
                         {
-                            Inventory.getItem(1);
+                            SMng.Instance._inventory.getItem(1);
+                            SMng.Instance._inventory.getItem(2);
                         }
-                        else if (Num.Equals(100))
+                        else if(Num.Equals(5))
                         {
-                            Inventory.getItem(0);
+                            SMng.Instance._inventory.getItem(5);
+                        }
+                        else
+                        {
+                            SMng.Instance._inventory.getItem(Num);
                         }
                     }
                     else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
@@ -55,15 +66,30 @@ public class CabinetBt : MonoBehaviour
                             SMng.Instance.Hide = true;
                             SMng.Instance.Direction = 3;
                             SMng.Instance.HideWide = 0;
+                            intoObj.GetComponent<SpriteRenderer>().sprite = OutSpr;
                         }
                         else
                         {
                             SMng.Instance.Hide = false;
                             SMng.Instance.Direction = 0;
                             SMng.Instance.HideWide = 1;
+                            intoObj.GetComponent<SpriteRenderer>().sprite = IntoSpr;
                         }
                     }
                 }
+            }
+        }
+        if(SMng.Instance.CabinetChangeUI)
+        {
+            if(SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
+            {
+                intoObj.SetActive(true);
+                foundObj.SetActive(false);
+            }
+            else if(SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
+            {
+                foundObj.SetActive(true);
+                intoObj.SetActive(false);
             }
         }
     }

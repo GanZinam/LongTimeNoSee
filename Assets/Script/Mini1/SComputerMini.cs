@@ -57,7 +57,7 @@ public class SComputerMini : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("Bar")&&gameObject.CompareTag(" "))
+        if (col.CompareTag("Bar")&&transform.CompareTag("wall"+nCount))
         {
             if (Input.GetMouseButtonDown(0) && bCheck && mouseCh)
             {

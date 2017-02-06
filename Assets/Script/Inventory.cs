@@ -10,15 +10,17 @@ public struct ITEM
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField]
+    UnityEngine.UI.Button[] invenItems = new UnityEngine.UI.Button[10];
     public static ITEM[] items = new ITEM[10];
 
     /**
      * @brief 아이템 획득했을때
      * @param 아이템 코드명
      */
-    public static void getItem(int itemCode)
+    public void getItem(int itemCode)
     {
-        SMng.Instance.createState();
+        SMng.Instance.createState(itemCode);
 
         // 이미 해당 아이템을 가지고 있다면 그 수만 증가 시켜줌
         for (int j = 0; j < items.Length; j++)
@@ -37,13 +39,14 @@ public class Inventory : MonoBehaviour
             if (items[i].num.Equals(0))
             {
                 items[i].code = itemCode;
+                invenItems[i].GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(itemCode + "");
                 items[i].num++;
                 return;
             }
         }
 
         // 이 구간까지 온것은 공간이 없다는 뜻이거나 에러
-        Debug.Log("공간이 부족합니다.");
+        Debug.LogWarning("공간이 부족합니다.");
     }
 
     [SerializeField]

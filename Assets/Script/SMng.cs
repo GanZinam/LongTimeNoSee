@@ -63,22 +63,26 @@ public class SMng : MonoBehaviour
     [SerializeField]
     GameObject state;
 
+    public bool CabinetIn;      // 히어로가 캐비넷에 들어가있는지
+    public bool CabinetChangeUI; // 히어로가 캐비넷에 들어가잇을때 바꾸면 아이콘 바뀌는거
 
 
-    public void createState()
+
+    public Inventory _inventory;
+
+    public void createState(int itemCode)
     {
         GameObject obj = Instantiate(statePrefab, state.transform) as GameObject;
         obj.transform.localPosition = recentHighPos;
         for (int i = 0; i < 7; i++)
         {
-            Debug.Log(isStating.Length);
             obj.transform.localPosition -= new Vector3(0, 50);
 
             if (!isStating[i])
             {
                 isStating[i] = true;
                 obj.GetComponent<StatePopup>().idx = i;
-                obj.GetComponent<StatePopup>().text.text = i + "";
+                obj.GetComponent<StatePopup>().text.text = itemCode + "";
                 break;
             }
         }
@@ -88,5 +92,10 @@ public class SMng : MonoBehaviour
     {
         Hero_weapon = Hero_weapon.Equals(WEAPON.WEAPON_HAND) ?  WEAPON.WEAPON_GUN : WEAPON.WEAPON_HAND;
 
+        if(CabinetIn)
+        {
+            Debug.Log("CabinetCangeUI = true");
+            CabinetChangeUI = true;
+        }
     }
 }

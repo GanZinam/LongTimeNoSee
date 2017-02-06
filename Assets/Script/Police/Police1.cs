@@ -14,7 +14,7 @@ public class Police1 : MonoBehaviour
     public float fAddSpeed;         // 라이트 범위안에 들어왔을때 더해주는 속도   0.1
     public float fMaxSpeed;         // 최대 스피드(패턴2) 이건 조절해주면댐
 
-
+   
     public Animator PoliceWalking;
 
     GameObject Child;

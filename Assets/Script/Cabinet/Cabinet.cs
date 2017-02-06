@@ -14,6 +14,8 @@ public class Cabinet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SMng.Instance.CabinetIn = true;
+            Debug.Log("CabinetIn");
             if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
             {
                 // 찾기
@@ -31,6 +33,7 @@ public class Cabinet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SMng.Instance.CabinetIn = false;
             foundObj.SetActive(false);
             intoObj.SetActive(false);
         }
