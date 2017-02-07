@@ -6,6 +6,8 @@ public class SScroll : MonoBehaviour
     public float scrollSpeed;
     public float tileSizeY;
 
+    public BoxCollider2D[] boxcollider = new BoxCollider2D[2];
+
     private Vector3 startPosition;
 
     void Start()

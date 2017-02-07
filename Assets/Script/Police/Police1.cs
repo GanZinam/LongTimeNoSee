@@ -7,6 +7,7 @@ public class Police1 : MonoBehaviour
     int Paturn;
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
+    public bool bPaturnChange;     // true = 안움직임 false = 움직임
 
 
     SLight LightScrp = null;
@@ -63,6 +64,16 @@ public class Police1 : MonoBehaviour
                 if (gameObject.transform.localPosition.x >= 6f)
                 {
                     Arrow = false;
+                }
+                if(bPaturnChange)
+                {
+                    Speed = 0f;
+                    PoliceWalking.speed = 0f;
+                }
+                else
+                {
+                    Speed = 0.5f;
+                    PoliceWalking.speed = 1f;
                 }
             }
             else
