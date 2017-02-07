@@ -12,11 +12,16 @@ public class Cartoon : MonoBehaviour
 
     int cutIdx = 0;     // 카툰 컷 씬 인덱스
 
+    void Start()
+    {
+        SMng.Direction = 3;
+    }
+
     /**
      * @brief 다음 컷 씬으로 이동
      */
     public void nextCut()
-    { 
+    {
         cutIdx++;
         //cartoon[0].sprite = Resources.Load<Sprite>("Cartoon/" + cutIdx);
         gameStart();
@@ -29,6 +34,7 @@ public class Cartoon : MonoBehaviour
 
     public void gameStart()
     {
+        SMng.Direction = 0;
         cartoonCanvas.SetActive(false);
         cam.target = targetHero;
     }

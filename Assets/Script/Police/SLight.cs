@@ -41,10 +41,10 @@ public class SLight : MonoBehaviour
     {
         if (transform.parent.parent.GetComponent<Police1>().Life)
         {
-            if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
+            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
             {
-                if (SMng.Instance.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
-                    SMng.Instance.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+                if (SMng.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                    SMng.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
                 {
                     ExclamationGame.SetActive(true);
 
@@ -60,10 +60,10 @@ public class SLight : MonoBehaviour
     {
         if (transform.parent.parent.GetComponent<Police1>().Life)
         {
-            if (col.CompareTag("Player") && SMng.Instance.RoomInit.Equals(false) && SMng.Instance.Hide.Equals(false))
+            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
             {
-                if (SMng.Instance.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
-                    SMng.Instance.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+                if (SMng.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                    SMng.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
                 {
                     if (!bFollow)
                     {

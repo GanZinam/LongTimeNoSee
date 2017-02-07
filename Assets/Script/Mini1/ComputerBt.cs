@@ -24,7 +24,7 @@ public class ComputerBt : MonoBehaviour {
                 if (hit.transform.CompareTag("GoComputer"))
                 {
 
-                    SMng.Instance.Direction = 3;
+                    SMng.Direction = 3;
 
                     MiniGame1.GetComponent<SComputerMini>().bCheck = true;
                     MinigameCam.SetActive(true);

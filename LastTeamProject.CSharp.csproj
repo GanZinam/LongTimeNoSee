@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AudioManager.cs" />
+    <Compile Include="Assets\IntroManager.cs" />
     <Compile Include="Assets\LevelManager.cs" />
     <Compile Include="Assets\MouseCurosr.cs" />
     <Compile Include="Assets\Script\Box\BoxObj.cs" />

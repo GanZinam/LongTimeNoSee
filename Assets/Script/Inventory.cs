@@ -16,12 +16,7 @@ public class Inventory : MonoBehaviour
     public static ITEM[] items = new ITEM[10];
     public static ITEM[] saveItems = new ITEM[10];      // 저장된 아이템 ( 사망시 이 아이템으로 다시 시작 || 다음 스테이지시 저장 )
     StringBuilder str = new StringBuilder();
-
-
-    void Start()
-    {
-        DontDestroyOnLoad(this.transform.parent);
-    }
+    
 
     /**
      * @brief 아이템 획득했을때

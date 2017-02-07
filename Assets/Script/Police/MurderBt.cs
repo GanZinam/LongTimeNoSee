@@ -23,8 +23,8 @@ public class MurderBt : MonoBehaviour
                     Distance_ = Vector2.Distance(SMng.Instance.Hero.transform.position, Police_posiiton);
                     if (Distance_ <= 1.5f)
                     {
-                        SMng.Instance.MurderStart = true;
-                        SMng.Instance.Direction = 3;
+                        SMng.MurderStart = true;
+                        SMng.Direction = 3;
                         if (SMng.Instance.Hero.GetComponent<Hero>().Right)
                         {
                             Police_posiiton.x = SMng.Instance.Hero.transform.position.x + 0.7f;
@@ -40,8 +40,8 @@ public class MurderBt : MonoBehaviour
                 }
                 if (hit.collider.transform.CompareTag("Gun"))
                 {
-                    SMng.Instance.MurderStart = true;
-                    SMng.Instance.Direction = 3;
+                    SMng.MurderStart = true;
+                    SMng.Direction = 3;
                     MurderStart_(2);
                 }
             }

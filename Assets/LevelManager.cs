@@ -17,7 +17,7 @@ namespace GM
 
         void Start()
         {
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
 
             if (myLevel.Equals(0))
             {
@@ -27,6 +27,8 @@ namespace GM
 
         public IEnumerator loading(bool isClear)
         {
+            SMng.Direction = 3;
+
             loadingObj.SetActive(true);
 
             yield return new WaitForSeconds(1);
@@ -41,6 +43,8 @@ namespace GM
 
             SceneManager.LoadScene("Game");
             yield return new WaitForSeconds(4);
+
+            SMng.Direction = 0;
         }
     }
 }

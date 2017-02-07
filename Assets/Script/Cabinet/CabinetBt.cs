@@ -36,7 +36,7 @@ public class CabinetBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoCabinet"))
                 {
-                    if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
+                    if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
                     {
                         // 찾기
                         if (Num.Equals(100))
@@ -57,24 +57,24 @@ public class CabinetBt : MonoBehaviour
                             SMng.Instance._inventory.getItem(Num);
                         }
                         Num = 100;
-                        StartCoroutine(SMng.Instance._level.loading(true));
+                        //StartCoroutine(SMng.Instance._level.loading(true));
                     }
-                    else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
+                    else if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {
                         transform.parent.GetComponent<Animator>().SetBool("Cabinet", true);
                         // 들어가기
-                        if (!SMng.Instance.Hide)
+                        if (!SMng.Hide)
                         {
-                            SMng.Instance.Hide = true;
-                            SMng.Instance.Direction = 3;
-                            SMng.Instance.HideWide = 0;
+                            SMng.Hide = true;
+                            SMng.Direction = 3;
+                            SMng.HideWide = 0;
                             intoObj.GetComponent<SpriteRenderer>().sprite = OutSpr;
                         }
                         else
                         {
-                            SMng.Instance.Hide = false;
-                            SMng.Instance.Direction = 0;
-                            SMng.Instance.HideWide = 1;
+                            SMng.Hide = false;
+                            SMng.Direction = 0;
+                            SMng.HideWide = 1;
                             intoObj.GetComponent<SpriteRenderer>().sprite = IntoSpr;
                         }
                     }
@@ -83,12 +83,12 @@ public class CabinetBt : MonoBehaviour
         }
         if(SMng.Instance.CabinetChangeUI)
         {
-            if(SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
+            if(SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
             {
                 intoObj.SetActive(true);
                 foundObj.SetActive(false);
             }
-            else if(SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
+            else if(SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
             {
                 foundObj.SetActive(true);
                 intoObj.SetActive(false);
@@ -98,7 +98,7 @@ public class CabinetBt : MonoBehaviour
 
     public void ExitBt()
     {
-        SMng.Instance.Direction = 0;
+        SMng.Direction = 0;
     }
 
 }

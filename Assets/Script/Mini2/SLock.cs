@@ -53,7 +53,7 @@ public class SLock : MonoBehaviour
         if(col.CompareTag("Pick"))
         {
             bColliderCheck = true;
-            SMng.Instance.bDownCheck = true;
+            SMng.bDownCheck = true;
         }
     }
 }

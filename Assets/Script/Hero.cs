@@ -21,23 +21,23 @@ public class Hero : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RoomRight") || other.gameObject.CompareTag("WallRight"))       // 벽이 왼쪽에있을때
         {
-            SMng.Instance.Direction = 1;
+            SMng.Direction = 1;
         }
         else if (other.gameObject.CompareTag("RoomLeft") || other.gameObject.CompareTag("WallLeft"))   // 벽이 오른쪽에있을때
         {
             Debug.Log("LeftIn");
-            SMng.Instance.Direction = 2;
+            SMng.Direction = 2;
         }
     }
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("RoomRight") || other.gameObject.CompareTag("WallRight"))
         {
-            SMng.Instance.Direction = 0;
+            SMng.Direction = 0;
         }
         else if (other.gameObject.CompareTag("RoomLeft") || other.gameObject.CompareTag("WallLeft"))
         {
-            SMng.Instance.Direction = 0;
+            SMng.Direction = 0;
         }
     }
 
@@ -58,7 +58,7 @@ public class Hero : MonoBehaviour
     // 애니메이션 끝날시 상태변화
     public void AniFinsh_statusCh()
     {
-        SMng.Instance.Direction = 0;
+        SMng.Direction = 0;
     }
 
     //@ 계단
@@ -119,7 +119,7 @@ public class Hero : MonoBehaviour
                 GetComponent<BoxCollider2D>().isTrigger = false;
                 GetComponent<Rigidbody2D>().gravityScale = 100;
 
-                SMng.Instance.Direction = 0;
+                SMng.Direction = 0;
                 if (SMng.Instance.HeroAnimator.GetBool("StairUp"))
                     SMng.Instance.HeroAnimator.SetBool("StairUp", false);
                 if (SMng.Instance.HeroAnimator.GetBool("StairDown"))

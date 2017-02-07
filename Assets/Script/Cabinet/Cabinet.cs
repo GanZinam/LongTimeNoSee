@@ -15,14 +15,14 @@ public class Cabinet : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SMng.Instance.CabinetIn = true;
-            Debug.Log("CabinetIn");
-            if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
+
+            if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
             {
                 // 찾기
                 foundObj.SetActive(true);
 
             }
-            else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
+            else if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
             {
                 // 들어가기
                 intoObj.SetActive(true);
@@ -41,7 +41,7 @@ public class Cabinet : MonoBehaviour
 
     void CabinetIn()
     {
-        if (SMng.Instance.Hide)
+        if (SMng.Hide)
         {
             SMng.Instance.Hero.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0f);
         }

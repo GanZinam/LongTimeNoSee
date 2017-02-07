@@ -10,31 +10,31 @@ public class BoxObj : MonoBehaviour
     {
         if (Stay_right)
         {
-            if (SMng.Instance.sit && !SMng.Instance.Hide)
+            if (SMng.sit && !SMng.Hide)
             {
-                SMng.Instance.Hide = true;
-                SMng.Instance.Hide_right = true;
+                SMng.Hide = true;
+                SMng.Hide_right = true;
                 HeroAlpha_Hide();
             }
-            else if (!SMng.Instance.sit && SMng.Instance.Hide)
+            else if (!SMng.sit && SMng.Hide)
             {
-                SMng.Instance.Hide = false;
-                SMng.Instance.Hide_right = false;
+                SMng.Hide = false;
+                SMng.Hide_right = false;
                 HeroAlpha_UnHide();
             }
         }
         if (Stay_left)
         {
-            if (SMng.Instance.sit && !SMng.Instance.Hide)
+            if (SMng.sit && !SMng.Hide)
             {
-                SMng.Instance.Hide = true;
-                SMng.Instance.Hide_left = true;
+                SMng.Hide = true;
+                SMng.Hide_left = true;
                 HeroAlpha_Hide();
             }
-            else if (!SMng.Instance.sit && SMng.Instance.Hide)
+            else if (!SMng.sit && SMng.Hide)
             {
-                SMng.Instance.Hide = false;
-                SMng.Instance.Hide_left = false;
+                SMng.Hide = false;
+                SMng.Hide_left = false;
                 HeroAlpha_UnHide();
             }
         }
@@ -45,19 +45,19 @@ public class BoxObj : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            if (SMng.Instance.sit)
+            if (SMng.sit)
             {
-                SMng.Instance.Hide = true;
-                SMng.Instance.Hide_right = true;
+                SMng.Hide = true;
+                SMng.Hide_right = true;
                 HeroAlpha_Hide();
             }
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
-            if (SMng.Instance.sit)
+            if (SMng.sit)
             {
-                SMng.Instance.Hide = true;
-                SMng.Instance.Hide_left = true;
+                SMng.Hide = true;
+                SMng.Hide_left = true;
                 HeroAlpha_Hide();
             }
         }
@@ -78,22 +78,22 @@ public class BoxObj : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideRight"))
         {
-            if (!SMng.Instance.Hide_left)
+            if (!SMng.Hide_left)
             {
-                SMng.Instance.Hide = false;
+                SMng.Hide = false;
                 HeroAlpha_UnHide();
             }
-            SMng.Instance.Hide_right = false;
+            SMng.Hide_right = false;
             Stay_right = false;
         }
         if (other.gameObject.CompareTag("Player") && gameObject.CompareTag("BoxHideLeft"))
         {
-            if (!SMng.Instance.Hide_right)
+            if (!SMng.Hide_right)
             {
-                SMng.Instance.Hide = false;
+                SMng.Hide = false;
                 HeroAlpha_UnHide();
             }
-            SMng.Instance.Hide_left = false;
+            SMng.Hide_left = false;
             Stay_left = false;
         }
     }

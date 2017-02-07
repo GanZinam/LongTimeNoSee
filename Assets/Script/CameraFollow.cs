@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
-    Camera mycam;
+    //Camera mycam;
 
     //@ 카매라 기본위치
     float f_X = 0;
@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mycam = GetComponent<Camera>();
+        //mycam = GetComponent<Camera>();
         _action = true;
     }
 
@@ -40,15 +40,15 @@ public class CameraFollow : MonoBehaviour
         {
             if (target.GetComponent<Hero>().Right)
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f)*SMng.Instance.HideWide, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f) * SMng.HideWide, f_Y, -1);
             }
             else if (target.GetComponent<Hero>().Left)
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X - 0.3f) * SMng.Instance.HideWide, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X - 0.3f) * SMng.HideWide, f_Y, -1);
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f) * SMng.Instance.HideWide, f_Y, -1);
+                transform.position = Vector3.Lerp(transform.position, target.position, 0.1f) + new Vector3((f_X + 0.3f) * SMng.HideWide, f_Y, -1);
             }
         }
     }
@@ -122,7 +122,7 @@ public class CameraFollow : MonoBehaviour
             if (touchPos.x < 0.75f && touchPos.x > 0.25f)
             {
                 _action = true;
-                SMng.Instance.Middle_touch = true;
+                SMng.Middle_touch = true;
             }
             else
             {
@@ -136,7 +136,7 @@ public class CameraFollow : MonoBehaviour
             {
                 NowPos = Input.mousePosition;
 
-                if (SMng.Instance.sit)
+                if (SMng.sit)
                 {
                     if (StartPos.x + 50 >= NowPos.x && StartPos.x - 50 <= NowPos.x)
                     {
@@ -157,21 +157,21 @@ public class CameraFollow : MonoBehaviour
 
             if (_action)
             {
-                if ((!SMng.Instance.sit) && StartPos.y > EndPos.y + 200)
+                if ((!SMng.sit) && StartPos.y > EndPos.y + 200)
                 {
                     Debug.Log("Sit Down");
-                    SMng.Instance.sit = true;
+                    SMng.sit = true;
                     SMng.Instance.HeroAnimator.SetBool("Crouch", true);
                 }
-                else if ((SMng.Instance.sit) && StartPos.y < EndPos.y - 200)
+                else if ((SMng.sit) && StartPos.y < EndPos.y - 200)
                 {
                     Debug.Log("Stand Up");
-                    SMng.Instance.sit = false;
+                    SMng.sit = false;
                     SMng.Instance.HeroAnimator.SetBool("StandUp", true);
                 }
             }
             _action = true;
-            SMng.Instance.Middle_touch = false;
+            SMng.Middle_touch = false;
         }
     }
 }

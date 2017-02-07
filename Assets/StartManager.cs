@@ -9,10 +9,18 @@ namespace GM
         [SerializeField]
         GameObject[] gameLevel;
 
+        [SerializeField]
+        Transform targetHero;
+        [SerializeField]
+        CameraFollow cam;
+
         void Start()
         {
             gameLevel[LevelManager.myLevel].SetActive(true);
             SMng.Instance._inventory.refeshInventory();
+
+            if (LevelManager.myLevel != 0)
+            cam.target = targetHero;
         }
     }
 }

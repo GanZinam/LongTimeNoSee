@@ -30,7 +30,7 @@ public class DoorBt : MonoBehaviour
                     //@아웃도어 포지션을 넘겨주는함수
                     hero.setOutDoorpostioin(OutDoor.transform.position, type);
 
-                    SMng.Instance.Direction = 3;
+                    SMng.Direction = 3;
                     if (type.Equals(1) || type.Equals(3))
                     {
                         SMng.Instance.HeroAnimator.SetBool("StairUp", true);

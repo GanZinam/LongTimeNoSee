@@ -10,15 +10,15 @@ public class RoomAimationMng : MonoBehaviour
     {
         SMng.Instance.Hero.GetComponent<Hero>().AniFinsh_statusCh();
         GetComponent<Animator>().SetBool("Into", false);
-        if (!SMng.Instance.RoomInit)
+        if (!SMng.RoomInit)
         {
             Room.SetActive(true);
-            SMng.Instance.RoomInit = true;
+            SMng.RoomInit = true;
         }
         else
         {
             Room.SetActive(false);
-            SMng.Instance.RoomInit = false;
+            SMng.RoomInit = false;
         }
     }
 }

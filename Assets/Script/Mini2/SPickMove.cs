@@ -50,7 +50,7 @@ public class SPickMove : MonoBehaviour
         }
         else
         {
-            if (transform.localPosition.y < -0.55f && !SMng.Instance.bDownCheck)
+            if (transform.localPosition.y < -0.55f && !SMng.bDownCheck)
             {
                 bUpCheck = true;
             }
@@ -60,7 +60,7 @@ public class SPickMove : MonoBehaviour
                 transform.Translate(Vector2.up * fSpeed * Time.deltaTime);
             }
 
-            if(SMng.Instance.bDownCheck && transform.localPosition.y > -0.806f)
+            if(SMng.bDownCheck && transform.localPosition.y > -0.806f)
             {
                 bUpCheck = false;
                 transform.Translate(Vector2.down * fSpeed * Time.deltaTime);
@@ -78,7 +78,7 @@ public class SPickMove : MonoBehaviour
         }
         if(col.CompareTag("Box"))       // 박스에 충돌하면서 다시 이동
         {
-            SMng.Instance.bDownCheck = false;
+            SMng.bDownCheck = false;
             bKeyCheck = false;
         }
     }

@@ -115,7 +115,7 @@ public class Police1 : MonoBehaviour
                 Paturn = 0;
             }
 
-            if (LightScrp.ExclamationSprite.color.b <= 0f || SMng.Instance.MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
+            if (LightScrp.ExclamationSprite.color.b <= 0f || SMng.MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
             {
                 PoliceWalking.SetBool("PoliceStop", true);
                 fPaturnSpeed = 0f;
@@ -155,7 +155,7 @@ public class Police1 : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GoCabinet"))
         {
-            if (SMng.Instance.HideWide.Equals(0) && Life)
+            if (SMng.HideWide.Equals(0) && Life)
             {
                 MurderIcon.SetActive(true);
             }
@@ -165,7 +165,7 @@ public class Police1 : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GoCabinet"))
         {
-            if (SMng.Instance.HideWide.Equals(1) && Life)
+            if (SMng.HideWide.Equals(1) && Life)
             {
                 MurderIcon.SetActive(true);
             }
@@ -174,7 +174,7 @@ public class Police1 : MonoBehaviour
 
     public void PoliceAlphaCahnge()
     {
-        if (SMng.Instance.RoomInit)
+        if (SMng.RoomInit)
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
         }
