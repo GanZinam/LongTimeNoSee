@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AudioManager.cs" />
+    <Compile Include="Assets\LevelManager.cs" />
+    <Compile Include="Assets\MouseCurosr.cs" />
     <Compile Include="Assets\Script\Box\BoxObj.cs" />
     <Compile Include="Assets\Script\Cabinet\Cabinet.cs" />
     <Compile Include="Assets\Script\Cabinet\CabinetBt.cs" />
@@ -82,10 +85,10 @@
     <Compile Include="Assets\Script\Door\DoorBt.cs" />
     <Compile Include="Assets\Script\Door\DoorObject.cs" />
     <Compile Include="Assets\Script\Hero.cs" />
+    <Compile Include="Assets\Script\Intro\Cartoon.cs" />
     <Compile Include="Assets\Script\Inventory.cs" />
     <Compile Include="Assets\Script\Mini1\ComputerBt.cs" />
     <Compile Include="Assets\Script\Mini1\ObjectFollow.cs" />
-    <Compile Include="Assets\Script\Mini1\SBarCollider.cs" />
     <Compile Include="Assets\Script\Mini1\SComputerMini.cs" />
     <Compile Include="Assets\Script\Mini1\SScroll.cs" />
     <Compile Include="Assets\Script\Mini2\SLock.cs" />
@@ -93,6 +96,8 @@
     <Compile Include="Assets\Script\Mini2\SPickMove.cs" />
     <Compile Include="Assets\Script\Mini3\SCollider.cs" />
     <Compile Include="Assets\Script\MoveBt.cs" />
+    <Compile Include="Assets\Script\Police\Murder.cs" />
+    <Compile Include="Assets\Script\Police\MurderBt.cs" />
     <Compile Include="Assets\Script\Police\Police1.cs" />
     <Compile Include="Assets\Script\Police\SLight.cs" />
     <Compile Include="Assets\Script\Room\Computer.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="Assets\Script\SMng.cs" />
     <Compile Include="Assets\Script\UI\Button.cs" />
     <Compile Include="Assets\Script\UI\StatePopup.cs" />
+    <Compile Include="Assets\StartManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

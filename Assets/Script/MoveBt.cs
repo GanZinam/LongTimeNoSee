@@ -43,7 +43,6 @@ public class MoveBt : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-
             if (!SMng.Instance.sit)
                 SMng.Instance.HeroAnimator.SetBool("Walk", false);
             else

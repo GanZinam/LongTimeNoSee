@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Police1 : MonoBehaviour
 {
+    public bool Life;             // ture = 삶 fals = 죽음
     int Paturn;
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
@@ -14,7 +15,8 @@ public class Police1 : MonoBehaviour
     public float fAddSpeed;         // 라이트 범위안에 들어왔을때 더해주는 속도   0.1
     public float fMaxSpeed;         // 최대 스피드(패턴2) 이건 조절해주면댐
 
-   
+
+    public GameObject MurderIcon;   //암살 아이콘
     public Animator PoliceWalking;
 
     GameObject Child;
@@ -30,42 +32,46 @@ public class Police1 : MonoBehaviour
         fAddSpeed = 0.01f;
         fMaxSpeed = 2.5f;
         Speed = 0.5f;
+        Life = true;
         //Speed = 0.05f;
     }
 
     void Update()
     {
-        if (!Child.GetComponent<SLight>().bFollow)
+        if (Life)
         {
-            PoliceWalking.speed = 1f;
-        }
-        if (Paturn.Equals(0))        //경찰 패턴 1
-        {
-            if (Arrow)      //오늘쪽
+            if (!Child.GetComponent<SLight>().bFollow)
             {
-                gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
-                gameObject.transform.Translate(Vector3.right * Speed * Time.deltaTime);
+                PoliceWalking.speed = 1f;
             }
-            else           //왼쪽
+            if (Paturn.Equals(0))        //경찰 패턴 1
             {
-                transform.localScale = new Vector2(-0.5f, transform.localScale.y);
-                gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
+                if (Arrow)      //오늘쪽
+                {
+                    gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
+                    gameObject.transform.Translate(Vector3.right * Speed * Time.deltaTime);
+                }
+                else           //왼쪽
+                {
+                    transform.localScale = new Vector2(-0.5f, transform.localScale.y);
+                    gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
+                }
+                if (gameObject.transform.localPosition.x <= -20f)
+                {
+                    Arrow = true;
+                }
+                if (gameObject.transform.localPosition.x >= 6f)
+                {
+                    Arrow = false;
+                }
             }
-            if (gameObject.transform.localPosition.x <= -20f)
+            else
             {
-                Arrow = true;
-            }
-            if (gameObject.transform.localPosition.x >= 6f)
-            {
-                Arrow = false;
-            }
-        }
-        else
-        {
 
+            }
+            Paturn2();
+            PoliceAlphaCahnge();    // 방이 켜져있으면 경찰 Alpha
         }
-        Paturn2();
-        PoliceAlphaCahnge();    // 방이 켜져있으면 경찰 Alpha
     }
 
     void Paturn2()          //@ 따라가는거
@@ -100,7 +106,7 @@ public class Police1 : MonoBehaviour
                     gameObject.transform.Translate(Vector3.left * fPaturnSpeed * Time.deltaTime);
                 }
             }
-            else        // 여기 고침 헿
+            else
             {
                 PoliceWalking.SetBool("PoliceStop", false);
                 fPaturnSpeed = Speed;
@@ -109,11 +115,12 @@ public class Police1 : MonoBehaviour
                 Paturn = 0;
             }
 
-            if (LightScrp.ExclamationSprite.color.b <= 0f)      // 경찰 멈추는곳 (빨간색 됬을때)
+            if (LightScrp.ExclamationSprite.color.b <= 0f || SMng.Instance.MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
             {
                 PoliceWalking.SetBool("PoliceStop", true);
                 fPaturnSpeed = 0f;
                 fAddSpeed = 0f;
+                Paturn = 1;
             }
         }
 
@@ -143,6 +150,28 @@ public class Police1 : MonoBehaviour
 
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("GoCabinet"))
+        {
+            if (SMng.Instance.HideWide.Equals(0) && Life)
+            {
+                MurderIcon.SetActive(true);
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("GoCabinet"))
+        {
+            if (SMng.Instance.HideWide.Equals(1) && Life)
+            {
+                MurderIcon.SetActive(true);
+            }
+        }
+    }
+
     public void PoliceAlphaCahnge()
     {
         if (SMng.Instance.RoomInit)

@@ -43,14 +43,16 @@ public class SMng : MonoBehaviour
     //@ 숨어있는 상자 방향
     public bool Hide_right = false;
     public bool Hide_left = false;
-    
+
+    public bool MurderStart;                // 암살중~
+
     //@ 주인공 애니메이션
     public Animator HeroAnimator;
 
     //@ 미니게임
     public bool bDownCheck;
 
-    public int HideWide = 1;
+    public int HideWide = 1;          //케비넷 으로 들어가면 0
 
 
     Vector2 recentHighPos = new Vector2(300, 150);
@@ -66,9 +68,9 @@ public class SMng : MonoBehaviour
     public bool CabinetIn;      // 히어로가 캐비넷에 들어가있는지
     public bool CabinetChangeUI; // 히어로가 캐비넷에 들어가잇을때 바꾸면 아이콘 바뀌는거
 
-
-
+    
     public Inventory _inventory;
+    public GM.LevelManager _level;
 
     public void createState(int itemCode)
     {

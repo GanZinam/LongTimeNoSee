@@ -56,6 +56,8 @@ public class CabinetBt : MonoBehaviour
                         {
                             SMng.Instance._inventory.getItem(Num);
                         }
+                        Num = 100;
+                        StartCoroutine(SMng.Instance._level.loading(true));
                     }
                     else if (SMng.Instance.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {

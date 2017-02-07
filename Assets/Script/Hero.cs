@@ -7,11 +7,15 @@ public class Hero : MonoBehaviour
     public bool Right;
     public bool Left;
 
+
     public Vector3 outDoorPos;
     public int DoorType;
 
     public int Count;           //에니매이션 몇번 돌았는지
     bool StairPos;
+
+    public GameObject Police;          //암살가능한 경찰
+    public Animator PoliceAni;
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -128,5 +132,24 @@ public class Hero : MonoBehaviour
     public void Move()
     {
         SMng.Instance.Hero.transform.position = outDoorPos;
+    }
+
+    public void KillPolice()
+    {
+        if (Police != null)
+        {
+            PoliceAni = Police.GetComponent<Animator>();
+            PoliceAni.SetBool("dieAni", true);
+            Police.GetComponent<Police1>().Life = false;
+            if (Police.transform.Find("LookPoint").gameObject != null)
+            {
+                GameObject Child = Police.transform.Find("LookPoint").gameObject;
+                Child.SetActive(false);
+            }
+        }
+    }
+    public void KillFinish()
+    {
+        SMng.Instance.HeroAnimator.SetBool("Murder", false);
     }
 }
