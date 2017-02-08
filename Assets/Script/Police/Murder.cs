@@ -8,18 +8,18 @@ public class Murder : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("MurderIn");
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("MurderIn");
             MurderIcon.SetActive(true);
             SMng.Instance.Hero.GetComponent<Hero>().Police = transform.parent.gameObject;
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("MurderOut");
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("MurderOut");
             MurderIcon.SetActive(false);
         }
     }

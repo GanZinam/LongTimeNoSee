@@ -8,6 +8,8 @@ public class Cabinet : MonoBehaviour
     GameObject intoObj;
     [SerializeField]
     GameObject foundObj;
+    [SerializeField]
+    GameObject murderObj;
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +28,13 @@ public class Cabinet : MonoBehaviour
             {
                 // 들어가기
                 intoObj.SetActive(true);
+            }
+        }
+        if(other.gameObject.CompareTag("Police"))
+        {
+            if (SMng.HideWide.Equals(0))
+            {
+                murderObj.SetActive(true);
             }
         }
     }
