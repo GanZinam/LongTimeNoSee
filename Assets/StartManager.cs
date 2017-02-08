@@ -8,6 +8,8 @@ namespace GM
     {
         [SerializeField]
         GameObject[] gameLevel;
+        [SerializeField]
+        GameObject[] policeLevel;
 
         [SerializeField]
         Transform targetHero;
@@ -17,6 +19,7 @@ namespace GM
         void Start()
         {
             gameLevel[LevelManager.myLevel].SetActive(true);
+            policeLevel[LevelManager.myLevel].SetActive(true);
             SMng.Instance._inventory.refeshInventory();
 
             if (LevelManager.myLevel != 0)

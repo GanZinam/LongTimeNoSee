@@ -7,6 +7,8 @@ public class RoomIntoBt : MonoBehaviour
     public Sprite OutSpr;
     public Sprite IntoSpr;
 
+    public bool finishRoom = false;
+
     void Start()
     {
 
@@ -26,6 +28,9 @@ public class RoomIntoBt : MonoBehaviour
                 {
                     SMng.Direction = 3;
                     transform.parent.GetComponentInChildren<Animator>().SetBool("Into", true);
+
+                    if (finishRoom)
+                        StartCoroutine(SMng.Instance._level.loading(true));
                 }
             }
         }
