@@ -29,6 +29,8 @@ namespace GM
         {
             SMng.Direction = 3;
 
+            SMng.interection = true;
+
             loadingObj.SetActive(true);
 
             yield return new WaitForSeconds(1);
@@ -45,6 +47,8 @@ namespace GM
             yield return new WaitForSeconds(4);
 
             SMng.Direction = 0;
+
+            SMng.interection = false;
         }
     }
 }

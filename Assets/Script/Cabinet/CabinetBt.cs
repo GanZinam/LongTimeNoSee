@@ -34,7 +34,7 @@ public class CabinetBt : MonoBehaviour
 
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("GoCabinet"))
+                if (hit.transform.CompareTag("GoCabinet")&&!SMng.interection)
                 {
                     if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
                     {
@@ -61,6 +61,8 @@ public class CabinetBt : MonoBehaviour
                     }
                     else if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
                     {
+                        SMng.interection = true;
+                        Debug.Log("CabinetIn");
                         transform.parent.GetComponent<Animator>().SetBool("Cabinet", true);
                         // 들어가기
                         if (!SMng.Hide)

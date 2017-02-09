@@ -31,6 +31,8 @@ public class SMng : MonoBehaviour
     //@ 0 = 아무대도아닌상태 1= 오른쪽 2 = 왼쪽 3 = 상호작용했을때
     public static int Direction = 0;
 
+    public static bool interection;                // true  = 상호작용 중 false = 상호작용 ㄴ
+
     //@ 주인공이 앉아있는지 아닌지 true = 앉아있는것 false = 서있는것
     public static bool sit = false;
     public static bool RoomInit;                   // 방안에 들어갔나 나왔나
@@ -67,6 +69,8 @@ public class SMng : MonoBehaviour
 
     public Inventory _inventory;
     public GM.LevelManager _level;
+
+    //public bool Cabinet_Murder;         // 케비넷머더 버튼 누르면 ㄱ
 
 
     public void createState(int itemCode)

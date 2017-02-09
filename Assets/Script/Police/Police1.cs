@@ -16,16 +16,18 @@ public class Police1 : MonoBehaviour
     public float fAddSpeed;         // 라이트 범위안에 들어왔을때 더해주는 속도   0.1
     public float fMaxSpeed;         // 최대 스피드(패턴2) 이건 조절해주면댐
 
+    public bool Cabinet;
 
-    public GameObject MurderIcon;   //암살 아이콘
     public Animator PoliceWalking;
 
     GameObject Child;
 
+    public GameObject Light;
+
 
     void Start()
     {
-        Child = transform.Find("LookPoint/SLight").gameObject;
+        Child = transform.Find("SLight").gameObject;
         LightScrp = GetComponentInChildren<SLight>();
         Paturn = Random.Range(0, 3);
         Paturn = 0;
@@ -65,7 +67,7 @@ public class Police1 : MonoBehaviour
                 {
                     Arrow = false;
                 }
-                if(bPaturnChange)
+                if (bPaturnChange)
                 {
                     Speed = 0f;
                     PoliceWalking.speed = 0f;
@@ -82,6 +84,10 @@ public class Police1 : MonoBehaviour
             }
             Paturn2();
             PoliceAlphaCahnge();    // 방이 켜져있으면 경찰 Alpha
+        }
+        else
+        {
+            Light.SetActive(false);
         }
     }
 
@@ -162,27 +168,6 @@ public class Police1 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("GoCabinet"))
-        {
-            if (SMng.HideWide.Equals(0) && Life)
-            {
-                MurderIcon.SetActive(true);
-            }
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("GoCabinet"))
-        {
-            if (SMng.HideWide.Equals(1) && Life)
-            {
-                MurderIcon.SetActive(true);
-            }
-        }
-    }
-
     public void PoliceAlphaCahnge()
     {
         if (SMng.RoomInit)
@@ -193,5 +178,14 @@ public class Police1 : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
         }
+    }
+
+    public void BeCaught()
+    {
+        PoliceWalking.SetTrigger("Cabinet");
+    }
+    public void KillPolice()
+    {
+        gameObject.SetActive(false);
     }
 }

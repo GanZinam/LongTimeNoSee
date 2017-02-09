@@ -58,6 +58,7 @@ public class Hero : MonoBehaviour
     // 애니메이션 끝날시 상태변화
     public void AniFinsh_statusCh()
     {
+        SMng.interection = false;
         SMng.Direction = 0;
     }
 
@@ -150,6 +151,7 @@ public class Hero : MonoBehaviour
     }
     public void KillFinish()
     {
+        SMng.MurderStart = false;
         SMng.Instance.HeroAnimator.SetBool("Murder", false);
     }
 }

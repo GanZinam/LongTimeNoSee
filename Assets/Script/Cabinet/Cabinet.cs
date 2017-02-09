@@ -11,6 +11,9 @@ public class Cabinet : MonoBehaviour
     [SerializeField]
     GameObject murderObj;
 
+    public Vector2 PolicePos_M;
+    [SerializeField]
+    CabinetMurder myMurder;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,11 +33,12 @@ public class Cabinet : MonoBehaviour
                 intoObj.SetActive(true);
             }
         }
-        if(other.gameObject.CompareTag("Police"))
+        if (other.gameObject.CompareTag("Police"))
         {
             if (SMng.HideWide.Equals(0))
             {
                 murderObj.SetActive(true);
+                myMurder.tempTargetPolice = other.gameObject;
             }
         }
     }
@@ -45,6 +49,11 @@ public class Cabinet : MonoBehaviour
             SMng.Instance.CabinetIn = false;
             foundObj.SetActive(false);
             intoObj.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Police"))
+        {
+            murderObj.SetActive(false);
+            myMurder.tempTargetPolice = null;
         }
     }
 
@@ -63,5 +72,20 @@ public class Cabinet : MonoBehaviour
     void Cabinetbool()
     {
         transform.GetComponent<Animator>().SetBool("Cabinet", false);
+        SMng.interection = false;
+    }
+
+    void _CabinetMurder()
+    {
+        if (myMurder != null)
+        {
+            myMurder.SendMessage("BeCaught");       // 경찰에게 붙잡혔다는 메세지를 보내줌
+        }
+    }
+    void CabinetMurderFini()
+    {
+        GameObject Child = transform.Find("MurderIcon(Knife)").gameObject;
+        Child.SetActive(false);
+        transform.GetComponent<Animator>().SetBool("CabinetOpen", false);
     }
 }

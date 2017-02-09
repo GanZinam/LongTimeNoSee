@@ -24,7 +24,7 @@ public class SLight : MonoBehaviour
     //@ 라이트가 줄어드는부분
     void Update()
     {
-        if (transform.parent.parent.GetComponent<Police1>().Life)
+        if (transform.parent.GetComponent<Police1>().Life)
         {
             if (!bFollow && ExclamationSprite.color.b <= 1f)
             {
@@ -39,12 +39,12 @@ public class SLight : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (transform.parent.parent.GetComponent<Police1>().Life)
+        if (transform.parent.GetComponent<Police1>().Life)
         {
             if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
             {
-                if (SMng.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
-                    SMng.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+                if (SMng.Hide_left.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                    SMng.Hide_right.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(false)))
                 {
                     ExclamationGame.SetActive(true);
 
@@ -58,12 +58,12 @@ public class SLight : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (transform.parent.parent.GetComponent<Police1>().Life)
+        if (transform.parent.GetComponent<Police1>().Life)
         {
             if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
             {
-                if (SMng.Hide_left.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
-                    SMng.Hide_right.Equals(transform.parent.parent.GetComponent<Police1>().Arrow.Equals(false)))
+                if (SMng.Hide_left.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
+                    SMng.Hide_right.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(false)))
                 {
                     if (!bFollow)
                     {
@@ -73,7 +73,7 @@ public class SLight : MonoBehaviour
 
                         bFollow = true;
                     }
-                    NowDistance = Vector3.Distance(transform.parent.parent.position, col.transform.position);
+                    NowDistance = Vector3.Distance(transform.parent.position, col.transform.position);
                     ColorSpeed = (DistanceMax - NowDistance) / (DistanceMax / 4);      //
 
                     if (ExclamationSprite.color.r > 0 && ExclamationSprite.color.b > 0 && ExclamationSprite.color.g > 0)
@@ -91,7 +91,7 @@ public class SLight : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (transform.parent.parent.GetComponent<Police1>().Life)
+        if (transform.parent.GetComponent<Police1>().Life)
         {
             if (col.CompareTag("Player"))
             {
