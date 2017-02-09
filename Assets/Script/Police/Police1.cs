@@ -8,7 +8,8 @@ public class Police1 : MonoBehaviour
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
     public bool bPaturnChange;     // true = 안움직임 false = 움직임
-
+    public float fLefttMax;
+    public float fRightMax;
 
     SLight LightScrp = null;
 
@@ -59,11 +60,11 @@ public class Police1 : MonoBehaviour
                     transform.localScale = new Vector2(-0.5f, transform.localScale.y);
                     gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
                 }
-                if (gameObject.transform.localPosition.x <= -20f)
+                if (gameObject.transform.localPosition.x <= fLefttMax) //-20f
                 {
                     Arrow = true;
                 }
-                if (gameObject.transform.localPosition.x >= 6f)
+                if (gameObject.transform.localPosition.x >= fRightMax) //6f
                 {
                     Arrow = false;
                 }
