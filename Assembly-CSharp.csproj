@@ -62,6 +62,7 @@
      <Compile Include="Assets\Script\Intro\Cartoon.cs" />
      <Compile Include="Assets\Script\Inventory.cs" />
      <Compile Include="Assets\Script\Mini1\ComputerBt.cs" />
+     <Compile Include="Assets\Script\Mini1\GameBt.cs" />
      <Compile Include="Assets\Script\Mini1\ObjectFollow.cs" />
      <Compile Include="Assets\Script\Mini1\SBarCollider.cs" />
      <Compile Include="Assets\Script\Mini1\SComputerMini.cs" />
@@ -80,6 +81,8 @@
      <Compile Include="Assets\Script\Room\RoomIntoBt.cs" />
      <Compile Include="Assets\Script\Room\RoomManager.cs" />
      <Compile Include="Assets\Script\SMng.cs" />
+     <Compile Include="Assets\Script\StairObj.cs" />
+     <Compile Include="Assets\Script\StairUp.cs" />
      <Compile Include="Assets\Script\UI\Button.cs" />
      <Compile Include="Assets\Script\UI\StatePopup.cs" />
      <Compile Include="Assets\StartManager.cs" />

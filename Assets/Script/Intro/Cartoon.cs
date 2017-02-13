@@ -34,9 +34,16 @@ public class Cartoon : MonoBehaviour
 
     public void gameStart()
     {
-        SMng.Direction = 0;
-        cartoonCanvas.SetActive(false);
+        SMng.Direction = 3;
         cam.target = targetHero;
+
+        if (GM.LevelManager.myLevel.Equals(0))
+        {
+            GM.AudioManager.instance.rainBG();
+            SMng.Instance._level.StartCoroutine("direct_0");
+            //StartCoroutine(SMng.Instance._level.direct_0());
+        }
+        cartoonCanvas.SetActive(false);
     }
 
     // [0]-> 0, 1, 2
