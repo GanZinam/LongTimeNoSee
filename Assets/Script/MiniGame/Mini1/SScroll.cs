@@ -12,7 +12,6 @@ public class SScroll : MonoBehaviour
 
     void Start()
     {
-        scrollSpeed = 5f;
         tileSizeY = 8f;
         startPosition = transform.position;
     }

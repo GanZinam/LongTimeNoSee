@@ -52,9 +52,8 @@ public class Cartoon : MonoBehaviour
 
         if (GM.LevelManager.myLevel.Equals(0))
         {
-            GM.AudioManager.instance.rainBG();
+            //GM.AudioManager.instance.rainBG();
             SMng.Instance._level.StartCoroutine("direct_0");
-            //StartCoroutine(SMng.Instance._level.direct_0());
         }
         cartoonCanvas.SetActive(false);
     }

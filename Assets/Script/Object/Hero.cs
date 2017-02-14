@@ -79,12 +79,13 @@ public class Hero : MonoBehaviour
         }
     }
 
-
+    public static int upSize = 6;
+    
     public void StairUp()
     {
         if (StairPos)
         {
-            if (Count < 6)
+            if (Count < upSize)
             {
                 if (DoorType.Equals(1) || DoorType.Equals(3))
                     SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
@@ -104,7 +105,7 @@ public class Hero : MonoBehaviour
 
                 Count++;
             }
-            else if (Count < 12)
+            else if (Count < upSize * 2)
             {
                 if (DoorType.Equals(1) || DoorType.Equals(3))
                     SMng.Instance.Hero.transform.Translate(Vector3.up * 0.5f);
@@ -122,7 +123,7 @@ public class Hero : MonoBehaviour
                 }
                 Count++;
             }
-            else if (Count >= 12)      //계단 끝
+            else if (Count >= upSize * 2)      //계단 끝
             {
                 GetComponent<BoxCollider2D>().isTrigger = false;
                 GetComponent<Rigidbody2D>().gravityScale = 100;

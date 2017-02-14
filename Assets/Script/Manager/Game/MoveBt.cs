@@ -57,7 +57,6 @@ public class MoveBt : MonoBehaviour
         {
             if (SMng.Direction.Equals(0) || SMng.Direction.Equals(1))
             {
-
                 SMng.Instance.Hero.GetComponent<Hero>().Right = true;
                 SMng.Instance.Hero.GetComponent<Hero>().Left = false;
 

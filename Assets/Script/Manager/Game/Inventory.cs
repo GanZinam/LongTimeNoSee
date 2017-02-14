@@ -102,4 +102,76 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    [SerializeField]
+    GameObject descOBJ;
+    [SerializeField]
+    UnityEngine.UI.Text itemNameText;
+    [SerializeField]
+    UnityEngine.UI.Text itemDescText;
+
+    public void showItemDesc(int idx)
+    {
+        if (items[idx].num > 0)
+        {
+            switch(items[idx].code)
+            {
+                case 1:
+                    itemNameText.text = "총";
+                    itemDescText.text = "총이다";
+                    break;
+                case 2:
+                    itemNameText.text = "칼";
+                    itemDescText.text = "칼이다";
+                    break;
+                case 3:
+                    itemNameText.text = "총알";
+                    itemDescText.text = "ㅊ";
+                    break;
+                case 4:
+                    itemNameText.text = "신분증";
+                    itemDescText.text = "";
+                    break;
+                case 5:
+                    itemNameText.text = "마스터 키";
+                    itemDescText.text = "ㅁ";
+                    break;
+                case 6:
+                    itemNameText.text = "일지";
+                    itemDescText.text = "칼이다";
+                    break;
+                case 7:
+                    itemNameText.text = "핀";
+                    itemDescText.text = "칼이다";
+                    break;
+                case 8:
+                    itemNameText.text = "녹음기록";
+                    itemDescText.text = "칼이다";
+                    break;
+                case 9:
+                    itemNameText.text = "녹음기록 2";
+                    itemDescText.text = "칼이다";
+                    break;
+                case 10:
+                    itemNameText.text = "암호힌트";
+                    itemDescText.text = "칼이다";
+                    break;
+            }
+            descOBJ.SetActive(true);
+        }
+    }
+
+    /**
+     * @brief 무기 가지고 있는지 확인
+     * @return 무기 유무
+     */
+    public bool ishaveWeapon()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (items[i].code.Equals(1) || items[i].code.Equals(2))
+                return true;
+        }
+        return false;
+    }
 }

@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel = 0;
+        public static int myLevel = 2;
 
         [SerializeField]
         GameObject introCanvas;
@@ -26,6 +26,11 @@ namespace GM
         [SerializeField]
         Sprite Sit_;
 
+        [SerializeField]
+        GameObject MurderIcon;
+        [SerializeField]
+        GameObject Police;
+
 
         void Start()
         {
@@ -35,11 +40,12 @@ namespace GM
             {
                 introCanvas.SetActive(true);
             }
+            if (myLevel.Equals(2)) Hero.upSize = 4;
+            else Hero.upSize = 6;
         }
 
         public IEnumerator loading(bool isClear)
         {
-
             SMng.Instance.hideWeapon.SetActive(true);
             SMng.Direction = 3;
 
@@ -51,10 +57,15 @@ namespace GM
             if (isClear)
             {
                 myLevel++;
+                Inventory.saveItems = Inventory.items;
+                SMng.Instance._inventory.refeshInventory();
+                PlayerPrefs.SetInt("myLevel", myLevel);
+                for (int i = 0; i < 10; i++)
+                    PlayerPrefs.SetString(string.Format("ITEM_{0}", i), Inventory.saveItems[i].code + ":" + Inventory.saveItems[i].num);
             }
             else
             {
-
+                Inventory.items = Inventory.saveItems;
             }
 
             SceneManager.LoadScene("Game");
@@ -67,7 +78,7 @@ namespace GM
         }
 
 
-       
+
 
         public IEnumerator direct_0()
         {
@@ -77,7 +88,7 @@ namespace GM
             yield return new WaitForSeconds(1);
             thunderScreenAnimator.SetBool("Bright", false);
             thunderScreenAnimator.SetTrigger("Thunder");
-
+            MurderIcon.SetActive(true);
 
             // 불 켜짐
             yield return new WaitForSeconds(15);
@@ -86,17 +97,24 @@ namespace GM
             thunderScreenAnimator.SetBool("Bright", true);
             thunderScreenAnimator.SetTrigger("Thunder");
             Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
+            MurderIcon.SetActive(false);
 
-            SMng.Instance.hideWeapon.SetActive(false);
-            SMng.Instance.Hero.SetActive(true);
-            SMng.Direction = 0;
-
+            if (SMng.Instance.LevelMng_PoliceDie)
+            {
+                SMng.Instance.hideWeapon.SetActive(false);
+                SMng.Instance.Hero.SetActive(true);
+                SMng.Direction = 0;
+            }
             // 불 꺼짐
             yield return new WaitForSeconds(9);
             thunderAnimator.SetTrigger("Light0");
             yield return new WaitForSeconds(1);
             thunderScreenAnimator.SetBool("Bright", false);
             thunderScreenAnimator.SetTrigger("Thunder");
+            if (!SMng.Instance.LevelMng_PoliceDie)
+            {
+                MurderIcon.SetActive(true);
+            }
 
             // 불 켜짐
             yield return new WaitForSeconds(16);
@@ -104,6 +122,13 @@ namespace GM
             yield return new WaitForSeconds(1);
             thunderScreenAnimator.SetBool("Bright", true);
             thunderScreenAnimator.SetTrigger("Thunder");
+            MurderIcon.SetActive(false);
+            if (SMng.Instance.LevelMng_PoliceDie)
+            {
+                SMng.Instance.hideWeapon.SetActive(false);
+                SMng.Instance.Hero.SetActive(true);
+                SMng.Direction = 0;
+            }
         }
     }
 }

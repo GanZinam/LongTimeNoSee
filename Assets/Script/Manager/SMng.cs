@@ -70,7 +70,7 @@ public class SMng : MonoBehaviour
     public Inventory _inventory;
     public GM.LevelManager _level;
 
-    //public bool Cabinet_Murder;         // 케비넷머더 버튼 누르면 ㄱ
+    public bool LevelMng_PoliceDie;
 
 
     public void createState(int itemCode)

@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BookAnimationMng.cs" />
     <Compile Include="Assets\Script\Manager\Game\CameraFollow.cs" />
     <Compile Include="Assets\Script\Manager\Game\Inventory.cs" />
     <Compile Include="Assets\Script\Manager\Game\MoveBt.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Assets\Script\Object\Police\MurderBt.cs" />
     <Compile Include="Assets\Script\Object\Police\Police1.cs" />
     <Compile Include="Assets\Script\Object\Police\SLight.cs" />
+    <Compile Include="Assets\Script\Object\Police\Stage1PoliceDieAni.cs" />
     <Compile Include="Assets\Script\Object\Room\Computer.cs" />
     <Compile Include="Assets\Script\Object\Room\RoomAimationMng.cs" />
     <Compile Include="Assets\Script\Object\Room\RoomIntoBt.cs" />

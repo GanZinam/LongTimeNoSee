@@ -17,10 +17,15 @@ public class MurderBt : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Police_posiiton = transform.parent.parent.parent.transform.position;
+                if (hit.collider.transform.CompareTag("StartKnife"))
+                {
+                    Debug.Log("Stage1_PoliceKill");
+                    transform.parent.GetComponent<Animator>().SetBool("Die", true);
+                    SMng.Instance.LevelMng_PoliceDie = true;
+                }
                 if (hit.collider.transform.CompareTag("knife"))
                 {
-                    
+                    Police_posiiton = transform.parent.parent.parent.transform.position;
                     Distance_ = Vector2.Distance(SMng.Instance.Hero.transform.position, Police_posiiton);
                     if (Distance_ <= 1.5f)
                     {
