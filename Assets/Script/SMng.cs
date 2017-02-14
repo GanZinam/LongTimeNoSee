@@ -21,6 +21,8 @@ public class SMng : MonoBehaviour
         }
     }
 
+    public GameObject hideWeapon;
+
     public GameObject Hero = null;          // Hero GameObject
     public GameObject DoorBt = null;        // DoorBt GameObject
 
@@ -41,8 +43,6 @@ public class SMng : MonoBehaviour
     //@ 숨어있는 상자 방향
     public static bool Hide_right = false;
     public static bool Hide_left = false;
-
-    public static bool MurderStart;                // 암살중~
 
     //@ 주인공 애니메이션
     public Animator HeroAnimator;
@@ -85,7 +85,10 @@ public class SMng : MonoBehaviour
             {
                 isStating[i] = true;
                 obj.GetComponent<StatePopup>().idx = i;
-                obj.GetComponent<StatePopup>().text.text = itemCode + "";
+                if (itemCode.Equals(100))
+                    obj.GetComponent<StatePopup>().text.text = "EMPTY";
+                else
+                    obj.GetComponent<StatePopup>().text.text = itemCode + "";
                 break;
             }
         }

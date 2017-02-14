@@ -25,6 +25,8 @@ public class Police1 : MonoBehaviour
 
     public GameObject Light;
 
+    public bool MurderStart;        //암살 시작시
+
 
     void Start()
     {
@@ -133,7 +135,7 @@ public class Police1 : MonoBehaviour
                 Paturn = 0;
             }
 
-            if (LightScrp.ExclamationSprite.color.b <= 0f || SMng.MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
+            if (LightScrp.ExclamationSprite.color.b <= 0f || MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
             {
                 PoliceWalking.SetBool("PoliceStop", true);
                 fPaturnSpeed = 0f;

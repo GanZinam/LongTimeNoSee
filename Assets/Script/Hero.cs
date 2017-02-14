@@ -60,6 +60,8 @@ public class Hero : MonoBehaviour
     // 애니메이션 끝날시 상태변화
     public void AniFinsh_statusCh()
     {
+
+        SMng.Instance.hideWeapon.SetActive(false);
         SMng.interection = false;
         SMng.Direction = 0;
     }
@@ -125,6 +127,7 @@ public class Hero : MonoBehaviour
                 GetComponent<BoxCollider2D>().isTrigger = false;
                 GetComponent<Rigidbody2D>().gravityScale = 100;
 
+                SMng.Instance.hideWeapon.SetActive(false);
                 SMng.Direction = 0;
                 if (SMng.Instance.HeroAnimator.GetBool("StairUp"))
                     SMng.Instance.HeroAnimator.SetBool("StairUp", false);
@@ -177,6 +180,7 @@ public class Hero : MonoBehaviour
                 GetComponent<BoxCollider2D>().isTrigger = false;
                 GetComponent<Rigidbody2D>().gravityScale = 100;
 
+                SMng.Instance.hideWeapon.SetActive(false);
                 SMng.Direction = 0;
                 if (SMng.Instance.HeroAnimator.GetBool("StairUp"))
                     SMng.Instance.HeroAnimator.SetBool("StairUp", false);
@@ -206,7 +210,7 @@ public class Hero : MonoBehaviour
     }
     public void KillFinish()
     {
-        SMng.MurderStart = false;
+        Police.GetComponent<Police1>().MurderStart = false;
         SMng.Instance.HeroAnimator.SetBool("Murder", false);
     }
 }

@@ -24,7 +24,8 @@ public class MurderBt : MonoBehaviour
                     Distance_ = Vector2.Distance(SMng.Instance.Hero.transform.position, Police_posiiton);
                     if (Distance_ <= 1.5f)
                     {
-                        SMng.MurderStart = true;
+                        SMng.Instance.hideWeapon.SetActive(true);
+                        transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
                         SMng.Direction = 3;
                         SMng.interection = true;
                         if (SMng.Instance.Hero.GetComponent<Hero>().Right)
@@ -42,10 +43,11 @@ public class MurderBt : MonoBehaviour
                 }
                 if (hit.collider.transform.CompareTag("Gun"))
                 {
-                    SMng.MurderStart = true;
-                    SMng.Direction = 3;
-                    SMng.interection = true;
-                    MurderStart_(2);
+                    //SMng.Instance.hideWeapon.SetActive(true);
+                    //SMng.MurderStart = true;
+                    //SMng.Direction = 3;
+                    //SMng.interection = true;
+                    //MurderStart_(2);
                 }
             }
         }

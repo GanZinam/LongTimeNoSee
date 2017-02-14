@@ -14,6 +14,8 @@ public class Cartoon : MonoBehaviour
 
     void Start()
     {
+
+        SMng.Instance.hideWeapon.SetActive(true);
         SMng.Direction = 3;
     }
 
@@ -34,6 +36,8 @@ public class Cartoon : MonoBehaviour
 
     public void gameStart()
     {
+
+        SMng.Instance.hideWeapon.SetActive(true);
         SMng.Direction = 3;
         cam.target = targetHero;
 

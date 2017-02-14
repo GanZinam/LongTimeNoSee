@@ -23,7 +23,7 @@ public class ComputerBt : MonoBehaviour {
             {
                 if (hit.transform.CompareTag("GoComputer"))
                 {
-
+                    SMng.Instance.hideWeapon.SetActive(true);
                     SMng.Direction = 3;
 
                     MiniGame1.GetComponent<SComputerMini>().bCheck = true;

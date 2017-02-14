@@ -41,7 +41,7 @@ public class CabinetBt : MonoBehaviour
                         // 찾기
                         if (Num.Equals(100))
                         {
-
+                            SMng.Instance.createState(100);
                         }
                         else if (Num.Equals(12))
                         {
@@ -67,6 +67,8 @@ public class CabinetBt : MonoBehaviour
                         // 들어가기
                         if (!SMng.Hide)
                         {
+                            
+                            SMng.Instance.hideWeapon.SetActive(true);
                             SMng.Hide = true;
                             SMng.Direction = 3;
                             SMng.HideWide = 0;
@@ -74,6 +76,7 @@ public class CabinetBt : MonoBehaviour
                         }
                         else
                         {
+                            SMng.Instance.hideWeapon.SetActive(false);
                             SMng.Hide = false;
                             SMng.Direction = 0;
                             SMng.HideWide = 1;

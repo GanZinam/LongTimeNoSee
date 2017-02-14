@@ -39,6 +39,8 @@ namespace GM
 
         public IEnumerator loading(bool isClear)
         {
+
+            SMng.Instance.hideWeapon.SetActive(true);
             SMng.Direction = 3;
 
             SMng.interection = true;
@@ -58,6 +60,7 @@ namespace GM
             SceneManager.LoadScene("Game");
             yield return new WaitForSeconds(4);
 
+            SMng.Instance.hideWeapon.SetActive(false);
             SMng.Direction = 0;
 
             SMng.interection = false;
@@ -83,6 +86,8 @@ namespace GM
             thunderScreenAnimator.SetBool("Bright", true);
             thunderScreenAnimator.SetTrigger("Thunder");
             Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
+
+            SMng.Instance.hideWeapon.SetActive(false);
             SMng.Instance.Hero.SetActive(true);
             SMng.Direction = 0;
 

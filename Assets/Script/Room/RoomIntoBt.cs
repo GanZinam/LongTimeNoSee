@@ -24,8 +24,10 @@ public class RoomIntoBt : MonoBehaviour
 
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponentInChildren<Animator>().GetBool("Into").Equals(false))
+                if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponentInChildren<Animator>().GetBool("Into").Equals(false) && !SMng.interection)
                 {
+                    SMng.interection = true;
+                    SMng.Instance.hideWeapon.SetActive(true);
                     SMng.Direction = 3;
                     transform.parent.GetComponentInChildren<Animator>().SetBool("Into", true);
 
@@ -40,5 +42,4 @@ public class RoomIntoBt : MonoBehaviour
     {
         SMng.Instance.Hero.GetComponent<Hero>().AniFinsh_statusCh();
     }
-
 }

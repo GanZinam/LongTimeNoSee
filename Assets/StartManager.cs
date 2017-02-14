@@ -23,7 +23,10 @@ namespace GM
             SMng.Instance._inventory.refeshInventory();
 
             if (LevelManager.myLevel != 0)
-            cam.target = targetHero;
+            {
+                cam.target = targetHero;
+                SMng.Instance.Hero.SetActive(true);
+            }
         }
     }
 }

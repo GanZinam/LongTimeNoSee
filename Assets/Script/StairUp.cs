@@ -17,6 +17,8 @@ public class StairUp : MonoBehaviour
             {
                 if (hit.collider.transform.CompareTag("StairIcon"))
                 {
+
+                    SMng.Instance.hideWeapon.SetActive(true);
                     SMng.Direction = 3;
 
                     if (type.Equals(5))
