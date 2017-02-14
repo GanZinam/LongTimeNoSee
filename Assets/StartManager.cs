@@ -16,10 +16,15 @@ namespace GM
         [SerializeField]
         CameraFollow cam;
 
+        [SerializeField]
+        Transform[] spawnPos;
+
         void Start()
         {
             gameLevel[LevelManager.myLevel].SetActive(true);
             policeLevel[LevelManager.myLevel].SetActive(true);
+            SMng.Instance.Hero.transform.position = spawnPos[LevelManager.myLevel].position;
+
             SMng.Instance._inventory.refeshInventory();
 
             if (LevelManager.myLevel != 0)

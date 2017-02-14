@@ -16,7 +16,7 @@ public class Murder : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && transform.parent.GetComponent<Police1>().Life && SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN) && !SMng.Hide)
+        if (other.gameObject.CompareTag("Player") && transform.parent.GetComponent<Police1>().Life && SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN) && (!SMng.Hide || SMng.RoomInit.Equals(true)))
         {
             Debug.Log("MurderIn");
             MurderIcon.SetActive(true);
@@ -27,11 +27,11 @@ public class Murder : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (SMng.HideWide.Equals(0))
+            if (SMng.HideWide.Equals(0) || !transform.parent.GetComponent<Police1>().Life || SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND) || SMng.Hide || SMng.RoomInit.Equals(true))
             {
                 MurderIcon.SetActive(false);
             }
-            else if (SMng.HideWide.Equals(1) && transform.parent.GetComponent<Police1>().Life && SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN) && !SMng.Hide)
+            else if (SMng.HideWide.Equals(1) && transform.parent.GetComponent<Police1>().Life && SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN) && (!SMng.Hide || SMng.RoomInit.Equals(false)))
             {
                 MurderIcon.SetActive(true);
                 SMng.Instance.Hero.GetComponent<Hero>().Police = transform.parent.gameObject;

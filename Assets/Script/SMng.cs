@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum WEAPON { WEAPON_HAND, WEAPON_GUN }
+public enum WEAPON { WEAPON_GUN, WEAPON_HAND }
 
 public class SMng : MonoBehaviour
 {

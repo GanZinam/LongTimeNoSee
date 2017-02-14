@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel = 1;
+        public static int myLevel = 2;
 
         [SerializeField]
         GameObject introCanvas;
