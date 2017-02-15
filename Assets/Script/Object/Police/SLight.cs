@@ -14,6 +14,7 @@ public class SLight : MonoBehaviour
     public bool bFollow;                // 라이트랑 플래이어가 충돌했을때
     float fEraseSpeed;                  // 느낌표 지워주는 속도 3
 
+    public bool bSendCheck;             // 충돌 풀렸을때 Police 로 보냄
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class SLight : MonoBehaviour
 
     //@ 라이트가 줄어드는부분
     void Update()
-    {
+    { 
         if (transform.parent.GetComponent<Police1>().Life)
         {
             if (!bFollow && ExclamationSprite.color.b <= 1f)
@@ -97,6 +98,10 @@ public class SLight : MonoBehaviour
             {
                 ExclamationSprite.color += new Color(0f, ColorSpeed / 255f, ColorSpeed / 255f);
                 bFollow = false;
+            }
+            if (col.CompareTag("Player") && !SMng.Hide && SMng.Instance.TimeCtrl((int)E_TIME.E_DELAY, 2f))
+            {
+                bSendCheck = true;
             }
         }
     }

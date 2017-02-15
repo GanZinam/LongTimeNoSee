@@ -3,6 +3,13 @@ using System.Collections;
 
 public enum WEAPON { WEAPON_GUN, WEAPON_HAND }
 
+public enum E_TIME
+{
+    E_TIME1 = 0,
+    E_DELAY,
+    E_MAX
+}
+
 public class SMng : MonoBehaviour
 {
     private static SMng _Instance = null;
@@ -103,5 +110,17 @@ public class SMng : MonoBehaviour
         {
             CabinetChangeUI = true;
         }
+    }
+
+    float[] gTime = new float[(int)E_TIME.E_MAX];
+
+    public bool TimeCtrl(int nindex, float DelTime)
+    {
+        if (gTime[nindex] + DelTime <= Time.time)
+        {
+            gTime[nindex] = Time.time;
+            return true;
+        }
+        return false;
     }
 }

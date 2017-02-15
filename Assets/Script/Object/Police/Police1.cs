@@ -4,7 +4,7 @@ using System.Collections;
 public class Police1 : MonoBehaviour
 {
     public bool Life;             // ture = 삶 fals = 죽음
-    int Paturn;
+    public int Paturn;
     public bool Arrow;     // true = 오른쪽 , false = 왼쪽
     float Speed;    // 경찰 스피드 2
     public bool bPaturnChange;     // true = 안움직임 false = 움직임
@@ -27,6 +27,7 @@ public class Police1 : MonoBehaviour
 
     public bool MurderStart;        //암살 시작시
 
+    public int nCount;
 
     void Start()
     {
@@ -46,46 +47,51 @@ public class Police1 : MonoBehaviour
     {
         if (Life)
         {
-            if (!Child.GetComponent<SLight>().bFollow)
+            if (!LightScrp.bSendCheck)
             {
-                PoliceWalking.speed = 1f;
-            }
-            if (Paturn.Equals(0))        //경찰 패턴 1
-            {
-                if (Arrow)      //오늘쪽
+                if (!Child.GetComponent<SLight>().bFollow)
                 {
-                    gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
-                    gameObject.transform.Translate(Vector3.right * Speed * Time.deltaTime);
+                    PoliceWalking.speed = 1f;
                 }
-                else           //왼쪽
+                if (Paturn.Equals(0))        //경찰 패턴 1
                 {
-                    transform.localScale = new Vector2(-0.5f, transform.localScale.y);
-                    gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
-                }
-                if (gameObject.transform.localPosition.x <= fLefttMax) //-20f
-                {
-                    Arrow = true;
-                }
-                if (gameObject.transform.localPosition.x >= fRightMax) //6f
-                {
-                    Arrow = false;
-                }
-                if (bPaturnChange)
-                {
-                    Speed = 0f;
-                    PoliceWalking.speed = 0f;
+                    if (Arrow)      //오늘쪽
+                    {
+                        gameObject.transform.localScale = new Vector2(0.5f, transform.localScale.y);
+                        gameObject.transform.Translate(Vector3.right * Speed * Time.deltaTime);
+                    }
+                    else           //왼쪽
+                    {
+                        transform.localScale = new Vector2(-0.5f, transform.localScale.y);
+                        gameObject.transform.Translate(Vector3.left * Speed * Time.deltaTime);
+                    }
+                    if (gameObject.transform.localPosition.x <= fLefttMax) //-20f
+                    {
+                        Arrow = true;
+                    }
+                    if (gameObject.transform.localPosition.x >= fRightMax) //6f
+                    {
+                        Arrow = false;
+                    }
+                    if (bPaturnChange)
+                    {
+                        Speed = 0f;
+                        PoliceWalking.speed = 0f;
+                    }
+                    else
+                    {
+                        Speed = 0.5f;
+                        PoliceWalking.speed = 1f;
+                    }
                 }
                 else
                 {
-                    Speed = 0.5f;
-                    PoliceWalking.speed = 1f;
+
                 }
+                Paturn2();
             }
             else
-            {
-
-            }
-            Paturn2();
+                Paturn3();
             PoliceAlphaCahnge();    // 방이 켜져있으면 경찰 Alpha
         }
         else
@@ -144,7 +150,27 @@ public class Police1 : MonoBehaviour
             }
         }
     }
-    
+
+    void Paturn3()
+    {
+
+        if (LightScrp.bSendCheck && SMng.Instance.TimeCtrl((int)E_TIME.E_TIME1, 1f))        // 1초마다 한번씩 둘러봄
+        {
+            Speed = 0f;
+            gameObject.transform.localScale = new Vector2(-(transform.localScale.x), transform.localScale.y);
+            nCount++;
+        }
+
+        if (nCount > 4)
+        {
+            gameObject.transform.localScale = new Vector2(-(transform.localScale.x), transform.localScale.y);
+            LightScrp.bSendCheck = false;
+            Paturn = 0;
+            Speed = 0.5f;
+            nCount = 0;
+        }
+    }
+
     public void PoliceAlphaCahnge()
     {
         if (SMng.RoomInit)
