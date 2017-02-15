@@ -30,7 +30,13 @@ public class GameBt : MonoBehaviour {
                     Game.SetActive(true);
                 }
             }
-
+        }
+        if(SMng.Instance.MGComplite[0])
+        {
+            Bg.SetActive(false);
+            Game.SetActive(false);
+            SMng.Instance.hideWeapon.SetActive(false);
+            SMng.Direction = 0;
         }
 	}
 }

@@ -26,13 +26,19 @@ public class RoomIntoBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoDoor") && transform.parent.GetComponentInChildren<Animator>().GetBool("Into").Equals(false) && !SMng.interection)
                 {
+                    GM.AudioManager.instance.doorIn();
                     SMng.interection = true;
                     SMng.Instance.hideWeapon.SetActive(true);
                     SMng.Direction = 3;
                     transform.parent.GetComponentInChildren<Animator>().SetBool("Into", true);
 
                     if (finishRoom)
-                        StartCoroutine(SMng.Instance._level.loading(true));
+                    {
+                        if(GM.LevelManager.myLevel.Equals(0)&&SMng.Instance._inventory.ishaveWeapon())              // 1스테이지 무기유무
+                            StartCoroutine(SMng.Instance._level.loading(true));
+                        if(GM.LevelManager.myLevel.Equals(1)&&SMng.Instance.MGComplite[0])
+                            StartCoroutine(SMng.Instance._level.loading(true));
+                    }
                 }
             }
         }

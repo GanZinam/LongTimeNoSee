@@ -25,6 +25,7 @@ public class DoorBt : MonoBehaviour
             {
                 if (hit.transform.CompareTag("GoDoor"))
                 {
+                    GM.AudioManager.instance.stair();
                     //@아웃도어 포지션을 넘겨주는함수
                     hero.setOutDoorpostioin(type);
 

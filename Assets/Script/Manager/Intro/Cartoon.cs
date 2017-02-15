@@ -5,14 +5,14 @@ using UnityEngine;
 public class Cartoon : MonoBehaviour
 {
     [SerializeField]
-    UnityEngine.UI.Image[] cartoon;         // 카툰 5개 공간
+    GameObject[] cartoon;         // 카툰 9개 공간
     [SerializeField]
     GameObject cartoonCanvas;
 
     [SerializeField]
     GameObject titleObj;
 
-    int cutIdx = 0;     // 카툰 컷 씬 인덱스
+    int cutIdx = -1;     // 카툰 컷 씬 인덱스
 
     void Start()
     {
@@ -27,15 +27,12 @@ public class Cartoon : MonoBehaviour
     public void nextCut()
     {
         cutIdx++;
-        //cartoon[0].sprite = Resources.Load<Sprite>("Cartoon/" + cutIdx);
-        if (cutIdx.Equals(2))
-        {
+        if (cutIdx.Equals(9))
             titleObj.SetActive(true);
-        }
-        else if (cutIdx.Equals(3))
-        {
+        else if (cutIdx.Equals(10))
             gameStart();
-        }
+        else
+            cartoon[cutIdx].SetActive(true);
     }
 
     [SerializeField]
@@ -52,7 +49,7 @@ public class Cartoon : MonoBehaviour
 
         if (GM.LevelManager.myLevel.Equals(0))
         {
-            //GM.AudioManager.instance.rainBG();
+            GM.AudioManager.instance.rainBG();
             SMng.Instance._level.StartCoroutine("direct_0");
         }
         cartoonCanvas.SetActive(false);

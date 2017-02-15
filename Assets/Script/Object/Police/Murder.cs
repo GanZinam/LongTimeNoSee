@@ -41,7 +41,6 @@ public class Murder : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("MurderOut");
             MurderIcon.SetActive(false);
         }
     }

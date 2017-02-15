@@ -63,6 +63,7 @@ public class CabinetBt : MonoBehaviour
                     {
                         SMng.interection = true;
                         transform.parent.GetComponent<Animator>().SetBool("Cabinet", true);
+                        GM.AudioManager.instance.cabinetIn();
                         // 들어가기
                         if (!SMng.Hide)
                         {

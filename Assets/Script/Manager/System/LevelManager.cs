@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel = 2;
+        public static int myLevel = 0;
 
         [SerializeField]
         GameObject introCanvas;
@@ -34,14 +34,15 @@ namespace GM
 
         void Start()
         {
-            //DontDestroyOnLoad(this);
-
             if (myLevel.Equals(0))
-            {
                 introCanvas.SetActive(true);
-            }
-            if (myLevel.Equals(2)) Hero.upSize = 4;
-            else Hero.upSize = 6;
+            else
+                GM.AudioManager.instance.ingameBG();
+            
+            if (myLevel.Equals(2))
+                Hero.upSize = 4;
+            else
+                Hero.upSize = 6;
         }
 
         public IEnumerator loading(bool isClear)
@@ -76,10 +77,7 @@ namespace GM
 
             SMng.interection = false;
         }
-
-
-
-
+        
         public IEnumerator direct_0()
         {
             // 불 꺼짐
@@ -96,11 +94,11 @@ namespace GM
             yield return new WaitForSeconds(1);
             thunderScreenAnimator.SetBool("Bright", true);
             thunderScreenAnimator.SetTrigger("Thunder");
-            Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
             MurderIcon.SetActive(false);
 
             if (SMng.Instance.LevelMng_PoliceDie)
             {
+                Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
                 SMng.Instance.hideWeapon.SetActive(false);
                 SMng.Instance.Hero.SetActive(true);
                 SMng.Direction = 0;
@@ -125,6 +123,7 @@ namespace GM
             MurderIcon.SetActive(false);
             if (SMng.Instance.LevelMng_PoliceDie)
             {
+                Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
                 SMng.Instance.hideWeapon.SetActive(false);
                 SMng.Instance.Hero.SetActive(true);
                 SMng.Direction = 0;

@@ -23,11 +23,14 @@ public class ComputerBt : MonoBehaviour {
             {
                 if (hit.transform.CompareTag("GoComputer"))
                 {
-                    SMng.Instance.hideWeapon.SetActive(true);
-                    SMng.Direction = 3;
+                    if (SMng.Instance._inventory.ishaveItem(5))
+                    {
+                        SMng.Instance.hideWeapon.SetActive(true);
+                        SMng.Direction = 3;
 
-                    MiniGame1.GetComponent<SComputerMini>().bCheck = true;
-                    MinigameCam.SetActive(true);
+                        MiniGame1.GetComponent<SComputerMini>().bCheck = true;
+                        MinigameCam.SetActive(true);
+                    }
                 }
             }
         }

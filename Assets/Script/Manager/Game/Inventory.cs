@@ -174,4 +174,19 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
+
+    /**
+    * @brief 아이템 가지고 있는지 확인
+    * @param 찾고싶은 아이템 코드
+    * @return 무기 유무
+    */
+    public bool ishaveItem(int Item)
+    {
+        for(int i = 0; i<10;i++)
+        {
+            if (items[i].code.Equals(Item))
+                return true;
+        }
+        return false;
+    }
 }

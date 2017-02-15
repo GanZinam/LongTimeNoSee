@@ -62,6 +62,7 @@ public class MoveBt : MonoBehaviour
 
                 SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
                 SMng.Instance.Hero.transform.Translate(Vector3.right * 2f * Time.deltaTime);
+
                 if (!SMng.sit)
                 {
                     if (!SMng.Instance.HeroAnimator.GetBool("Walk"))

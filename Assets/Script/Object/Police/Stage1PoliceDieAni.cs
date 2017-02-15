@@ -8,4 +8,8 @@ public class Stage1PoliceDieAni : MonoBehaviour {
     {
         transform.GetComponent<Animator>().SetBool("Die",false);
     }
+    public void deathSound()
+    {
+        GM.AudioManager.instance.deathPolice();
+    }
 }

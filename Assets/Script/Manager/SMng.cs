@@ -49,6 +49,7 @@ public class SMng : MonoBehaviour
 
     //@ 미니게임
     public static bool bDownCheck;
+    public bool[] MGComplite = new bool[3];
 
     public static int HideWide = 1;          //케비넷 으로 들어가면 0
 
@@ -70,7 +71,7 @@ public class SMng : MonoBehaviour
     public Inventory _inventory;
     public GM.LevelManager _level;
 
-    public bool LevelMng_PoliceDie;
+    public bool LevelMng_PoliceDie = false;
 
 
     public void createState(int itemCode)
@@ -100,7 +101,6 @@ public class SMng : MonoBehaviour
 
         if (CabinetIn)
         {
-            Debug.Log("CabinetCangeUI = true");
             CabinetChangeUI = true;
         }
     }

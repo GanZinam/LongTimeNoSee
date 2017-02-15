@@ -12,10 +12,10 @@ public class Hero : MonoBehaviour
     public Vector3 outDoorPos;
     public int DoorType;
 
-    public int Count;           //에니매이션 몇번 돌았는지
+    public int Count;           // 에니매이션 몇번 돌았는지
     bool StairPos;
 
-    public GameObject Police;          //암살가능한 경찰
+    public GameObject Police;          // 암살가능한 경찰
     public Animator PoliceAni;
 
     void OnCollisionEnter2D(Collision2D other)
@@ -80,7 +80,7 @@ public class Hero : MonoBehaviour
     }
 
     public static int upSize = 6;
-    
+
     public void StairUp()
     {
         if (StairPos)

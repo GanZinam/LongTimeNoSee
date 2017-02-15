@@ -9,7 +9,7 @@ public class MurderBt : MonoBehaviour
 
     void Update()
     {
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -19,11 +19,10 @@ public class MurderBt : MonoBehaviour
             {
                 if (hit.collider.transform.CompareTag("StartKnife"))
                 {
-                    Debug.Log("Stage1_PoliceKill");
                     transform.parent.GetComponent<Animator>().SetBool("Die", true);
                     SMng.Instance.LevelMng_PoliceDie = true;
                 }
-                if (hit.collider.transform.CompareTag("knife"))
+                else if (hit.collider.transform.CompareTag("knife"))
                 {
                     Police_posiiton = transform.parent.parent.parent.transform.position;
                     Distance_ = Vector2.Distance(SMng.Instance.Hero.transform.position, Police_posiiton);
@@ -46,13 +45,13 @@ public class MurderBt : MonoBehaviour
                         MurderStart_(1);
                     }
                 }
-                if (hit.collider.transform.CompareTag("Gun"))
+                else if (hit.collider.transform.CompareTag("Gun"))
                 {
-                    //SMng.Instance.hideWeapon.SetActive(true);
-                    //SMng.MurderStart = true;
-                    //SMng.Direction = 3;
-                    //SMng.interection = true;
-                    //MurderStart_(2);
+                    SMng.Instance.hideWeapon.SetActive(true);
+                    transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
+                    SMng.Direction = 3;
+                    SMng.interection = true;
+                    MurderStart_(2);
                 }
             }
         }
@@ -60,16 +59,26 @@ public class MurderBt : MonoBehaviour
 
     void MurderStart_(int Direction)            // 1 = 칼 , 2 = 총
     {
-        if(Direction.Equals(1))
+        GM.AudioManager.instance.deathPolice();
+        if (Direction.Equals(1))
         {
-            if(!SMng.sit)
-                SMng.Instance.HeroAnimator.SetBool("Murder",true);
+            if (!SMng.sit)
+                SMng.Instance.HeroAnimator.SetBool("Murder", true);
             else if (SMng.sit)
                 SMng.Instance.HeroAnimator.SetBool("SitMurder", true);
         }
-        if(Direction.Equals(2))
+        else if (Direction.Equals(2))
         {
-
+            if (!SMng.sit)
+            {
+                SMng.Instance.HeroAnimator.SetTrigger("Shoot");
+            }
         }
+    }
+
+    IEnumerator killPoliceByGun()
+    {
+        yield return new WaitForSeconds(0.35f);
+        SMng.Instance.Hero.GetComponent<Hero>().KillPolice();
     }
 }

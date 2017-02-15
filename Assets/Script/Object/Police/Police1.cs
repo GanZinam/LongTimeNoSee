@@ -143,34 +143,8 @@ public class Police1 : MonoBehaviour
                 Paturn = 1;
             }
         }
-
     }
-
-
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("RoomRight"))       // 벽이 왼쪽에있을때
-        {
-
-        }
-        else if (other.gameObject.CompareTag("RoomLeft"))   // 벽이 오른쪽에있을때
-        {
-
-        }
-    }
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("RoomRight"))
-        {
-
-        }
-        else if (other.gameObject.CompareTag("RoomLeft"))
-        {
-
-        }
-    }
-
+    
     public void PoliceAlphaCahnge()
     {
         if (SMng.RoomInit)

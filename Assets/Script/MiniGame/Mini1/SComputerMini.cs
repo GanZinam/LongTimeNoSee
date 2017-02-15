@@ -7,6 +7,9 @@ public class SComputerMini : MonoBehaviour
     public SScroll[] SScrollScrp = new SScroll[6];
     public GameObject[] WallGame = new GameObject[6];
 
+    public GameObject EndDoor;
+    public Sprite EndDoorSpr;
+
     public int nCount;          // 알파벳 카운트?
     public bool bCheck;
 
@@ -17,6 +20,8 @@ public class SComputerMini : MonoBehaviour
     int nSeconds;
     float fMillisecond;
     // public Text TimerText = null;        // 텍스트 적용 부탁
+
+    bool GameClear;
 
     void Start()
     {
@@ -42,9 +47,12 @@ public class SComputerMini : MonoBehaviour
                 //Debug.Log(i);
             }
         }
-        if(nCount.Equals(6))        // 게임 클리어 조건
+        if(GameClear)        // 게임 클리어 조건
         {
+            GameClear = false;
             Debug.Log("Clear");
+            EndDoor.GetComponent<SpriteRenderer>().sprite = EndDoorSpr;
+            SMng.Instance.MGComplite[0] = true;
         }
 
         Reset();     // 게임이끝났을때 호출되는 함수(현재는 R)
@@ -76,20 +84,13 @@ public class SComputerMini : MonoBehaviour
             nCount = 0;
             for (int i = 0; i < WallGame.Length; i++)
             {
-                SScrollScrp[i].scrollSpeed = 5f;
-                SScrollScrp[i].boxcollider[0].enabled = true;
+                SScrollScrp[i].StopSpeed = 1;
                 SScrollScrp[i].boxcollider[0].enabled = true;
             }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Bar"))
-        {
-            bCheck = true;
-        }
-    }
+    
 
     void OnTriggerStay2D(Collider2D col)        // Bar 에서 클릭하면 속도 0으로
     { 
@@ -98,44 +99,38 @@ public class SComputerMini : MonoBehaviour
             switch (nCount)
             {
                 case 0:
-                    SScrollScrp[nCount].scrollSpeed = 0;
+                    SScrollScrp[nCount].StopSpeed = 0;
                     bCheck = false;
                     nCount++;
                     break;
                 case 1:
-                    SScrollScrp[nCount].scrollSpeed = 0;
+                    SScrollScrp[nCount].StopSpeed = 0;
                     bCheck = false;
                     nCount++;
                     break;
                 case 2:
-                    SScrollScrp[nCount].scrollSpeed = 0;
+                    SScrollScrp[nCount].StopSpeed = 0;
                     bCheck = false;
                     nCount++;
                     break;
                 case 3:
-                    SScrollScrp[nCount].scrollSpeed = 0;
+                    SScrollScrp[nCount].StopSpeed = 0;
                     bCheck = false;
                     nCount++;
                     break;
                 case 4:
-                    SScrollScrp[nCount].scrollSpeed = 0;
+                    SScrollScrp[nCount].StopSpeed = 0;
                     bCheck = false;
                     nCount++;
-                    break;
-                case 5:
-                    SScrollScrp[nCount].scrollSpeed = 0;
-                    bCheck = false;
-                    nCount++;
+                    GameClear = true;
                     break;
             }
         }
-    }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Bar"))
+        else if(Input.GetMouseButtonDown(0)&&!bCheck)
         {
-            bCheck = false;
+            // 잘못눌렀을때 시간 줄어들게
         }
     }
+
+    
 }
