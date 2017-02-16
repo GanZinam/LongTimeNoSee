@@ -99,7 +99,7 @@ public class SLight : MonoBehaviour
                 ExclamationSprite.color += new Color(0f, ColorSpeed / 255f, ColorSpeed / 255f);
                 bFollow = false;
             }
-            if (col.CompareTag("Player") && !SMng.Hide && SMng.Instance.TimeCtrl((int)E_TIME.E_DELAY, 2f))
+            if (col.CompareTag("Player") && !SMng.Hide && SMng.Instance.TimeCtrl((int)E_TIME.E_DELAY, 2f) && !SMng.RoomInit)
             {
                 bSendCheck = true;
             }

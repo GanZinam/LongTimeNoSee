@@ -212,7 +212,10 @@ public class Hero : MonoBehaviour
     public void KillFinish()
     {
         Police.GetComponent<Police1>().MurderStart = false;
-        SMng.Instance.HeroAnimator.SetBool("Murder", false);
+        if (SMng.Instance.HeroAnimator.GetBool("Murder"))
+            SMng.Instance.HeroAnimator.SetBool("Murder", false);
+        if (SMng.Instance.HeroAnimator.GetBool("SitMurder"))
+            SMng.Instance.HeroAnimator.SetBool("SitMurder",false);
     }
 }
 

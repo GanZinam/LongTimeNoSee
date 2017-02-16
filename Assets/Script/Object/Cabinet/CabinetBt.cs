@@ -47,6 +47,7 @@ public class CabinetBt : MonoBehaviour
                         {
                             SMng.Instance._inventory.getItem(1);
                             SMng.Instance._inventory.getItem(2);
+                            SMng.Instance._inventory.getItem(4);
                         }
                         else if (Num.Equals(5))
                         {

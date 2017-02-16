@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel = 0;
+        public static int myLevel;
 
         [SerializeField]
         GameObject introCanvas;
@@ -20,7 +20,7 @@ namespace GM
         Animator thunderScreenAnimator;
         [SerializeField]
         Animator thunderAnimator;
-        
+
         [SerializeField]
         GameObject Sit;
         [SerializeField]
@@ -32,17 +32,30 @@ namespace GM
         GameObject Police;
 
 
+        bool _Touch = false;
+
         void Start()
         {
             if (myLevel.Equals(0))
                 introCanvas.SetActive(true);
             else
                 GM.AudioManager.instance.ingameBG();
-            
+
             if (myLevel.Equals(2))
                 Hero.upSize = 4;
             else
                 Hero.upSize = 6;
+        }
+
+        void Update()
+        {
+            if (SMng.Instance.LevelMng_PoliceDie && !_Touch)
+            {
+                _Touch = true;
+                Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
+                SMng.Instance.Hero.SetActive(true);
+                MurderIcon.SetActive(false);
+            }
         }
 
         public IEnumerator loading(bool isClear)
@@ -77,56 +90,71 @@ namespace GM
 
             SMng.interection = false;
         }
-        
+
+        bool isLight = true;
+
         public IEnumerator direct_0()
         {
-            // 불 꺼짐
-            yield return new WaitForSeconds(8);
-            thunderAnimator.SetTrigger("Light0");
-            yield return new WaitForSeconds(1);
-            thunderScreenAnimator.SetBool("Bright", false);
-            thunderScreenAnimator.SetTrigger("Thunder");
-            MurderIcon.SetActive(true);
-
-            // 불 켜짐
-            yield return new WaitForSeconds(15);
-            thunderAnimator.SetTrigger("Light1");
-            yield return new WaitForSeconds(1);
-            thunderScreenAnimator.SetBool("Bright", true);
-            thunderScreenAnimator.SetTrigger("Thunder");
-            MurderIcon.SetActive(false);
-
-            if (SMng.Instance.LevelMng_PoliceDie)
+            if (isLight)
             {
-                Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
-                SMng.Instance.hideWeapon.SetActive(false);
-                SMng.Instance.Hero.SetActive(true);
-                SMng.Direction = 0;
-            }
-            // 불 꺼짐
-            yield return new WaitForSeconds(9);
-            thunderAnimator.SetTrigger("Light0");
-            yield return new WaitForSeconds(1);
-            thunderScreenAnimator.SetBool("Bright", false);
-            thunderScreenAnimator.SetTrigger("Thunder");
-            if (!SMng.Instance.LevelMng_PoliceDie)
-            {
-                MurderIcon.SetActive(true);
+                // 불 꺼짐
+                yield return new WaitForSeconds(8);
+                thunderAnimator.SetTrigger("Light0");
+                yield return new WaitForSeconds(1);
+                thunderScreenAnimator.SetBool("Bright", false);
+                thunderScreenAnimator.SetTrigger("Thunder");
+                isLight = false;
             }
 
-            // 불 켜짐
-            yield return new WaitForSeconds(16);
-            thunderAnimator.SetTrigger("Light1");
-            yield return new WaitForSeconds(1);
-            thunderScreenAnimator.SetBool("Bright", true);
-            thunderScreenAnimator.SetTrigger("Thunder");
-            MurderIcon.SetActive(false);
-            if (SMng.Instance.LevelMng_PoliceDie)
+            if (!isLight)
             {
-                Sit.GetComponent<SpriteRenderer>().sprite = Sit_;
-                SMng.Instance.hideWeapon.SetActive(false);
-                SMng.Instance.Hero.SetActive(true);
-                SMng.Direction = 0;
+                // 불 켜짐
+                yield return new WaitForSeconds(15);
+                thunderAnimator.SetTrigger("Light1");
+                yield return new WaitForSeconds(1);
+                thunderScreenAnimator.SetBool("Bright", true);
+                thunderScreenAnimator.SetTrigger("Thunder");
+                MurderIcon.SetActive(false);
+                if (SMng.Instance.LevelMng_PoliceDie)
+                {
+                    SMng.Instance.hideWeapon.SetActive(false);
+                    SMng.Instance.Hero.SetActive(true);
+                    SMng.Direction = 0;
+                }
+                isLight = true;
+            }
+
+            if (isLight)
+            {
+                // 불 꺼짐
+                yield return new WaitForSeconds(9);
+                thunderAnimator.SetTrigger("Light0");
+                yield return new WaitForSeconds(1);
+                thunderScreenAnimator.SetBool("Bright", false);
+                thunderScreenAnimator.SetTrigger("Thunder");
+                if (!SMng.Instance.LevelMng_PoliceDie)
+                {
+                    MurderIcon.SetActive(true);
+                }
+                isLight = false;
+            }
+
+            if (!isLight)
+            {
+                // 불 켜짐
+                yield return new WaitForSeconds(16);
+                thunderAnimator.SetTrigger("Light1");
+                yield return new WaitForSeconds(1);
+                thunderScreenAnimator.SetBool("Bright", true);
+                thunderScreenAnimator.SetTrigger("Thunder");
+                MurderIcon.SetActive(false);
+                if (SMng.Instance.LevelMng_PoliceDie)
+                {
+                    SMng.Instance.hideWeapon.SetActive(false);
+                    SMng.Instance.Hero.SetActive(true);
+                    SMng.Direction = 0;
+                }
+                isLight = true;
             }
         }
     }

@@ -30,10 +30,15 @@ public class Cartoon : MonoBehaviour
         if (cutIdx.Equals(9))
             titleObj.SetActive(true);
         else if (cutIdx.Equals(10))
+        {
+            cutIdx = 9;
             gameStart();
+        }
         else
             cartoon[cutIdx].SetActive(true);
     }
+    [SerializeField]
+    Animator MoveTitle;
 
     [SerializeField]
     Transform targetHero;
@@ -42,17 +47,22 @@ public class Cartoon : MonoBehaviour
 
     public void gameStart()
     {
-
-        SMng.Instance.hideWeapon.SetActive(true);
-        SMng.Direction = 3;
-        cam.target = targetHero;
-
-        if (GM.LevelManager.myLevel.Equals(0))
+        if (SMng.Instance.TitleStartOn)
         {
-            GM.AudioManager.instance.rainBG();
-            SMng.Instance._level.StartCoroutine("direct_0");
+            SMng.Instance.hideWeapon.SetActive(true);
+            SMng.Direction = 3;
+            cam.target = targetHero;
+
+            if (GM.LevelManager.myLevel.Equals(0))
+            {
+                MoveTitle.SetTrigger("A");
+                GM.AudioManager.instance.rainBG();
+                SMng.Instance._level.StartCoroutine("direct_0");
+
+                cam.gameObject.GetComponent<Animator>().SetTrigger("Intro");
+            }
+            cartoonCanvas.SetActive(false);
         }
-        cartoonCanvas.SetActive(false);
     }
 
     // [0]-> 0, 1, 2

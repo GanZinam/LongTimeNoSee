@@ -115,8 +115,11 @@
     <Compile Include="Assets\Script\Object\Room\RoomManager.cs" />
     <Compile Include="Assets\Script\Object\Stair\StairObj.cs" />
     <Compile Include="Assets\Script\Object\Stair\StairUp.cs" />
+    <Compile Include="Assets\Script\Object\Thunder\Thunder_.cs" />
     <Compile Include="Assets\Script\UI\Button.cs" />
     <Compile Include="Assets\Script\UI\StatePopup.cs" />
+    <Compile Include="Assets\Script\UI\Title.cs" />
+    <Compile Include="Assets\SoundChangeStair.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

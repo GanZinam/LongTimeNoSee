@@ -174,4 +174,9 @@ public class CameraFollow : MonoBehaviour
             SMng.Middle_touch = false;
         }
     }
+
+    public void offAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
 }

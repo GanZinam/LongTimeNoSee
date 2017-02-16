@@ -50,6 +50,23 @@ namespace GM
             mainAudio.Play();
         }
 
+        public delegate void bgEffect();
+        public IEnumerator changeVolume(bgEffect func)
+        {
+            while (mainAudio.volume > 0)
+            {
+                mainAudio.volume -= 0.05f;
+                yield return new WaitForSeconds(0.07f);
+            }
+            func();
+            while (mainAudio.volume < 1)
+            {
+                mainAudio.volume += 0.05f;
+                yield return new WaitForSeconds(0.07f);
+            }
+
+        }
+
         public void deathPolice()
         {
             effectAudio.volume = 0.8f;

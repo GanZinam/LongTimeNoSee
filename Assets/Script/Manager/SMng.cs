@@ -28,6 +28,8 @@ public class SMng : MonoBehaviour
         }
     }
 
+    public bool TitleStartOn;               // TitleStart가 켜져잇으면 true
+
     public GameObject hideWeapon;
 
     public GameObject Hero = null;          // Hero GameObject
@@ -56,6 +58,8 @@ public class SMng : MonoBehaviour
 
     //@ 미니게임
     public static bool bDownCheck;
+
+    [HideInInspector]
     public bool[] MGComplite = new bool[3];
 
     public static int HideWide = 1;          //케비넷 으로 들어가면 0

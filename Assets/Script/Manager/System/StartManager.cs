@@ -19,11 +19,21 @@ namespace GM
         [SerializeField]
         Transform[] spawnPos;
 
+        [SerializeField]
+        GameObject killState;
+        [SerializeField]
+        GameObject foundState;
+
         void Start()
         {
             gameLevel[LevelManager.myLevel].SetActive(true);
             policeLevel[LevelManager.myLevel].SetActive(true);
             SMng.Instance.Hero.transform.position = spawnPos[LevelManager.myLevel].position;
+
+            if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
+                killState.SetActive(true);
+            else
+                foundState.SetActive(true);
 
             SMng.Instance._inventory.refeshInventory();
 

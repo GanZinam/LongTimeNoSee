@@ -34,9 +34,9 @@ public class RoomIntoBt : MonoBehaviour
 
                     if (finishRoom)
                     {
-                        if(GM.LevelManager.myLevel.Equals(0)&&SMng.Instance._inventory.ishaveWeapon())              // 1스테이지 무기유무
+                        if (GM.LevelManager.myLevel.Equals(0) && SMng.Instance._inventory.ishaveWeapon() && !SMng.sit)              // 1스테이지 무기유무
                             StartCoroutine(SMng.Instance._level.loading(true));
-                        if(GM.LevelManager.myLevel.Equals(1)&&SMng.Instance.MGComplite[0])
+                        if (GM.LevelManager.myLevel.Equals(1) && SMng.Instance.MGComplite[0] && !SMng.sit)
                             StartCoroutine(SMng.Instance._level.loading(true));
                     }
                 }

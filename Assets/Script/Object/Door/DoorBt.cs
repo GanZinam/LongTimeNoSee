@@ -13,6 +13,8 @@ public class DoorBt : MonoBehaviour
         hero = FindObjectOfType<Hero>();
     }
 
+    public SoundChangeStair scS;
+
     void Update()
     {
         // 문들어가는거 클릭
@@ -31,13 +33,17 @@ public class DoorBt : MonoBehaviour
 
                     SMng.Instance.hideWeapon.SetActive(true);
                     SMng.Direction = 3;
-                    if (type.Equals(1) || type.Equals(3)||type.Equals(5))
+                    if (type.Equals(1) || type.Equals(3) || type.Equals(5))
                     {
                         SMng.Instance.HeroAnimator.SetBool("StairUp", true);
+                        if (scS != null)
+                            scS.changeSound();
                     }
                     if (type.Equals(2) || type.Equals(4) || type.Equals(6))
                     {
                         SMng.Instance.HeroAnimator.SetBool("StairDown", true);
+                        if (scS != null)
+                            scS.changeSound();
                     }
                 }
             }

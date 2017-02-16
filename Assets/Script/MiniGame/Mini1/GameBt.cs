@@ -7,6 +7,7 @@ public class GameBt : MonoBehaviour {
     public Camera Cam;
     public GameObject Bg;
     public GameObject Game;
+    public GameObject Window;
 
 
 	// Use this for initialization
@@ -35,6 +36,7 @@ public class GameBt : MonoBehaviour {
         {
             Bg.SetActive(false);
             Game.SetActive(false);
+            Window.SetActive(false);
             SMng.Instance.hideWeapon.SetActive(false);
             SMng.Direction = 0;
         }

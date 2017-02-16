@@ -141,6 +141,7 @@ public class Police1 : MonoBehaviour
                 Paturn = 0;
             }
 
+            if (LightScrp != null && LightScrp.ExclamationSprite != null)
             if (LightScrp.ExclamationSprite.color.b <= 0f || MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
             {
                 PoliceWalking.SetBool("PoliceStop", true);
