@@ -38,7 +38,7 @@ public class Police1 : MonoBehaviour
         fPaturnSpeed = Speed;
         fAddSpeed = 0.01f;
         fMaxSpeed = 2.5f;
-        Speed = 0.5f;
+        Speed = 0.75f;
         Life = true;
         //Speed = 0.05f;
     }
@@ -80,7 +80,7 @@ public class Police1 : MonoBehaviour
                     }
                     else
                     {
-                        Speed = 0.5f;
+                        Speed = 0.75f;
                         PoliceWalking.speed = 1f;
                     }
                 }
@@ -142,13 +142,13 @@ public class Police1 : MonoBehaviour
             }
 
             if (LightScrp != null && LightScrp.ExclamationSprite != null)
-            if (LightScrp.ExclamationSprite.color.b <= 0f || MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
-            {
-                PoliceWalking.SetBool("PoliceStop", true);
-                fPaturnSpeed = 0f;
-                fAddSpeed = 0f;
-                Paturn = 1;
-            }
+                if (LightScrp.ExclamationSprite.color.b <= 0f || MurderStart)      // 경찰 멈추는곳 (빨간색 됬을때) , 암살 눌렸을때
+                {
+                    PoliceWalking.SetBool("PoliceStop", true);
+                    fPaturnSpeed = 0f;
+                    fAddSpeed = 0f;
+                    Paturn = 1;
+                }
         }
     }
 
@@ -167,7 +167,7 @@ public class Police1 : MonoBehaviour
             gameObject.transform.localScale = new Vector2(-(transform.localScale.x), transform.localScale.y);
             LightScrp.bSendCheck = false;
             Paturn = 0;
-            Speed = 0.5f;
+            Speed = 0.75f;
             nCount = 0;
         }
     }
