@@ -7,6 +7,6 @@ public class Title : MonoBehaviour {
 	public void StartOn()
     {
         Debug.Log("Ready to Start");
-        SMng.Instance.TitleStartOn = true;
+        SMng.TitleStartOn = true;
     }
 }

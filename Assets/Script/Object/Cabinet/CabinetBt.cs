@@ -87,7 +87,7 @@ public class CabinetBt : MonoBehaviour
                 }
             }
         }
-        if (SMng.Instance.CabinetChangeUI)
+        if (SMng.CabinetChangeUI)
         {
             if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_GUN))
             {

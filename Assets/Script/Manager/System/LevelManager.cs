@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel;
+        public static int myLevel = 0;
 
         [SerializeField]
         GameObject introCanvas;
@@ -77,7 +77,12 @@ namespace GM
             if (isClear)
             {
                 myLevel++;
-                Inventory.saveItems = Inventory.items;
+                //Inventory.saveItems = Inventory.items;
+                for (int i = 0; i < Inventory.items.Length; i++)
+                {
+                    Inventory.saveItems[i].code = Inventory.items[i].code;
+                    Inventory.saveItems[i].num = Inventory.items[i].num;
+                }
                 SMng.Instance._inventory.refeshInventory();
                 PlayerPrefs.SetInt("myLevel", myLevel);
                 for (int i = 0; i < 10; i++)
@@ -85,7 +90,15 @@ namespace GM
             }
             else
             {
-                Inventory.items = Inventory.saveItems;
+                Debug.Log(Inventory.saveItems);
+                Debug.Log(Inventory.items);
+                //Inventory.items = Inventory.saveItems;
+                for (int i  = 0 ; i < Inventory.items.Length; i++)
+                {
+                    Inventory.items[i].code = Inventory.saveItems[i].code;
+                    Inventory.items[i].num = Inventory.saveItems[i].num;
+                }
+                SMng.Instance._inventory.refeshInventory();
             }
 
             SceneManager.LoadScene("Game");

@@ -47,7 +47,7 @@ public class Cartoon : MonoBehaviour
 
     public void gameStart()
     {
-        if (SMng.Instance.TitleStartOn)
+        if (SMng.TitleStartOn)
         {
             SMng.Instance.hideWeapon.SetActive(true);
             SMng.Direction = 3;

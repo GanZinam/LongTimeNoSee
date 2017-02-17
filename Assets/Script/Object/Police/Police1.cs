@@ -192,4 +192,5 @@ public class Police1 : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
 }

@@ -210,7 +210,11 @@ public class Hero : MonoBehaviour
         {
             GM.AudioManager.instance.deathPolice();
             PoliceAni = Police.GetComponent<Animator>();
-            PoliceAni.SetBool("dieAni", true);
+            if (SMng.Instance.HeroAnimator.GetBool("Murder"))
+                PoliceAni.SetBool("dieAni", true);
+            else if (SMng.Instance.HeroAnimator.GetBool("Shoot"))
+                PoliceAni.SetBool("GunDieAni", true);
+            
             Police.GetComponent<Police1>().Life = false;
             if (Police.transform.Find("LookPoint").gameObject != null)
             {
@@ -219,6 +223,9 @@ public class Hero : MonoBehaviour
             }
         }
     }
+
+   
+
     public void KillFinish()
     {
         Police.GetComponent<Police1>().MurderStart = false;

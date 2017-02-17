@@ -16,22 +16,29 @@ public class SComputerMini : MonoBehaviour
     // timer
     public float fTimer;        // 타이머 시간
     int nTime;
-    int nMinutes;
     int nSeconds;
     float fMillisecond;
-    // public Text TimerText = null;        // 텍스트 적용 부탁
+    public Text TimerText = null;        // 텍스트 적용 부탁
 
     bool GameClear;
 
     void Start()
     {
         nCount = 0;
-        fTimer = 180f;
+        fTimer = 30f;
     }
 
     void Update()
     {
-        // Timer();
+        if (Input.GetMouseButtonDown(0) && !bCheck)
+        {
+            Debug.Log("DDDDDD");
+            // 잘못눌렀을때 시간 줄어들게
+            fTimer -= 3;
+            TimerText.text = string.Format("{0:00}:{1:000}", nSeconds, fMillisecond);
+        }
+
+        Timer();
 
         for (int i = 0; i < SScrollScrp.Length; i++)
         {
@@ -49,33 +56,55 @@ public class SComputerMini : MonoBehaviour
         }
         if (GameClear)        // 게임 클리어 조건
         {
-            GameClear = false;
-            Debug.Log("Clear");
-            EndDoor.GetComponent<SpriteRenderer>().sprite = EndDoorSpr;
-            SMng.Instance.MGComplite[0] = true;
+            if (!SMng.Instance.MGComplite[0])
+            {
+                succ.SetActive(true);
+                GameClear = false;
+                EndDoor.GetComponent<SpriteRenderer>().sprite = EndDoorSpr;
+                StartCoroutine(waitingResult(true));
+            }
         }
 
         Reset();     // 게임이끝났을때 호출되는 함수(현재는 R)
     }
 
-    //void Timer()
-    //{
-    //    if (fTimer > 0)
-    //    {
-    //        fTimer -= Time.deltaTime;
-    //        nTime = (int)fTimer;
-    //        nMinutes = nTime / 60;
-    //        nSeconds = nTime % 60;
-    //        fMillisecond = fTimer * 1000;
-    //        fMillisecond = (fMillisecond % 1000);
-    //        TimerText.text = string.Format("{0:00}:{1:00}:{2:000}", nMinutes, nSeconds, fMillisecond);
-    //    }
-    //    if (fTimer <= 0)
-    //    {
-    //        TimerText.text = string.Format("{0:00}:{1:00}:{2:000}", 0, 0, 0);
-    //        Time.timeScale = 0;
-    //    }
-    //}
+    IEnumerator waitingResult(bool tru)
+    {
+        yield return new WaitForSeconds(2);
+
+        if (tru)
+        {
+            SMng.Instance.MGComplite[0] = true;
+        }
+        else
+        {
+            SMng.Instance._level.StartCoroutine(SMng.Instance._level.loading(false));
+        }
+    }
+
+    [SerializeField]
+    GameObject succ;
+    [SerializeField]
+    GameObject fail;
+
+    void Timer()
+    {
+        if (fTimer > 0)
+        {
+            fTimer -= Time.deltaTime;
+            nTime = (int)fTimer;
+            nSeconds = nTime % 60;
+            fMillisecond = fTimer * 1000;
+            fMillisecond = (fMillisecond % 1000);
+            TimerText.text = string.Format("{0:00}:{1:000}", nSeconds, fMillisecond);
+        }
+        if (fTimer <= 0)
+        {
+            TimerText.text = string.Format("{0:00}:{1:000}", 0, 0);
+            fail.SetActive(true);
+            StartCoroutine(waitingResult(false));
+        }
+    }
 
     void Reset()
     {
@@ -96,6 +125,8 @@ public class SComputerMini : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && bCheck)
         {
+            fTimer += 3;
+            TimerText.text = string.Format("{0:00}:{1:000}", nSeconds, fMillisecond);
             switch (nCount)
             {
                 case 0:
@@ -126,11 +157,5 @@ public class SComputerMini : MonoBehaviour
                     break;
             }
         }
-        else if (Input.GetMouseButtonDown(0) && !bCheck)
-        {
-            // 잘못눌렀을때 시간 줄어들게
-        }
     }
-
-
 }

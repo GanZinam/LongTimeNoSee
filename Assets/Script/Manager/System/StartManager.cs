@@ -26,6 +26,8 @@ namespace GM
 
         void Start()
         {
+            SMng.init();
+
             gameLevel[LevelManager.myLevel].SetActive(true);
             policeLevel[LevelManager.myLevel].SetActive(true);
             SMng.Instance.Hero.transform.position = spawnPos[LevelManager.myLevel].position;

@@ -7,6 +7,8 @@ public class MurderBt : MonoBehaviour
     Vector2 Police_posiiton;
     float Distance_;
 
+    public bool Stop;
+
     void Update()
     {
 
@@ -52,7 +54,8 @@ public class MurderBt : MonoBehaviour
                     {
                         Debug.Log("Hit Gun");
                         SMng.Instance.hideWeapon.SetActive(true);
-                        transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
+                        if(!Stop)
+                            transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
                         SMng.Direction = 3;
                         SMng.interection = true;
                         MurderStart_(2);

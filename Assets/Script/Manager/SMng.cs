@@ -28,7 +28,7 @@ public class SMng : MonoBehaviour
         }
     }
 
-    public bool TitleStartOn;               // TitleStart가 켜져잇으면 true
+    public static bool TitleStartOn;               // TitleStart가 켜져잇으면 true
 
     public GameObject hideWeapon;
 
@@ -75,8 +75,8 @@ public class SMng : MonoBehaviour
     [SerializeField]
     GameObject state;
 
-    public bool CabinetIn;          // 히어로가 캐비넷에 들어가있는지
-    public bool CabinetChangeUI;    // 히어로가 캐비넷에 들어가잇을때 바꾸면 아이콘 바뀌는거
+    public static bool CabinetIn;          // 히어로가 캐비넷에 들어가있는지
+    public static bool CabinetChangeUI;    // 히어로가 캐비넷에 들어가잇을때 바꾸면 아이콘 바뀌는거
 
 
     public Inventory _inventory;
@@ -84,6 +84,21 @@ public class SMng : MonoBehaviour
 
     public bool LevelMng_PoliceDie = false;
 
+
+    public static void init()
+    {
+        TitleStartOn = false;
+        Direction = 0;
+        interection = false;
+        sit = false;
+        RoomInit = false;
+        Hide = false;
+        Hide_right = false;
+        Hide_left = false;
+        HideWide = 1;
+        CabinetIn = false;
+        CabinetChangeUI = false;
+    }
 
     public void createState(int itemCode)
     {

@@ -19,7 +19,7 @@ public class Cabinet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SMng.Instance.CabinetIn = true;
+            SMng.CabinetIn = true;
 
             if (SMng.Hero_weapon.Equals(WEAPON.WEAPON_HAND))
             {
@@ -46,7 +46,7 @@ public class Cabinet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SMng.Instance.CabinetIn = false;
+            SMng.CabinetIn = false;
             foundObj.SetActive(false);
             intoObj.SetActive(false);
         }
