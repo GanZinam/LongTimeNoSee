@@ -42,7 +42,7 @@ public class IntroManager : MonoBehaviour
 
     IEnumerator changeScene()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }

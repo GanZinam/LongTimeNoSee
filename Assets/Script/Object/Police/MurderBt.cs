@@ -24,6 +24,7 @@ public class MurderBt : MonoBehaviour
                 }
                 else if (hit.collider.transform.CompareTag("knife"))
                 {
+                    Debug.Log("Hit Knife");
                     Police_posiiton = transform.parent.parent.parent.transform.position;
                     Distance_ = Vector2.Distance(SMng.Instance.Hero.transform.position, Police_posiiton);
                     if (Distance_ <= 1.5f)
@@ -47,19 +48,23 @@ public class MurderBt : MonoBehaviour
                 }
                 else if (hit.collider.transform.CompareTag("Gun"))
                 {
-                    SMng.Instance.hideWeapon.SetActive(true);
-                    transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
-                    SMng.Direction = 3;
-                    SMng.interection = true;
-                    MurderStart_(2);
+                    if (!SMng.sit)
+                    {
+                        Debug.Log("Hit Gun");
+                        SMng.Instance.hideWeapon.SetActive(true);
+                        transform.parent.parent.parent.transform.GetComponent<Police1>().MurderStart = true;
+                        SMng.Direction = 3;
+                        SMng.interection = true;
+                        MurderStart_(2);
+                    }
                 }
             }
         }
     }
 
+
     void MurderStart_(int Direction)            // 1 = 칼 , 2 = 총
     {
-        GM.AudioManager.instance.deathPolice();
         if (Direction.Equals(1))
         {
             if (!SMng.sit)
@@ -71,7 +76,7 @@ public class MurderBt : MonoBehaviour
         {
             if (!SMng.sit)
             {
-                SMng.Instance.HeroAnimator.SetTrigger("Shoot");
+                SMng.Instance.HeroAnimator.SetBool("Shoot", true);
             }
         }
     }

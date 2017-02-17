@@ -14,6 +14,8 @@ namespace GM
         AudioSource mainAudio;
         [SerializeField]
         AudioSource effectAudio;
+        [SerializeField]
+        AudioSource effectAudio2;
 
         [SerializeField]
         AudioClip selectStage;
@@ -34,6 +36,11 @@ namespace GM
         AudioClip doorClip;
         [SerializeField]
         AudioClip stairClip;
+
+        [SerializeField]
+        AudioClip gunClip;
+        [SerializeField]
+        AudioClip knifeClip;
 
         void Start()
         {
@@ -100,6 +107,19 @@ namespace GM
             effectAudio.volume = 1;
             effectAudio.clip = stairClip;
             effectAudio.Play();
+        }
+
+        public void byKnife()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = knifeClip;
+            effectAudio2.Play();
+        }
+        public void byGun()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = gunClip;
+            effectAudio2.Play();
         }
     }
 }

@@ -194,11 +194,21 @@ public class Hero : MonoBehaviour
 
     }
 
+    public void byKnife()
+    {
+        GM.AudioManager.instance.byKnife();
+    }
+
+    public void byGun()
+    {
+        GM.AudioManager.instance.byGun();
+    }
 
     public void KillPolice()
     {
         if (Police != null)
         {
+            GM.AudioManager.instance.deathPolice();
             PoliceAni = Police.GetComponent<Animator>();
             PoliceAni.SetBool("dieAni", true);
             Police.GetComponent<Police1>().Life = false;
@@ -215,7 +225,9 @@ public class Hero : MonoBehaviour
         if (SMng.Instance.HeroAnimator.GetBool("Murder"))
             SMng.Instance.HeroAnimator.SetBool("Murder", false);
         if (SMng.Instance.HeroAnimator.GetBool("SitMurder"))
-            SMng.Instance.HeroAnimator.SetBool("SitMurder",false);
+            SMng.Instance.HeroAnimator.SetBool("SitMurder", false);
+        if (SMng.Instance.HeroAnimator.GetBool("Shoot"))
+            SMng.Instance.HeroAnimator.SetBool("Shoot", false);
     }
 }
 

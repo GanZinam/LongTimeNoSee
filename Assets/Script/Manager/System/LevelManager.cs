@@ -73,7 +73,7 @@ namespace GM
 
             loadingObj.SetActive(true);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(4);
             if (isClear)
             {
                 myLevel++;
