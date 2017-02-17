@@ -31,6 +31,8 @@ namespace GM
         [SerializeField]
         GameObject Police;
 
+        [SerializeField]
+        CameraFollow cam;
 
         bool _Touch = false;
 
@@ -39,7 +41,11 @@ namespace GM
             if (myLevel.Equals(0))
                 introCanvas.SetActive(true);
             else
+            {
                 GM.AudioManager.instance.ingameBG();
+
+                cam.gameObject.GetComponent<Animator>().enabled = false;
+            }
 
             if (myLevel.Equals(2))
                 Hero.upSize = 4;

@@ -22,6 +22,8 @@ namespace GM
         AudioClip ingameClip;
         [SerializeField]
         AudioClip rainClip;
+        [SerializeField]
+        AudioClip endingClip;
 
         [SerializeField]
         AudioClip deathPoliceClip;
@@ -47,6 +49,11 @@ namespace GM
         public void rainBG()
         {
             mainAudio.clip = rainClip;
+            mainAudio.Play();
+        }
+        public void endingBG()
+        {
+            mainAudio.clip = stairClip;
             mainAudio.Play();
         }
 

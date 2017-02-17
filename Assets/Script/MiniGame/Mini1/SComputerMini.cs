@@ -33,9 +33,9 @@ public class SComputerMini : MonoBehaviour
     {
         // Timer();
 
-        for(int i = 0; i < SScrollScrp.Length; i++)
+        for (int i = 0; i < SScrollScrp.Length; i++)
         {
-            if(i != nCount)
+            if (i != nCount)
             {
                 SScrollScrp[i].boxcollider[0].enabled = false;
                 SScrollScrp[i].boxcollider[1].enabled = false;
@@ -47,7 +47,7 @@ public class SComputerMini : MonoBehaviour
                 //Debug.Log(i);
             }
         }
-        if(GameClear)        // 게임 클리어 조건
+        if (GameClear)        // 게임 클리어 조건
         {
             GameClear = false;
             Debug.Log("Clear");
@@ -90,11 +90,11 @@ public class SComputerMini : MonoBehaviour
         }
     }
 
-    
+
 
     void OnTriggerStay2D(Collider2D col)        // Bar 에서 클릭하면 속도 0으로
-    { 
-        if (Input.GetMouseButtonDown(0)&& bCheck)
+    {
+        if (Input.GetMouseButtonDown(0) && bCheck)
         {
             switch (nCount)
             {
@@ -126,11 +126,11 @@ public class SComputerMini : MonoBehaviour
                     break;
             }
         }
-        else if(Input.GetMouseButtonDown(0)&&!bCheck)
+        else if (Input.GetMouseButtonDown(0) && !bCheck)
         {
             // 잘못눌렀을때 시간 줄어들게
         }
     }
 
-    
+
 }
