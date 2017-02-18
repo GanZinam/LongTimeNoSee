@@ -18,4 +18,9 @@ public class BookAnimationMng : MonoBehaviour
             SMng.RoomInit = false;
         }
     }
+
+    public void cameraShake()
+    {
+        SMng.Instance.cam.shaking();
+    }
 }

@@ -29,6 +29,9 @@ public class Police1 : MonoBehaviour
 
     public int nCount;
 
+    public int itemCode = 0;
+
+
     void Start()
     {
         Child = transform.Find("SLight").gameObject;
@@ -191,6 +194,10 @@ public class Police1 : MonoBehaviour
     public void KillPolice()
     {
         gameObject.SetActive(false);
+        if (itemCode.Equals(9))
+        {
+            SMng.Instance._inventory.getItem(9);
+        }
     }
 
 }

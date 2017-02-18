@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BookAnimationMng.cs" />
+    <Compile Include="Assets\ItemGet.cs" />
     <Compile Include="Assets\Script\Manager\Game\CameraFollow.cs" />
     <Compile Include="Assets\Script\Manager\Game\Inventory.cs" />
     <Compile Include="Assets\Script\Manager\Game\MoveBt.cs" />

@@ -55,6 +55,10 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            shaking();
+        }
         MultiTouch();
         KeyCheck();
         Zoom();
@@ -178,5 +182,25 @@ public class CameraFollow : MonoBehaviour
     public void offAnimator()
     {
         GetComponent<Animator>().enabled = false;
+    }
+
+    public void shaking()
+    {
+        StartCoroutine("shake");
+    }
+
+    IEnumerator shake()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            transform.position = transform.position + new Vector3(0, 0.1f);
+            yield return null;
+            transform.position = transform.position + new Vector3(-0.1f, 0.1f);
+            yield return null;
+            transform.position = transform.position + new Vector3(0, -0.1f);
+            yield return null;
+            transform.position = transform.position + new Vector3(0.1f, -0.1f);
+            yield return null;
+        }
     }
 }

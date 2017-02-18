@@ -12,6 +12,8 @@ public enum E_TIME
 
 public class SMng : MonoBehaviour
 {
+    public    CameraFollow cam;
+
     private static SMng _Instance = null;
 
     public static SMng Instance
@@ -65,7 +67,7 @@ public class SMng : MonoBehaviour
     public static int HideWide = 1;          //케비넷 으로 들어가면 0
 
 
-    Vector2 recentHighPos = new Vector2(300, 150);
+    Vector2 recentHighPos = new Vector2(290, 150);
 
     [HideInInspector]
     public bool[] isStating = new bool[7];
@@ -100,22 +102,31 @@ public class SMng : MonoBehaviour
         CabinetChangeUI = false;
     }
 
+    [SerializeField]
+    Sprite emptySpr;
+
     public void createState(int itemCode)
     {
         GameObject obj = Instantiate(statePrefab, state.transform) as GameObject;
         obj.transform.localPosition = recentHighPos;
         for (int i = 0; i < 7; i++)
         {
-            obj.transform.localPosition -= new Vector3(0, 50);
+            obj.transform.localPosition -= new Vector3(0, 60);
 
             if (!isStating[i])
             {
                 isStating[i] = true;
                 obj.GetComponent<StatePopup>().idx = i;
                 if (itemCode.Equals(100))
-                    obj.GetComponent<StatePopup>().text.text = "EMPTY";
+                {
+                    obj.GetComponent<StatePopup>().text.text = "NULL";
+                    obj.GetComponent<StatePopup>().img.sprite = emptySpr;
+                }
                 else
-                    obj.GetComponent<StatePopup>().text.text = itemCode + "";
+                {
+                    obj.GetComponent<StatePopup>().text.text = "획득";
+                    obj.GetComponent<StatePopup>().img.sprite = Resources.Load<Sprite>(itemCode + "");
+                }
                 break;
             }
         }
@@ -141,5 +152,16 @@ public class SMng : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    public void dis3()
+    {
+        Direction = 3;
+    }
+
+    public void dis0()
+    {
+        Direction = 0;
     }
 }

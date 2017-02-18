@@ -6,6 +6,7 @@ public class StatePopup : MonoBehaviour
 {
     public int idx = 0;
     public UnityEngine.UI.Text text;
+    public UnityEngine.UI.Image img;
 
     void Start()
     {
