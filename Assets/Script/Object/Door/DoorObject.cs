@@ -5,20 +5,33 @@ public class DoorObject : MonoBehaviour
 {
 
     public GameObject Doorin;
-    public GameObject MiniGameBt;
+    public bool MinigameDoor;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(MinigameDoor)
         {
-            MiniGameBt.SetActive(true);
+            if (SMng.Instance.MGComplite[2]&&other.gameObject.CompareTag("Player"))
+            {
+                Doorin.SetActive(true);
+            }
+        }
+        else if (other.gameObject.CompareTag("Player"))
+        {
             Doorin.SetActive(true);
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (MinigameDoor)
         {
-            MiniGameBt.SetActive(false);
+            if (SMng.Instance.MGComplite[2] && other.gameObject.CompareTag("Player"))
+            {
+                Doorin.SetActive(false);
+            }
+        }
+        else if (other.gameObject.CompareTag("Player"))
+        {
             Doorin.SetActive(false);
         }
     }

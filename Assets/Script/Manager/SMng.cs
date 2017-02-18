@@ -64,7 +64,7 @@ public class SMng : MonoBehaviour
     public int nMini2Count;
 
     [HideInInspector]
-    public bool[] MGComplite = new bool[3];
+    public bool[] MGComplite = new bool[4];
 
     public static int HideWide = 1;          //케비넷 으로 들어가면 0
 
