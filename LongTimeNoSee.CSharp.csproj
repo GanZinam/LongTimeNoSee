@@ -93,6 +93,7 @@
     <Compile Include="Assets\Script\MiniGame\Mini1\SBarCollider.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini1\SComputerMini.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini1\SScroll.cs" />
+    <Compile Include="Assets\Script\MiniGame\Mini2\Minigame2Btn.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini2\SLock.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini2\SLockGroup.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini2\SPickMove.cs" />

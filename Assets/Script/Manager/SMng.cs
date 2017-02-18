@@ -60,6 +60,8 @@ public class SMng : MonoBehaviour
 
     //@ 미니게임
     public static bool bDownCheck;
+    public int nCount;
+    public int nMini2Count;
 
     [HideInInspector]
     public bool[] MGComplite = new bool[3];

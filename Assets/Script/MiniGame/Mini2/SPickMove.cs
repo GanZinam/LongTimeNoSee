@@ -10,8 +10,11 @@ public class SPickMove : MonoBehaviour
 
     public bool bUpCheck;       // pick 가 올라간거 체크
 
+    public float fFirstYPos;
+
     void Start()
     {
+        fFirstYPos = transform.localPosition.y;
         fSpeed = 1f;        // pick 스피드
         Time.timeScale = 1f;
     }
@@ -30,11 +33,11 @@ public class SPickMove : MonoBehaviour
         }
         if (!bKeyCheck)
         {
-            if (transform.localPosition.x <= -2.55f)        // true = 오른쪽
+            if (transform.localPosition.x <= -12.92f)        // true = 오른쪽
             {
                 bRightCheck = true;
             }
-            if (transform.localPosition.x >= -1f)           // false = 오른쪽
+            if (transform.localPosition.x >= -5f)           // false = 오른쪽
             {
                 bRightCheck = false;
             }
@@ -50,9 +53,13 @@ public class SPickMove : MonoBehaviour
         }
         else
         {
-            if (transform.localPosition.y < -0.55f && !SMng.bDownCheck)
+            if (transform.localPosition.y < -2.86f && !SMng.bDownCheck)
             {
                 bUpCheck = true;
+            }
+            else
+            {
+                SMng.bDownCheck = true;
             }
 
             if (bUpCheck)
@@ -60,7 +67,7 @@ public class SPickMove : MonoBehaviour
                 transform.Translate(Vector2.up * fSpeed * Time.deltaTime);
             }
 
-            if(SMng.bDownCheck && transform.localPosition.y > -0.806f)
+            if(SMng.bDownCheck && transform.localPosition.y > fFirstYPos)
             {
                 bUpCheck = false;
                 transform.Translate(Vector2.down * fSpeed * Time.deltaTime);

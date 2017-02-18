@@ -8,6 +8,8 @@ public class SCollider : MonoBehaviour
     RaycastHit2D Ray;
     public int nCount;              // 책 클릭
 
+    public GameObject[] SelectGame = null;
+
     void Start()
     {
         nCount = 0;
@@ -19,11 +21,13 @@ public class SCollider : MonoBehaviour
 
         if (Ray.collider != null)
         {
+            Debug.Log(Ray.collider.tag);
             if (Input.GetMouseButtonDown(0))
             {
                 if (Ray.collider.CompareTag("Book") && nCount.Equals(0))        // 첫번째 책 클릭
                 {
-                    nCount++;
+                    SelectGame[0].SetActive(true);
+                       nCount++;
                 }
 
                 if(Ray.collider.CompareTag("Box"))      // 끝나는조건
@@ -33,8 +37,9 @@ public class SCollider : MonoBehaviour
 
                 if (Ray.collider.CompareTag("Book1") && nCount.Equals(1))        // 두번째 책 클릭
                 {
-                    Debug.Log("Fuck");
-                    gameObject.SetActive(false);
+                    SelectGame[1].SetActive(true);
+                    //Debug.Log("Fuck");
+                    //gameObject.SetActive(false);
                 }
                 else if(Ray.collider.CompareTag("Book1")&&nCount.Equals(0))         // 끝나는조건
                 {

@@ -5,11 +5,12 @@ public class DoorObject : MonoBehaviour
 {
 
     public GameObject Doorin;
-
+    public GameObject MiniGameBt;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            MiniGameBt.SetActive(true);
             Doorin.SetActive(true);
         }
     }
@@ -17,6 +18,7 @@ public class DoorObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            MiniGameBt.SetActive(false);
             Doorin.SetActive(false);
         }
     }

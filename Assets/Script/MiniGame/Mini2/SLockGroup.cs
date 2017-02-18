@@ -5,20 +5,30 @@ public class SLockGroup : MonoBehaviour
 {
     public SLock[] LockScrp = null;
 
-    void Update()
+    void Start()
     {
         Init();
+    }
+
+    void Update()
+    {
+        if (SMng.Instance.nMini2Count.Equals(3))
+        {
+            Debug.Log("Clear");
+        }
     }
 
     void Init()
     {
         for (int i = 0; i < LockScrp.Length; i++)
         {
-            if(!LockScrp[i].bLockCheck)
+            if (i.Equals(0) || i.Equals(3) || i.Equals(5))
             {
-                LockScrp[i].nRand = Random.Range(0, 2);
                 LockScrp[i].bLockCheck = true;
-                break;
+            }
+            else
+            {
+                LockScrp[i].bLockCheck = false;
             }
         }
     }
