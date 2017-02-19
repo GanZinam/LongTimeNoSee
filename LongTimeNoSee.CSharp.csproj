@@ -101,6 +101,8 @@
     <Compile Include="Assets\Script\MiniGame\Mini2\SLockGroup.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini2\SPickMove.cs" />
     <Compile Include="Assets\Script\MiniGame\Mini3\SCollider.cs" />
+    <Compile Include="Assets\Script\MiniGame\Mini4\SImgChange.cs" />
+    <Compile Include="Assets\Script\MiniGame\Mini4\SMiniGame4.cs" />
     <Compile Include="Assets\Script\Object\Box\BoxObj.cs" />
     <Compile Include="Assets\Script\Object\Cabinet\Cabinet.cs" />
     <Compile Include="Assets\Script\Object\Cabinet\CabinetBt.cs" />
