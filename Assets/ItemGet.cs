@@ -9,6 +9,6 @@ public class ItemGet : MonoBehaviour
     public void click()
     {
         SMng.Instance._inventory.getItem(itemCode);
-        itemCode = 0;
+        itemCode = 100;
     }
 }

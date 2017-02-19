@@ -14,6 +14,9 @@ public class CameraFollow : MonoBehaviour
     public float fMaxZoomIn;          // 줌 인 최대치(줌 할때 제한)
     public float fMaxZoomout;         // 줌 아웃 최대치 원래 카메라 사이즈 5 (줌 아웃 제안)
 
+    public float finMaxZoomIn;          // 줌 인 최대치(줌 할때 제한)
+    public float finMaxZoomout;         // 줌 아웃 최대치 원래 카메라 사이즈 5 (줌 아웃 제안)
+
     bool bZoomIn;
     bool bZoomOut;
 
@@ -81,6 +84,14 @@ public class CameraFollow : MonoBehaviour
 
     void Zoom()
     {
+        if (Camera.main.orthographicSize < fMaxZoomout && !bZoomOut)
+        {
+            Camera.main.orthographicSize += moveSpeed * Time.deltaTime;
+        }
+        if (Camera.main.orthographicSize >= fMaxZoomIn && !bZoomIn)
+        {
+            Camera.main.orthographicSize -= moveSpeed * Time.deltaTime;
+        }
         if (Camera.main.orthographicSize < fMaxZoomout && !bZoomOut)
         {
             Camera.main.orthographicSize += moveSpeed * Time.deltaTime;

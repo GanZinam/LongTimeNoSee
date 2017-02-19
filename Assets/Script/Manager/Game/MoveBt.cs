@@ -52,56 +52,59 @@ public class MoveBt : MonoBehaviour
     }
     void Move()
     {
-        Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        if (Input.GetMouseButton(0) && touchPos.x > 0.75f && touchPos.y < 0.75f && !SMng.Middle_touch)
+        if (!GM.LevelManager.myLevel.Equals(3))
         {
-            if (SMng.Direction.Equals(0) || SMng.Direction.Equals(1))
+            Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            if (Input.GetMouseButton(0) && touchPos.x > 0.75f && touchPos.y < 0.75f && !SMng.Middle_touch)
             {
-                SMng.Instance.Hero.GetComponent<Hero>().Right = true;
-                SMng.Instance.Hero.GetComponent<Hero>().Left = false;
-
-                SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
-                SMng.Instance.Hero.transform.Translate(Vector3.right * 2f * Time.deltaTime);
-
-                if (!SMng.sit)
+                if (SMng.Direction.Equals(0) || SMng.Direction.Equals(1))
                 {
-                    if (!SMng.Instance.HeroAnimator.GetBool("Walk"))
+                    SMng.Instance.Hero.GetComponent<Hero>().Right = true;
+                    SMng.Instance.Hero.GetComponent<Hero>().Left = false;
+
+                    SMng.Instance.Hero.transform.localScale = new Vector2(0.5f, 0.5f);
+                    SMng.Instance.Hero.transform.Translate(Vector3.right * 2f * Time.deltaTime);
+
+                    if (!SMng.sit)
                     {
-                        SMng.Instance.HeroAnimator.SetBool("Walk", true);
+                        if (!SMng.Instance.HeroAnimator.GetBool("Walk"))
+                        {
+                            SMng.Instance.HeroAnimator.SetBool("Walk", true);
+                        }
                     }
-                }
-                else
-                {
-                    if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
+                    else
                     {
-                        SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
+                        if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
+                        {
+                            SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
+                        }
                     }
                 }
             }
-        }
-        if (Input.GetMouseButton(0) && touchPos.x < 0.25f && touchPos.y < 0.75f && !SMng.Middle_touch)
-        {
-            if (SMng.Direction.Equals(0) || SMng.Direction.Equals(2))
+            if (Input.GetMouseButton(0) && touchPos.x < 0.25f && touchPos.y < 0.75f && !SMng.Middle_touch)
             {
-                SMng.Instance.Hero.GetComponent<Hero>().Right = false;
-                SMng.Instance.Hero.GetComponent<Hero>().Left = true;
-
-                SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
-                SMng.Instance.Hero.transform.Translate(Vector3.left * 2f * Time.deltaTime);
-
-                if (!SMng.sit)
+                if (SMng.Direction.Equals(0) || SMng.Direction.Equals(2))
                 {
-                    if (!SMng.Instance.HeroAnimator.GetBool("Walk"))
+                    SMng.Instance.Hero.GetComponent<Hero>().Right = false;
+                    SMng.Instance.Hero.GetComponent<Hero>().Left = true;
+
+                    SMng.Instance.Hero.transform.localScale = new Vector2(-0.5f, 0.5f);
+                    SMng.Instance.Hero.transform.Translate(Vector3.left * 2f * Time.deltaTime);
+
+                    if (!SMng.sit)
                     {
-                        SMng.Instance.HeroAnimator.SetBool("Walk", true);
+                        if (!SMng.Instance.HeroAnimator.GetBool("Walk"))
+                        {
+                            SMng.Instance.HeroAnimator.SetBool("Walk", true);
+                        }
                     }
-                }
-                else
-                {
-                    if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
+                    else
                     {
-                        //SMng.Instance.HeroAnimator.SetBool("CrouchBreath", true);
-                        SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
+                        if (!SMng.Instance.HeroAnimator.GetBool("CrouchWalk"))
+                        {
+                            //SMng.Instance.HeroAnimator.SetBool("CrouchBreath", true);
+                            SMng.Instance.HeroAnimator.SetBool("CrouchWalk", true);
+                        }
                     }
                 }
             }

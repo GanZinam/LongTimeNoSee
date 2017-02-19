@@ -34,6 +34,9 @@ namespace GM
         [SerializeField]
         CameraFollow cam;
 
+        [SerializeField]
+        GameObject end;
+
         bool _Touch = false;
 
         void Start()
@@ -45,6 +48,14 @@ namespace GM
                 GM.AudioManager.instance.ingameBG();
 
                 cam.gameObject.GetComponent<Animator>().enabled = false;
+            }
+
+            if (myLevel.Equals(3))
+            {
+                SMng.Instance.dis3();
+                end.SetActive(true);
+                SMng.Instance.Hero.GetComponent<Hero>().setOutDoorpostioin(5);
+                SMng.Instance.HeroAnimator.SetBool("Ending", true);
             }
 
             if (myLevel.Equals(2))
@@ -93,7 +104,7 @@ namespace GM
                 Debug.Log(Inventory.saveItems);
                 Debug.Log(Inventory.items);
                 //Inventory.items = Inventory.saveItems;
-                for (int i  = 0 ; i < Inventory.items.Length; i++)
+                for (int i = 0; i < Inventory.items.Length; i++)
                 {
                     Inventory.items[i].code = Inventory.saveItems[i].code;
                     Inventory.items[i].num = Inventory.saveItems[i].num;

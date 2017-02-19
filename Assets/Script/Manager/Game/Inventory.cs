@@ -122,8 +122,8 @@ public class Inventory : MonoBehaviour
     {
         if (items[idx].num > 0)
         {
-            itemDescImage.sprite = itemBIGspr[idx];
-            switch(items[idx].code)
+            itemDescImage.sprite = itemBIGspr[items[idx].code - 1];
+            switch (items[idx].code)
             {
                 case 1:
                     itemNameText.text = "총";

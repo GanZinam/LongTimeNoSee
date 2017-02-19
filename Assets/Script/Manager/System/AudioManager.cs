@@ -5,6 +5,8 @@ namespace GM
 {
     public class AudioManager : MonoBehaviour
     {
+        public static bool endResult = false;       // f 해피 : t 배드
+
         public static AudioManager instance;
 
         public bool bgSound = true;
@@ -120,6 +122,13 @@ namespace GM
             effectAudio2.volume = 1;
             effectAudio2.clip = gunClip;
             effectAudio2.Play();
+        }
+
+        public void init()
+        {
+            mainAudio.Stop();
+            effectAudio.Stop();
+            effectAudio2.Stop();
         }
     }
 }

@@ -14,6 +14,7 @@ public class Hero : MonoBehaviour
 
     public int Count;           // 에니매이션 몇번 돌았는지
     bool StairPos;
+    int Ending_Count = 0;
 
     public GameObject Police;          // 암살가능한 경찰
     public Animator PoliceAni;
@@ -60,7 +61,6 @@ public class Hero : MonoBehaviour
     // 애니메이션 끝날시 상태변화
     public void AniFinsh_statusCh()
     {
-
         SMng.Instance.hideWeapon.SetActive(false);
         SMng.interection = false;
         SMng.Direction = 0;
@@ -80,6 +80,48 @@ public class Hero : MonoBehaviour
     }
 
     public static int upSize = 6;
+
+    [SerializeField]
+    GameObject finOBJ;
+
+    public void Ending_Stair()
+    {
+        Time.timeScale = 3;
+        Debug.Log("Ending_Stair Start");
+        if (Ending_Count < 31)
+        {
+            SMng.Instance.Hero.transform.Translate(Vector3.down * 0.21f);
+            SMng.Instance.Hero.transform.Translate(Vector3.right * 0.42f);
+            Ending_Count++;
+        }
+        else
+        {
+            Debug.Log("Ending_Stair End");
+            SMng.Instance.Hero.transform.Translate(Vector3.down * 0.21f);
+            SMng.Instance.Hero.transform.Translate(Vector3.right * 0.42f);
+            GetComponent<BoxCollider2D>().isTrigger = false;
+            GetComponent<Rigidbody2D>().gravityScale = 100;
+            SMng.Instance.HeroAnimator.SetBool("Final", true);
+
+            Time.timeScale = 1;
+            StartCoroutine("fin");
+        }
+    }
+
+    IEnumerator fin()
+    {
+        while (transform.position.x < -9.4f)
+        {
+            SMng.Instance.Hero.transform.Translate(Vector3.right * 2f * Time.deltaTime);
+            SMng.Instance.HeroAnimator.SetBool("Walk", true);
+            yield return null;
+        }
+        SMng.Instance.HeroAnimator.SetBool("Walk", false);
+        bossAnimator.SetTrigger("Fin");
+    }
+
+    [SerializeField]
+    Animator bossAnimator;
 
     public void StairUp()
     {
@@ -204,8 +246,14 @@ public class Hero : MonoBehaviour
         GM.AudioManager.instance.byGun();
     }
 
+    [SerializeField]
+    Animator bossAnim;
+
     public void KillPolice()
     {
+        if (GM.LevelManager.myLevel.Equals(3))
+            bossAnim.SetTrigger("shoot_0");
+
         if (Police != null)
         {
             GM.AudioManager.instance.deathPolice();
@@ -214,7 +262,7 @@ public class Hero : MonoBehaviour
                 PoliceAni.SetBool("dieAni", true);
             else if (SMng.Instance.HeroAnimator.GetBool("Shoot"))
                 PoliceAni.SetBool("GunDieAni", true);
-            
+
             Police.GetComponent<Police1>().Life = false;
             if (Police.transform.Find("LookPoint").gameObject != null)
             {
@@ -224,17 +272,25 @@ public class Hero : MonoBehaviour
         }
     }
 
-   
+    public void finStart()
+    {
+        finOBJ.SetActive(true);
+        SMng.Instance.Hero.GetComponent<Hero>().setOutDoorpostioin(5);
+        SMng.Instance.HeroAnimator.SetBool("Ending", true);
+    }
 
     public void KillFinish()
     {
-        Police.GetComponent<Police1>().MurderStart = false;
-        if (SMng.Instance.HeroAnimator.GetBool("Murder"))
-            SMng.Instance.HeroAnimator.SetBool("Murder", false);
-        if (SMng.Instance.HeroAnimator.GetBool("SitMurder"))
-            SMng.Instance.HeroAnimator.SetBool("SitMurder", false);
-        if (SMng.Instance.HeroAnimator.GetBool("Shoot"))
-            SMng.Instance.HeroAnimator.SetBool("Shoot", false);
+        if (Police != null)
+        {
+            Police.GetComponent<Police1>().MurderStart = false;
+            if (SMng.Instance.HeroAnimator.GetBool("Murder"))
+                SMng.Instance.HeroAnimator.SetBool("Murder", false);
+            if (SMng.Instance.HeroAnimator.GetBool("SitMurder"))
+                SMng.Instance.HeroAnimator.SetBool("SitMurder", false);
+            if (SMng.Instance.HeroAnimator.GetBool("Shoot"))
+                SMng.Instance.HeroAnimator.SetBool("Shoot", false);
+        }
     }
 }
 

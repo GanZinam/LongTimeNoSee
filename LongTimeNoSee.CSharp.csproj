@@ -76,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BookAnimationMng.cs" />
+    <Compile Include="Assets\Boss_Animation.cs" />
+    <Compile Include="Assets\ENDINGCUTSCENE.cs" />
+    <Compile Include="Assets\Ending.cs" />
     <Compile Include="Assets\ItemGet.cs" />
     <Compile Include="Assets\Script\Manager\Game\CameraFollow.cs" />
     <Compile Include="Assets\Script\Manager\Game\Inventory.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Assets\Script\Object\Door\DoorBt.cs" />
     <Compile Include="Assets\Script\Object\Door\DoorObject.cs" />
     <Compile Include="Assets\Script\Object\Door\EndDoor.cs" />
+    <Compile Include="Assets\Script\Object\Door\MiniGameObj.cs" />
     <Compile Include="Assets\Script\Object\Hero.cs" />
     <Compile Include="Assets\Script\Object\Police\Murder.cs" />
     <Compile Include="Assets\Script\Object\Police\MurderBt.cs" />
