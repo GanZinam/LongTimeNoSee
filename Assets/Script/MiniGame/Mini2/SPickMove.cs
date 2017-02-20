@@ -10,11 +10,15 @@ public class SPickMove : MonoBehaviour
 
     public bool bUpCheck;       // pick 가 올라간거 체크
 
+    public GameObject SLockGroup_;
+
     public float fFirstYPos;
+    public float fFirstXPos;
 
     void Start()
     {
         fFirstYPos = transform.localPosition.y;
+        fFirstXPos = transform.localPosition.x;
         fSpeed = 1f;        // pick 스피드
         Time.timeScale = 1f;
     }
@@ -81,7 +85,14 @@ public class SPickMove : MonoBehaviour
         if (col.CompareTag("Wall"))     // 실패했을때 게임오버
         {
             Debug.Log("Game Over");
-            Time.timeScale = 0f;
+            SMng.Direction = 0;
+            SMng.interection = false;
+            transform.parent.parent.gameObject.SetActive(false);
+            transform.localPosition = new Vector2(fFirstXPos, fFirstYPos);
+            SMng.Instance.nMini2Count = 0;
+            SLockGroup_.GetComponent<SLockGroup>().Init();
+            SMng.Instance.MiniGameStart = false;
+
         }
         if(col.CompareTag("Box"))       // 박스에 충돌하면서 다시 이동
         {

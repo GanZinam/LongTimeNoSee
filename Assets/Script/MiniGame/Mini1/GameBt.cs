@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBt : MonoBehaviour {
-
+public class GameBt : MonoBehaviour
+{
     public Camera Cam;
     public GameObject Bg;
     public GameObject Game;
     public GameObject Window;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldPoint = Cam.ScreenToWorldPoint(Input.mousePosition);
@@ -24,15 +18,17 @@ public class GameBt : MonoBehaviour {
 
             if (hit.collider != null)
             {
-                if(hit.collider.transform.CompareTag("MiniGameStart"))
+                if (hit.collider.transform.CompareTag("MiniGameStart"))
                 {
                     Debug.Log("MiniGameStart");
+                    GM.AudioManager.instance.mouse();
                     Bg.SetActive(true);
                     Game.SetActive(true);
                 }
             }
         }
-        if(SMng.Instance.MGComplite[0])
+
+        if (SMng.Instance.MGComplite[0])
         {
             Bg.SetActive(false);
             Game.SetActive(false);
@@ -40,5 +36,5 @@ public class GameBt : MonoBehaviour {
             SMng.Instance.hideWeapon.SetActive(false);
             SMng.Direction = 0;
         }
-	}
+    }
 }

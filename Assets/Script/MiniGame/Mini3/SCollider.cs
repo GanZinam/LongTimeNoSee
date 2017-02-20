@@ -12,6 +12,8 @@ public class SCollider : MonoBehaviour
 
     public GameObject[] SelectGame = null;
 
+    public Animator BookDoorAni;
+
     void Start()
     {
         nCount = 0;
@@ -45,8 +47,7 @@ public class SCollider : MonoBehaviour
                     SMng.Instance.MGComplite[2] = true;
                     MiniGame3.SetActive(false);
                     SMng.Direction = 0;
-                    //Debug.Log("Fuck");
-                    //gameObject.SetActive(false);
+                    BookDoorAni.SetBool("BookInto",true);
                 }
                 else if(Ray.collider.CompareTag("Book1")&&nCount.Equals(0))         // 끝나는조건
                 {

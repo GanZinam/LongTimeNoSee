@@ -30,6 +30,8 @@ public class SMng : MonoBehaviour
         }
     }
 
+    public bool God;    //무적
+
     public static bool TitleStartOn;               // TitleStart가 켜져잇으면 true
 
     public GameObject hideWeapon;
@@ -58,13 +60,17 @@ public class SMng : MonoBehaviour
     //@ 주인공 애니메이션
     public Animator HeroAnimator;
 
+    public bool BossIntro = false;
+
     //@ 미니게임
     public static bool bDownCheck;
     public int nCount;
     public int nMini2Count;
 
+    public bool MiniGameStart;
+
     [HideInInspector]
-    public bool[] MGComplite = new bool[4];
+    public bool[] MGComplite = new bool[4];         // true = 완료
 
     public static int HideWide = 1;          //케비넷 으로 들어가면 0
 
@@ -82,6 +88,7 @@ public class SMng : MonoBehaviour
     public static bool CabinetIn;          // 히어로가 캐비넷에 들어가있는지
     public static bool CabinetChangeUI;    // 히어로가 캐비넷에 들어가잇을때 바꾸면 아이콘 바뀌는거
 
+    public bool BossLife = true;
 
     public Inventory _inventory;
     public GM.LevelManager _level;

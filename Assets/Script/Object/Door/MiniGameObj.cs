@@ -7,7 +7,7 @@ public class MiniGameObj : MonoBehaviour {
     public GameObject MiniGameBt;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")&&!SMng.Instance.MGComplite[2])
         {
             MiniGameBt.SetActive(true);
         }

@@ -36,6 +36,24 @@ public class MoveBt : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            SMng.Instance.Hero.transform.localPosition += new Vector3(0, 5);
+        }
+        else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SMng.Instance.Hero.transform.localPosition -= new Vector3(0, 5);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.F3))
+        {
+            SMng.Instance.God = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            SMng.Instance.God = false;
+        }
+
         if (!Input.touchCount.Equals(2) && !SMng.Direction.Equals(3))
         {
             Move();
@@ -52,7 +70,7 @@ public class MoveBt : MonoBehaviour
     }
     void Move()
     {
-        if (!GM.LevelManager.myLevel.Equals(3))
+        if (!SMng.Instance.BossIntro)
         {
             Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             if (Input.GetMouseButton(0) && touchPos.x > 0.75f && touchPos.y < 0.75f && !SMng.Middle_touch)

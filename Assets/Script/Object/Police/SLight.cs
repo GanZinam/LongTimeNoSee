@@ -42,7 +42,7 @@ public class SLight : MonoBehaviour
     {
         if (transform.parent.GetComponent<Police1>().Life)
         {
-            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
+            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false)&&!SMng.Instance.God)
             {
                 if (SMng.Hide_left.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
                     SMng.Hide_right.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(false)))
@@ -61,7 +61,7 @@ public class SLight : MonoBehaviour
     {
         if (transform.parent.GetComponent<Police1>().Life)
         {
-            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false))
+            if (col.CompareTag("Player") && SMng.RoomInit.Equals(false) && SMng.Hide.Equals(false)&&!SMng.Instance.God)
             {
                 if (SMng.Hide_left.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(true)) ||
                     SMng.Hide_right.Equals(transform.parent.GetComponent<Police1>().Arrow.Equals(false)))

@@ -101,7 +101,8 @@ public class Hero : MonoBehaviour
             SMng.Instance.Hero.transform.Translate(Vector3.right * 0.42f);
             GetComponent<BoxCollider2D>().isTrigger = false;
             GetComponent<Rigidbody2D>().gravityScale = 100;
-            SMng.Instance.HeroAnimator.SetBool("Final", true);
+            if(SMng.Instance.BossLife)
+                SMng.Instance.HeroAnimator.SetBool("Final", true);
 
             Time.timeScale = 1;
             StartCoroutine("fin");
@@ -279,8 +280,23 @@ public class Hero : MonoBehaviour
         SMng.Instance.HeroAnimator.SetBool("Ending", true);
     }
 
+    [SerializeField]
+    int SCount = 0;
+
     public void KillFinish()
     {
+        if(GM.LevelManager.myLevel.Equals(3))
+        {
+            if (SCount > 0)
+            {
+                SMng.Instance.HeroAnimator.SetBool("Final",false);
+                SMng.Instance.HeroAnimator.SetBool("Ending", false);
+                SMng.Instance.HeroAnimator.SetBool("Shoot", false);
+                SMng.Instance.HeroAnimator.SetTrigger("Breath");
+                SMng.Instance.BossIntro = false;
+            }
+            SCount++;
+        }
         if (Police != null)
         {
             Police.GetComponent<Police1>().MurderStart = false;

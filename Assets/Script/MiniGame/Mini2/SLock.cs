@@ -4,13 +4,16 @@ using System.Collections;
 public class SLock : MonoBehaviour
 {
     public bool bLockCheck;
-    public Animator ani;
+    Animator ani;
     public int nNum;
+    public GameObject _RED;
+
+    public GameObject Pinset;
 
     // Use this for initialization
     void Start()
     {
-        ani = GetComponent<Animator>();
+           ani = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,12 +22,18 @@ public class SLock : MonoBehaviour
         {
             bLockCheck = false;
         }
+
+        if(!bLockCheck)
+        {
+            _RED.SetActive(true);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Pick"))
         {
+            GM.AudioManager.instance.lockPick();
             ani.Rebind();
             ani.Play("ani1");
         }
@@ -40,13 +49,19 @@ public class SLock : MonoBehaviour
                 ani.Rebind();
                 ani.Play("ani2");
                 nNum = 1;
-                //bLockCheck = false;
+                GM.AudioManager.instance.lockPickDone();
             }
 
             if (col.CompareTag("Pick") && !bLockCheck)
             {
-                //Time.timeScale = 0f;
+                SMng.Direction = 0;
+                SMng.interection = false;
+                transform.parent.parent.gameObject.SetActive(false);
+                Pinset.transform.localPosition = new Vector2(Pinset.GetComponent<SPickMove>().fFirstXPos, Pinset.GetComponent<SPickMove>().fFirstYPos);
+                SMng.Instance.nMini2Count = 0;
                 Debug.Log("lock Game Over");
+                transform.parent.GetComponent<SLockGroup>().Init();
+                SMng.Instance.MiniGameStart = false;
             }
        }
     }

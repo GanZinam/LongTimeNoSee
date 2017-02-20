@@ -5,7 +5,7 @@ namespace GM
 {
     public class AudioManager : MonoBehaviour
     {
-        public static bool endResult = false;       // f 해피 : t 배드
+        public static bool endResult = false;       // f 배드 : t 해피
 
         public static AudioManager instance;
 
@@ -22,16 +22,22 @@ namespace GM
         [SerializeField]
         AudioClip selectStage;
 
+        [Header("_BG_")]
         [SerializeField]
         AudioClip ingameClip;
         [SerializeField]
-        AudioClip rainClip;
-        [SerializeField]
         AudioClip endingClip;
+        [SerializeField]
+        AudioClip warningClip;
+        [SerializeField]
+        AudioClip rainClip;
 
         [SerializeField]
         AudioClip deathPoliceClip;
 
+        [Header("_OBJECT_")]
+        [SerializeField]
+        AudioClip mouseClip;
         [SerializeField]
         AudioClip cabinetClip;
         [SerializeField]
@@ -39,10 +45,29 @@ namespace GM
         [SerializeField]
         AudioClip stairClip;
 
+        [Header("_KILL_")]
         [SerializeField]
         AudioClip gunClip;
         [SerializeField]
         AudioClip knifeClip;
+
+        [Header("_ENDING_")]
+        [SerializeField]
+        AudioClip badClip;
+        [SerializeField]
+        AudioClip happyClip;
+
+        [Header("_CARTOON_")]
+        [SerializeField]
+        AudioClip suicideClip;
+        [SerializeField]
+        AudioClip callClip;
+
+        [Header("_LOCKPICK_")]
+        [SerializeField]
+        AudioClip lockPickClip;
+        [SerializeField]
+        AudioClip lockPickDoneClip;
 
         void Start()
         {
@@ -50,9 +75,20 @@ namespace GM
             DontDestroyOnLoad(this);
         }
 
+        public void endingCartoonBG()
+        {
+            if (!endResult)
+                mainAudio.clip = badClip;
+            else
+                mainAudio.clip = happyClip;
+            mainAudio.Play();
+        }
         public void ingameBG()
         {
-            mainAudio.clip = ingameClip;
+            if (LevelManager.myLevel.Equals(3))
+                mainAudio.clip = endingClip;
+            else
+                mainAudio.clip = ingameClip;
             mainAudio.Play();
         }
         public void rainBG()
@@ -63,6 +99,11 @@ namespace GM
         public void endingBG()
         {
             mainAudio.clip = stairClip;
+            mainAudio.Play();
+        }
+        public void warningBG()
+        {
+            mainAudio.clip = warningClip;
             mainAudio.Play();
         }
 
@@ -129,6 +170,39 @@ namespace GM
             mainAudio.Stop();
             effectAudio.Stop();
             effectAudio2.Stop();
+        }
+
+        public void suicide()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = suicideClip;
+            effectAudio2.Play();
+        }
+        public void call()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = callClip;
+            effectAudio2.Play();
+        }
+
+        public void mouse()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = mouseClip;
+            effectAudio2.Play();
+        }
+
+        public void lockPick()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = lockPickClip;
+            effectAudio2.Play();
+        }
+        public void lockPickDone()
+        {
+            effectAudio2.volume = 1;
+            effectAudio2.clip = lockPickDoneClip;
+            effectAudio2.Play();
         }
     }
 }

@@ -103,7 +103,7 @@ public class Inventory : MonoBehaviour
                 invenItems[i].GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(str.ToString());
                 str.Length = 0;
                 str.Append(saveItems[i].num);
-                invenItems[i].GetComponentInChildren<UnityEngine.UI.Text>().text ="";
+                invenItems[i].GetComponentInChildren<UnityEngine.UI.Text>().text = "";
                 str.Length = 0;
             }
         }
@@ -117,53 +117,67 @@ public class Inventory : MonoBehaviour
     UnityEngine.UI.Text itemDescText;
     [SerializeField]
     UnityEngine.UI.Image itemDescImage;
+    [SerializeField]
+    GameObject Sin;
+    [SerializeField]
+    GameObject SDESC;
+
+    [SerializeField]
+    GameObject au_0;
+    [SerializeField]
+    GameObject au_1;
 
     public void showItemDesc(int idx)
     {
         if (items[idx].num > 0)
         {
-            itemDescImage.sprite = itemBIGspr[items[idx].code - 1];
+            if (items[idx].code - 1 >= 0)
+                itemDescImage.sprite = itemBIGspr[items[idx].code - 1];
             switch (items[idx].code)
             {
                 case 1:
                     itemNameText.text = "총";
-                    itemDescText.text = "총이다";
+                    itemDescText.text = "";
                     break;
                 case 2:
                     itemNameText.text = "칼";
-                    itemDescText.text = "칼이다";
+                    itemDescText.text = "";
                     break;
                 case 3:
                     itemNameText.text = "총알";
-                    itemDescText.text = "ㅊ";
+                    itemDescText.text = "";
                     break;
                 case 4:
-                    itemNameText.text = "신분증";
-                    itemDescText.text = "ㅅㅂㅈ";
+                    itemNameText.text = "신분증"; 
+                    Sin.SetActive(true);
+                    itemDescText.text = "";
                     break;
                 case 5:
                     itemNameText.text = "마스터 키";
-                    itemDescText.text = "ㅁ";
+                    itemDescText.text = "";
                     break;
                 case 6:
                     itemNameText.text = "일지";
-                    itemDescText.text = "칼이다";
+                    SDESC.SetActive(true);
+                    itemDescText.text = "";
                     break;
                 case 7:
                     itemNameText.text = "핀";
-                    itemDescText.text = "칼이다";
+                    itemDescText.text = "";
                     break;
                 case 8:
                     itemNameText.text = "녹음기록";
-                    itemDescText.text = "칼이다";
+                    au_0.SetActive(true);
+                    itemDescText.text = "";
                     break;
                 case 9:
                     itemNameText.text = "녹음기록 2";
-                    itemDescText.text = "칼이다";
+                    au_1.SetActive(true);
+                    itemDescText.text = "";
                     break;
                 case 10:
                     itemNameText.text = "암호힌트";
-                    itemDescText.text = "칼이다";
+                    itemDescText.text = "";
                     break;
             }
             descOBJ.SetActive(true);
@@ -191,7 +205,7 @@ public class Inventory : MonoBehaviour
     */
     public bool ishaveItem(int Item)
     {
-        for(int i = 0; i<10;i++)
+        for (int i = 0; i < 10; i++)
         {
             if (items[i].code.Equals(Item))
                 return true;

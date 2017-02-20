@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class Ending : MonoBehaviour
     [SerializeField]
     Animator bgANIM;
 
+    [SerializeField]
+    GameObject minigame;
+
+
+
     public void killBOSS()
     {
         bgANIM.SetTrigger("KILL");
@@ -27,12 +33,12 @@ public class Ending : MonoBehaviour
 
         SMng.Direction = 3;
         SMng.interection = true;
-
         if (!SMng.sit)
         {
             SMng.Instance.HeroAnimator.SetBool("Shoot", true);
         }
-    } 
+        GM.AudioManager.instance.warningBG();
+    }
 
 
     public void saveBOSS()
@@ -44,16 +50,8 @@ public class Ending : MonoBehaviour
 
         // 미니게임
 
+        // minigame.SetActive(true);
 
-
-
-
-
-
-
-
-
-
-
+        SceneManager.LoadScene("End");
     }
 }

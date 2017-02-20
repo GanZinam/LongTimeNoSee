@@ -8,7 +8,7 @@ namespace GM
     public class LevelManager : MonoBehaviour
     {
         //public GameObject loadingCanvas;
-        public static int myLevel = 2;
+        public static int myLevel = 0;
 
         [SerializeField]
         GameObject introCanvas;
@@ -52,10 +52,11 @@ namespace GM
 
             if (myLevel.Equals(3))
             {
+                SMng.Instance.BossIntro = true;
                 SMng.Instance.dis3();
                 end.SetActive(true);
                 SMng.Instance.Hero.GetComponent<Hero>().setOutDoorpostioin(5);
-                SMng.Instance.HeroAnimator.SetBool("Ending", true);
+                //SMng.Instance.HeroAnimator.SetBool("Ending", true);
             }
 
             if (myLevel.Equals(2))

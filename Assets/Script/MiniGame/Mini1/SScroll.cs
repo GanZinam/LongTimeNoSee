@@ -26,7 +26,7 @@ public class SScroll : MonoBehaviour
     {
         if (StopSpeed.Equals(0))
         {
-            transform.position = new Vector2(transform.position.x,-3.4f);
+            transform.position = new Vector2(transform.position.x,-3.4f+11.8f);
         }
         else
         {
